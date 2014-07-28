@@ -1,0 +1,2 @@
+PODS_NMSSH_LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/NMSSH/NMSSH-iOS/Libraries/lib" "$(PODS_ROOT)/NMSSH/NMSSH-iOS/Libraries/lib" "$(PODS_ROOT)/NMSSH/NMSSH-iOS/Libraries/lib"
+PODS_NMSSH_OTHER_LDFLAGS = -ObjC -lcrypto -lssh2 -lssl -lz -framework CFNetwork

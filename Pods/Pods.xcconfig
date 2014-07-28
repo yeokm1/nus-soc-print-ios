@@ -1,0 +1,6 @@
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/NMSSH"
+LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/NMSSH/NMSSH-iOS/Libraries/lib" "$(PODS_ROOT)/NMSSH/NMSSH-iOS/Libraries/lib" "$(PODS_ROOT)/NMSSH/NMSSH-iOS/Libraries/lib"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers" -isystem "${PODS_ROOT}/Headers/NMSSH"
+OTHER_LDFLAGS = -ObjC -lcrypto -lssh2 -lssl -lz -framework CFNetwork
+PODS_ROOT = ${SRCROOT}/Pods
