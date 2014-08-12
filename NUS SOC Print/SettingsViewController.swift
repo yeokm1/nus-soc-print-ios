@@ -11,9 +11,24 @@ import UIKit
 
 class SettingsViewController: UIViewController {
     
+    
+    
+    @IBOutlet weak var usernameField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var printerField: UITextField!
+    @IBOutlet weak var serverField: UITextField!
+    
+    @IBAction func saveButtonPress(sender: UIButton) {
+    }
+    
+    @IBAction func forgetButtonPress(sender: UIButton) {
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+    
     }
     
     override func didReceiveMemoryWarning() {

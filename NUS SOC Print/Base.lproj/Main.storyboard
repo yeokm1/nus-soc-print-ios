@@ -116,6 +116,9 @@
                                 <state key="normal" title="Save">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="saveButtonPress:" destination="K0G-mf-rUD" eventType="touchUpInside" id="UJV-nG-VRa"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap the button to go to the password reset page. Log in with your NUSNET password to reset your Unix account password." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="294" translatesAutoresizingMaskIntoConstraints="NO" id="i44-7A-srb">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
@@ -134,6 +137,9 @@
                                 <variation key="heightClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="75" y="324" width="159" height="30"/>
                                 </variation>
+                                <connections>
+                                    <action selector="forgetButtonPress:" destination="K0G-mf-rUD" eventType="touchUpInside" id="QfC-vk-Ogb"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -151,6 +157,12 @@
                         </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" id="C7e-IY-KKA"/>
+                    <connections>
+                        <outlet property="passwordField" destination="hzU-sU-MsO" id="3ZY-Az-LeK"/>
+                        <outlet property="printerField" destination="Cyv-an-bAz" id="iYl-es-Qga"/>
+                        <outlet property="serverField" destination="Ue0-H7-CbC" id="5Kz-Vl-ErM"/>
+                        <outlet property="usernameField" destination="U8o-or-Hbl" id="NLH-HC-ntb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KFH-Sf-Dpn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
