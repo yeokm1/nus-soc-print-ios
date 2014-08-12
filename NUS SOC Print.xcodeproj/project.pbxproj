@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		53628D17199A59AC009FF7A4 /* PrintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53628D16199A59AC009FF7A4 /* PrintViewController.swift */; };
+		53628D19199A5A31009FF7A4 /* QuotaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53628D18199A5A31009FF7A4 /* QuotaViewController.swift */; };
+		53628D1B199A5B28009FF7A4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53628D1A199A5B28009FF7A4 /* SettingsViewController.swift */; };
+		53628D1D199A5BA9009FF7A4 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53628D1C199A5BA9009FF7A4 /* HelpViewController.swift */; };
 		538BEDDF1986A10B00C61282 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538BEDDE1986A10B00C61282 /* AppDelegate.swift */; };
-		538BEDE11986A10B00C61282 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538BEDE01986A10B00C61282 /* FirstViewController.swift */; };
-		538BEDE31986A10B00C61282 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538BEDE21986A10B00C61282 /* SecondViewController.swift */; };
 		538BEDE61986A10B00C61282 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 538BEDE41986A10B00C61282 /* Main.storyboard */; };
 		538BEDE81986A10B00C61282 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 538BEDE71986A10B00C61282 /* Images.xcassets */; };
 		538BEDF41986A10B00C61282 /* NUS_SOC_PrintTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538BEDF31986A10B00C61282 /* NUS_SOC_PrintTests.swift */; };
@@ -28,11 +30,13 @@
 
 /* Begin PBXFileReference section */
 		0B58A9287E28435DA8D57847 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		53628D16199A59AC009FF7A4 /* PrintViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintViewController.swift; sourceTree = "<group>"; };
+		53628D18199A5A31009FF7A4 /* QuotaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuotaViewController.swift; sourceTree = "<group>"; };
+		53628D1A199A5B28009FF7A4 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		53628D1C199A5BA9009FF7A4 /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		538BEDD91986A10B00C61282 /* NUS SOC Print.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NUS SOC Print.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		538BEDDD1986A10B00C61282 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		538BEDDE1986A10B00C61282 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		538BEDE01986A10B00C61282 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		538BEDE21986A10B00C61282 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		538BEDE51986A10B00C61282 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		538BEDE71986A10B00C61282 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		538BEDED1986A10B00C61282 /* NUS SOC PrintTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NUS SOC PrintTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,8 +88,10 @@
 			isa = PBXGroup;
 			children = (
 				538BEDDE1986A10B00C61282 /* AppDelegate.swift */,
-				538BEDE01986A10B00C61282 /* FirstViewController.swift */,
-				538BEDE21986A10B00C61282 /* SecondViewController.swift */,
+				53628D16199A59AC009FF7A4 /* PrintViewController.swift */,
+				53628D18199A5A31009FF7A4 /* QuotaViewController.swift */,
+				53628D1A199A5B28009FF7A4 /* SettingsViewController.swift */,
+				53628D1C199A5BA9009FF7A4 /* HelpViewController.swift */,
 				538BEDE41986A10B00C61282 /* Main.storyboard */,
 				538BEDE71986A10B00C61282 /* Images.xcassets */,
 				538BEDDC1986A10B00C61282 /* Supporting Files */,
@@ -260,9 +266,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				538BEDE31986A10B00C61282 /* SecondViewController.swift in Sources */,
+				53628D17199A59AC009FF7A4 /* PrintViewController.swift in Sources */,
+				53628D19199A5A31009FF7A4 /* QuotaViewController.swift in Sources */,
 				538BEDDF1986A10B00C61282 /* AppDelegate.swift in Sources */,
-				538BEDE11986A10B00C61282 /* FirstViewController.swift in Sources */,
+				53628D1B199A5B28009FF7A4 /* SettingsViewController.swift in Sources */,
+				53628D1D199A5BA9009FF7A4 /* HelpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
