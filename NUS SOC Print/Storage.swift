@@ -26,45 +26,45 @@ class Storage  {
     }
     
     
-    func getUsername() -> NSString? {
+    func getUsername() -> String? {
         return preferences.stringForKey(KEY_USERNAME)
     }
     
-    func storeUsername(newUsername : NSString) {
+    func storeUsername(newUsername : String) {
         preferences.setObject(newUsername, forKey: KEY_USERNAME)
     }
     
     
-    func getPassword() -> NSString? {
+    func getPassword() -> String? {
         return preferences.stringForKey(KEY_PASSWORD)
     }
     
-    func storePassword(newPassword : NSString) {
+    func storePassword(newPassword : String) {
         preferences.setObject(newPassword, forKey: KEY_PASSWORD)
     }
     
     
-    func getPrinter() -> NSString? {
+    func getPrinter() -> String? {
         return preferences.stringForKey(KEY_PRINTER)
     }
     
-    func storePrinter(newPrinter : NSString) {
+    func storePrinter(newPrinter : String) {
         preferences.setObject(newPrinter, forKey: KEY_PRINTER)
     }
     
     
-    func getServer() -> NSString? {
-        var storedServer : NSString? =  preferences.stringForKey(KEY_SERVER)
+    func getServer() -> String {
+        var storedServer : String? =  preferences.stringForKey(KEY_SERVER)
         
         
-        if(storedServer == nil || storedServer!.length == 0){
+        if(storedServer == nil || storedServer!.isEmpty == 0){
             return DEFAULT_SERVER;
         } else {
-            return storedServer;
+            return storedServer!;
         }
     }
     
-    func storeServer(newServer : NSString) {
+    func storeServer(newServer : String) {
         preferences.setObject(newServer, forKey: KEY_SERVER)
     }
     

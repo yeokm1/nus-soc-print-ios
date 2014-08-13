@@ -41,16 +41,22 @@ class SettingsViewController: UIViewController {
     func loadAllValuesToUI(){
         var preferences : Storage = Storage.sharedInstance;
 
-        var username : NSString? = preferences.getUsername()
-        var password : NSString? = preferences.getPassword()
-        var printer : NSString? = preferences.getPrinter()
-        var server : NSString? = preferences.getServer()
         
         
-        if(username != nil){
-            usernameField.text = username;
+        if var username : String?  = preferences.getUsername() {
+            usernameField.text = username
         }
         
+        if var password : String? = preferences.getPassword() {
+            passwordField.text = password
+        }
+        
+        if var printer : String? = preferences.getPrinter() {
+            printerField.text = printer
+        }
+        
+        var server : String = preferences.getServer()
+        serverField.text = server
         
         
     }
