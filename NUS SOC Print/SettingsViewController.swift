@@ -11,7 +11,7 @@ import UIKit
 
 let RESET_PASSWORD_LINK = "https://mysoc.nus.edu.sg/~myacct/"
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: UIViewController, UITextFieldDelegate{
     
     
     @IBOutlet weak var usernameField: UITextField!
@@ -20,6 +20,18 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var serverField: UITextField!
     
     @IBAction func saveButtonPress(sender: UIButton) {
+        var preferences : Storage = Storage.sharedInstance;
+        
+        var username = usernameField.text
+        var password = passwordField.text
+        var printer = printerField.text
+        var server = serverField.text
+        
+        preferences.storeUsername(username)
+        preferences.storePassword(password)
+        preferences.storePrinter(printer)
+        preferences.storeServer(server)
+        
     }
     
     @IBAction func forgetButtonPress(sender: UIButton) {
@@ -32,6 +44,11 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        usernameField.delegate = self
+        passwordField.delegate = self
+        printerField.delegate = self
+        serverField.delegate = self
+        
         loadAllValuesToUI()
     
     }
@@ -59,6 +76,11 @@ class SettingsViewController: UIViewController {
         serverField.text = server
         
         
+    }
+    
+    func textFieldShouldReturn(textField: UITextField!) -> Bool {
+        textField.resignFirstResponder();
+        return true;
     }
     
     
