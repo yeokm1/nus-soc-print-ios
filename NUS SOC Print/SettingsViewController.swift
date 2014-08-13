@@ -43,21 +43,15 @@ class SettingsViewController: UIViewController, UITextFieldDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
         usernameField.delegate = self
         passwordField.delegate = self
         printerField.delegate = self
         serverField.delegate = self
         
         loadAllValuesToUI()
-    
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+
     
     func loadAllValuesToUI(){
         var preferences : Storage = Storage.sharedInstance;
@@ -74,13 +68,17 @@ class SettingsViewController: UIViewController, UITextFieldDelegate{
         
         var server : String = preferences.getServer()
         serverField.text = server
-        
-        
     }
     
     func textFieldShouldReturn(textField: UITextField!) -> Bool {
         textField.resignFirstResponder();
         return true;
+    }
+    
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
     
