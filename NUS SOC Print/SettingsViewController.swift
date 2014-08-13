@@ -9,16 +9,17 @@
 import Foundation
 import UIKit
 
-let RESET_PASSWORD_LINK = "https://mysoc.nus.edu.sg/~myacct/"
-
-let DIALOG_SAVE_TITLE = "Saved!"
-let DIALOG_SAVE_TEXT = "All fields saved!"
-
-let DIALOG_EMPTY_FIELDS_TITLE = "Empty Fields"
-let DIALOG_EMPTY_FIELDS_TEXT = "Username/Password/Server fields are empty. This app will not work without your Unix credentials or a server setting."
-let DIALOG_OK = "OK"
 
 class SettingsViewController: UIViewController, UITextFieldDelegate{
+    
+    let RESET_PASSWORD_LINK = "https://mysoc.nus.edu.sg/~myacct/"
+    
+    let DIALOG_SAVE_TITLE = "Saved!"
+    let DIALOG_SAVE_TEXT = "All fields saved!"
+    
+    let DIALOG_EMPTY_FIELDS_TITLE = "Empty Fields"
+    let DIALOG_EMPTY_FIELDS_TEXT = "Username/Password/Server fields are empty. This app will not work without your Unix credentials or a server setting."
+    let DIALOG_OK = "OK"
     
     
     @IBOutlet weak var usernameField: UITextField!
