@@ -11,8 +11,11 @@ import UIKit
 
 let RESET_PASSWORD_LINK = "https://mysoc.nus.edu.sg/~myacct/"
 
-let DIALOG_TITLE = "Empty Fields"
-let DIALOG_TEXT = "Username/Password/Server fields are empty. This app will not work without your Unix credentials or a server setting."
+let DIALOG_SAVE_TITLE = "Saved!"
+let DIALOG_SAVE_TEXT = "All fields saved!"
+
+let DIALOG_EMPTY_FIELDS_TITLE = "Empty Fields"
+let DIALOG_EMPTY_FIELDS_TEXT = "Username/Password/Server fields are empty. This app will not work without your Unix credentials or a server setting."
 let DIALOG_OK = "OK"
 
 class SettingsViewController: UIViewController, UITextFieldDelegate{
@@ -24,23 +27,9 @@ class SettingsViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var serverField: UITextField!
     
     @IBAction func saveButtonPress(sender: UIButton) {
-        var preferences : Storage = Storage.sharedInstance;
-        
-        var username = usernameField.text
-        var password = passwordField.text
-        var printer = printerField.text
-        var server = serverField.text
-        
-        preferences.storeUsername(username)
-        preferences.storePassword(password)
-        preferences.storePrinter(printer)
-        preferences.storeServer(server)
-        
-        if username.isEmpty || password.isEmpty || server.isEmpty {
-            showAlert()
-        }
-        
+        saveStuff()
     }
+    
     
     @IBAction func forgetButtonPress(sender: UIButton) {
         
@@ -49,15 +38,39 @@ class SettingsViewController: UIViewController, UITextFieldDelegate{
     }
     
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    override func viewDidAppear(animated: Bool) {
         usernameField.delegate = self
         passwordField.delegate = self
         printerField.delegate = self
         serverField.delegate = self
         
         loadAllValuesToUI()
+    }
+    
+    func saveStuff(){
+        var preferences : Storage = Storage.sharedInstance;
+        
+        var username = usernameField.text
+        var password = passwordField.text
+        var printer = printerField.text
+        var server = serverField.text
+        
+        if username.isEmpty || password.isEmpty || server.isEmpty {
+            showAlert(DIALOG_EMPTY_FIELDS_TITLE, message: DIALOG_EMPTY_FIELDS_TEXT)
+        } else {
+            preferences.storeUsername(username)
+            preferences.storePassword(password)
+            preferences.storePrinter(printer)
+            preferences.storeServer(server)
+            showAlert(DIALOG_SAVE_TITLE, message: DIALOG_SAVE_TEXT)
+        }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        usernameField.text = nil
+        passwordField.text = nil
+        printerField.text = nil
+        serverField.text = nil
     }
 
     
@@ -78,8 +91,8 @@ class SettingsViewController: UIViewController, UITextFieldDelegate{
         serverField.text = server
     }
     
-    func showAlert(){
-        var alert = UIAlertController(title: DIALOG_TITLE, message: DIALOG_TEXT, preferredStyle: UIAlertControllerStyle.Alert)
+    func showAlert(title: String, message : String){
+        var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: DIALOG_OK, style: UIAlertActionStyle.Default, handler: nil))
 
         self.presentViewController(alert, animated: true, completion: nil)
