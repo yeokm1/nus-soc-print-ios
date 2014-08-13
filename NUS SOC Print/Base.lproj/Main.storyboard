@@ -35,14 +35,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6jq-8p-a0Q">
+                                <rect key="frame" x="0.0" y="20" width="320" height="365"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m17-X0-fiE">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <rect key="frame" x="128" y="393" width="65" height="30"/>
                                 <state key="normal" title="Refresh">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="heightClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="137" y="379" width="53" height="30"/>
                                 </variation>
+                                <connections>
+                                    <action selector="refreshButtonPress:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="f48-rk-5pv"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -58,10 +67,13 @@
                         </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Quota" image="second" id="cPa-gy-q4n"/>
+                    <connections>
+                        <outlet property="quotaOutput" destination="6jq-8p-a0Q" id="cgk-gc-clg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="573" y="-300.75"/>
+            <point key="canvasLocation" x="573" y="-301"/>
         </scene>
         <!--Settings-->
         <scene sceneID="6O0-PS-M0q">
@@ -134,7 +146,7 @@
                                     <action selector="saveButtonPress:" destination="K0G-mf-rUD" eventType="touchUpInside" id="UJV-nG-VRa"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap the button to go to the password reset page. Log in with your NUSNET password to reset your Unix account password." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="294" translatesAutoresizingMaskIntoConstraints="NO" id="i44-7A-srb">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap the button to go to the password reset page. Log in with your NUSNET password to reset your Unix account password." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="42" translatesAutoresizingMaskIntoConstraints="NO" id="i44-7A-srb">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
