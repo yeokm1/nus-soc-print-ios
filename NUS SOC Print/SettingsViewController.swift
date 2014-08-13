@@ -42,18 +42,14 @@ class SettingsViewController: UIViewController {
         var preferences : Storage = Storage.sharedInstance;
 
         
+        var username : String?  = preferences.getUsername()
+        usernameField.text = username
         
-        if var username : String?  = preferences.getUsername() {
-            usernameField.text = username
-        }
-        
-        if var password : String? = preferences.getPassword() {
-            passwordField.text = password
-        }
-        
-        if var printer : String? = preferences.getPrinter() {
-            printerField.text = printer
-        }
+        var password : String? = preferences.getPassword()
+        passwordField.text = password
+  
+        var printer : String? = preferences.getPrinter()
+        printerField.text = printer
         
         var server : String = preferences.getServer()
         serverField.text = server
