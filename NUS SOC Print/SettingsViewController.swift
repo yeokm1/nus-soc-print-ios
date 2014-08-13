@@ -11,6 +11,10 @@ import UIKit
 
 let RESET_PASSWORD_LINK = "https://mysoc.nus.edu.sg/~myacct/"
 
+let DIALOG_TITLE = "Empty Fields"
+let DIALOG_TEXT = "Username/Password/Server fields are empty. This app will not work without your Unix credentials or a server setting."
+let DIALOG_OK = "OK"
+
 class SettingsViewController: UIViewController, UITextFieldDelegate{
     
     
@@ -31,6 +35,10 @@ class SettingsViewController: UIViewController, UITextFieldDelegate{
         preferences.storePassword(password)
         preferences.storePrinter(printer)
         preferences.storeServer(server)
+        
+        if username.isEmpty || password.isEmpty || server.isEmpty {
+            showAlert()
+        }
         
     }
     
@@ -70,6 +78,13 @@ class SettingsViewController: UIViewController, UITextFieldDelegate{
         serverField.text = server
     }
     
+    func showAlert(){
+        var alert = UIAlertController(title: DIALOG_TITLE, message: DIALOG_TEXT, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: DIALOG_OK, style: UIAlertActionStyle.Default, handler: nil))
+
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
     func textFieldShouldReturn(textField: UITextField!) -> Bool {
         textField.resignFirstResponder();
         return true;
@@ -80,6 +95,8 @@ class SettingsViewController: UIViewController, UITextFieldDelegate{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+
     
     
 }
