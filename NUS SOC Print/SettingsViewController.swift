@@ -9,8 +9,9 @@
 import Foundation
 import UIKit
 
+let RESET_PASSWORD_LINK = "https://mysoc.nus.edu.sg/~myacct/"
+
 class SettingsViewController: UIViewController {
-    
     
     
     @IBOutlet weak var usernameField: UITextField!
@@ -22,6 +23,9 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func forgetButtonPress(sender: UIButton) {
+        
+        var url  = NSURL.URLWithString(RESET_PASSWORD_LINK)
+        UIApplication.sharedApplication().openURL(url)
     }
     
     
