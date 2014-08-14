@@ -43,7 +43,7 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
     
     
     func actionSheet(actionSheet: UIActionSheet!, clickedButtonAtIndex buttonIndex: Int) {
-        //As index 0 is reserved for the destructiveButton which I'm not using
+        //As index 0 is reserved for the cancelButton
         var actualSelectedIndex = buttonIndex - 1
         
         NSLog("%@ Selected Printer %d", TAG, actualSelectedIndex);
