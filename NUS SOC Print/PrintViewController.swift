@@ -21,6 +21,10 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
     
     
     @IBOutlet weak var selectPrinter: UIButton!
+    @IBOutlet weak var pdfShower: UIWebView!
+    
+    
+    
     @IBAction func selectPrinterPressed(sender: UIButton) {
         var selectPrinterWindow : UIActionSheet = UIActionSheet(title: TEXT_SELECT_PRINTER, delegate: self, cancelButtonTitle: TEXT_CANCEL, destructiveButtonTitle: nil)
         
@@ -33,6 +37,11 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
         selectPrinterWindow.showInView(self.view)
         
     }
+    
+    @IBAction func printButtonPress(sender: UIButton) {
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
