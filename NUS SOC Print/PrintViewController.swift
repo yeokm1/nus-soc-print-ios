@@ -17,6 +17,8 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
     let TEXT_SELECT_PRINTER = "Select Printer"
     let TEXT_CANCEL = "Cancel"
     
+    var selectedPrinter = -1
+    
     
     @IBOutlet weak var selectPrinter: UIButton!
     @IBAction func selectPrinterPressed(sender: UIButton) {
@@ -45,6 +47,11 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
     func actionSheet(actionSheet: UIActionSheet!, clickedButtonAtIndex buttonIndex: Int) {
         //As index 0 is reserved for the cancelButton
         var actualSelectedIndex = buttonIndex - 1
+        
+        if(buttonIndex != -1){
+            selectedPrinter = actualSelectedIndex
+            selectPrinter.setTitle(PRINTER_LIST[actualSelectedIndex], forState: UIControlState.Normal)
+        }
         
         NSLog("%@ Selected Printer %d", TAG, actualSelectedIndex);
     }
