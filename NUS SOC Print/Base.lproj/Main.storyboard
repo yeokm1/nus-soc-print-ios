@@ -7,7 +7,7 @@
         <!--Print-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController id="9pv-A4-QxB" customClass="PrintViewController" customModule="NUS_SOC_Print" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="printID" id="9pv-A4-QxB" customClass="PrintViewController" customModule="NUS_SOC_Print" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
                         <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
@@ -64,7 +64,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Print" image="first" id="acW-dT-cKf"/>
                     <connections>
-                        <outlet property="pdfShower" destination="bcF-AT-A65" id="qBE-lc-Buv"/>
+                        <outlet property="pdfShower" destination="bcF-AT-A65" id="z0K-PV-8rc"/>
                         <outlet property="selectPrinter" destination="qlM-Z8-eET" id="W23-9B-lvX"/>
                     </connections>
                 </viewController>

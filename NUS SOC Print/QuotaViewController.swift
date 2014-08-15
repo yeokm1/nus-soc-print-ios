@@ -122,6 +122,8 @@ class QuotaViewController: UIViewController, NSURLConnectionDataDelegate {
 
         input2 = input2.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: NSStringCompareOptions.CaseInsensitiveSearch | NSStringCompareOptions.RegularExpressionSearch, range: NSMakeRange(0, input2.length))
         
+    
+
 
         return input2
     

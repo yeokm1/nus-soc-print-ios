@@ -10,9 +10,21 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-                            
+    
+    
+    let TAG = "Appdelegate"
     var window: UIWindow?
 
+    
+    func application(application: UIApplication!, openURL url: NSURL!, sourceApplication: String!, annotation: AnyObject!) -> Bool {
+        NSLog("%@ incoming file %@", TAG, url);
+        
+        var vc : PrintViewController = getPrintController()
+        vc.receiveDocumentURL(url)
+        
+        return true
+    }
+    
 
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
         // Override point for customization after application launch.
@@ -35,10 +47,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication!) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        NSLog("%@ applicationDidBecomeActive", TAG)
     }
 
     func applicationWillTerminate(application: UIApplication!) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    
+    func getPrintController() -> PrintViewController {
+        var storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        var vc : PrintViewController = storyboard.instantiateViewControllerWithIdentifier("printID") as PrintViewController;
+        return vc
     }
 
 

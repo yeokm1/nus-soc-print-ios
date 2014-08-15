@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+var incomingURL : NSURL?
+
 class PrintViewController: UIViewController, UIActionSheetDelegate {
     
     let TAG = "PrintViewController"
@@ -18,6 +20,8 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
     let TEXT_CANCEL = "Cancel"
     
     var selectedPrinter = -1
+    
+
     
     
     @IBOutlet weak var selectPrinter: UIButton!
@@ -44,7 +48,21 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        NSLog("%@ viewDidLoad", TAG);
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updatePDFToWebview", name: UIApplicationDidBecomeActiveNotification, object: nil)
+        
+
+    }
+    
+
+    func updatePDFToWebview(){
+        
+        var urlRequest : NSURLRequest = NSURLRequest(URL: incomingURL)
+        
+        //iOS8 beta 5 has this bug of not displaying the PDF and showing "failed to find PDF header: `%PDF' not found." in the log
+        pdfShower.loadRequest(urlRequest)
+    
     }
     
     override func didReceiveMemoryWarning() {
@@ -63,6 +81,11 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
         }
         
         NSLog("%@ Selected Printer %d", TAG, actualSelectedIndex);
+    }
+    
+    func receiveDocumentURL(url : NSURL){
+        NSLog("%@ incoming file %@", TAG, url);
+        incomingURL = url
     }
     
     
