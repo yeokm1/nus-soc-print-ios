@@ -47,7 +47,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N1P-af-9kj">
-                                <rect key="frame" x="144" y="401" width="32" height="30"/>
+                                <rect key="frame" x="16" y="401" width="288" height="30"/>
                                 <state key="normal" title="Print">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -65,6 +65,7 @@
                     <tabBarItem key="tabBarItem" title="Print" image="first" id="acW-dT-cKf"/>
                     <connections>
                         <outlet property="pdfShower" destination="bcF-AT-A65" id="z0K-PV-8rc"/>
+                        <outlet property="printButton" destination="N1P-af-9kj" id="cGt-Fb-6JZ"/>
                         <outlet property="selectPrinter" destination="qlM-Z8-eET" id="W23-9B-lvX"/>
                     </connections>
                 </viewController>

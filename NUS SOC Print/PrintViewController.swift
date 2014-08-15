@@ -18,6 +18,7 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
     
     let TEXT_SELECT_PRINTER = "Select Printer"
     let TEXT_CANCEL = "Cancel"
+    let TEXT_PRINT_FORMAT = "Print \"%@\""
     
     var selectedPrinter = -1
     
@@ -27,6 +28,7 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
     @IBOutlet weak var selectPrinter: UIButton!
     @IBOutlet weak var pdfShower: UIWebView!
     
+    @IBOutlet weak var printButton: UIButton!
     
     
     @IBAction func selectPrinterPressed(sender: UIButton) {
@@ -61,7 +63,16 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
         var urlRequest : NSURLRequest = NSURLRequest(URL: incomingURL)
         
         //iOS8 beta 5 has this bug of not displaying the PDF and showing "failed to find PDF header: `%PDF' not found." in the log
-        pdfShower.loadRequest(urlRequest)
+        
+        if(incomingURL != nil){
+            pdfShower.loadRequest(urlRequest)
+            var filename : String = incomingURL!.lastPathComponent
+            var buttonText = String(format: TEXT_PRINT_FORMAT, filename)
+            
+            printButton.setTitle(buttonText, forState: UIControlState.Normal)
+            
+            
+        }
     
     }
     
