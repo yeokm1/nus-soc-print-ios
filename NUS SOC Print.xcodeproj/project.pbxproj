@@ -33,8 +33,7 @@
 
 /* Begin PBXFileReference section */
 		0B58A9287E28435DA8D57847 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		533D2644199FA88D00719717 /* NUS SOC Print-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NUS SOC Print-Bridging-Header.h"; sourceTree = "<group>"; };
-		533D2647199FA8BA00719717 /* NMSSH-Wrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NMSSH-Wrapper.h"; path = "NUS SOC Print/NMSSH-Wrapper.h"; sourceTree = "<group>"; };
+		533D2644199FA88D00719717 /* NMSSH-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NMSSH-Bridging-Header.h"; sourceTree = "<group>"; };
 		53628D16199A59AC009FF7A4 /* PrintViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintViewController.swift; sourceTree = "<group>"; };
 		53628D18199A5A31009FF7A4 /* QuotaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuotaViewController.swift; sourceTree = "<group>"; };
 		53628D1A199A5B28009FF7A4 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -77,8 +76,7 @@
 		533D2643199FA86100719717 /* NMSSH */ = {
 			isa = PBXGroup;
 			children = (
-				533D2644199FA88D00719717 /* NUS SOC Print-Bridging-Header.h */,
-				533D2647199FA8BA00719717 /* NMSSH-Wrapper.h */,
+				533D2644199FA88D00719717 /* NMSSH-Bridging-Header.h */,
 			);
 			name = NMSSH;
 			sourceTree = "<group>";
@@ -418,7 +416,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "NUS SOC Print-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "NMSSH-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -434,7 +432,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "NUS SOC Print-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "NMSSH-Bridging-Header.h";
 			};
 			name = Release;
 		};
