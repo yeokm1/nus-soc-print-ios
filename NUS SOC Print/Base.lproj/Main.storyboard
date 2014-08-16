@@ -46,8 +46,24 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bcF-AT-A65">
+                                <rect key="frame" x="9" y="138" width="303" height="252"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No file specified yet" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IYQ-lI-tnl">
+                                <rect key="frame" x="109" y="109" width="195" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Filename:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GA9-L7-dbA">
+                                <rect key="frame" x="16" y="109" width="74" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N1P-af-9kj">
-                                <rect key="frame" x="16" y="401" width="288" height="30"/>
+                                <rect key="frame" x="130" y="393" width="61" height="30"/>
                                 <state key="normal" title="Print">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -55,15 +71,12 @@
                                     <action selector="printButtonPress:" destination="9pv-A4-QxB" eventType="touchUpInside" id="WVo-fs-QKf"/>
                                 </connections>
                             </button>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bcF-AT-A65">
-                                <rect key="frame" x="9" y="104" width="303" height="289"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Print" image="first" id="acW-dT-cKf"/>
                     <connections>
+                        <outlet property="filenameLabel" destination="IYQ-lI-tnl" id="ZdP-JM-ls1"/>
                         <outlet property="pdfShower" destination="bcF-AT-A65" id="z0K-PV-8rc"/>
                         <outlet property="printButton" destination="N1P-af-9kj" id="cGt-Fb-6JZ"/>
                         <outlet property="selectPrinter" destination="qlM-Z8-eET" id="W23-9B-lvX"/>

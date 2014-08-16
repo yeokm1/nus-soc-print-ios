@@ -18,7 +18,6 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
     
     let TEXT_SELECT_PRINTER = "Select Printer"
     let TEXT_CANCEL = "Cancel"
-    let TEXT_PRINT_FORMAT = "Print \"%@\""
     
     var selectedPrinter = -1
     
@@ -30,6 +29,7 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
     
     @IBOutlet weak var printButton: UIButton!
     
+    @IBOutlet weak var filenameLabel: UILabel!
     
     @IBAction func selectPrinterPressed(sender: UIButton) {
         var selectPrinterWindow : UIActionSheet = UIActionSheet(title: TEXT_SELECT_PRINTER, delegate: self, cancelButtonTitle: TEXT_CANCEL, destructiveButtonTitle: nil)
@@ -67,9 +67,8 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
         if(incomingURL != nil){
             pdfShower.loadRequest(urlRequest)
             var filename : String = incomingURL!.lastPathComponent
-            var buttonText = String(format: TEXT_PRINT_FORMAT, filename)
             
-            printButton.setTitle(buttonText, forState: UIControlState.Normal)
+            filenameLabel.text = filename
             
             
         }
