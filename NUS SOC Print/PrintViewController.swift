@@ -17,7 +17,7 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
     let PRINTER_LIST = ["psts", "psts-sx", "pstsb", "pstsb-sx", "pstsc", "pstsc-sx", "psc008", "psc008-sx", "psc011", "psc011-sx", "psc245", "psc245-sx"]
     
     let TEXT_SELECT_PRINTER = "Select Printer"
-    let TEXT_CANCEL = "Cancel"
+    let TEXT_CANCEL = "---Cancel---"
     
     var selectedPrinter = -1
     
@@ -32,14 +32,19 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
     @IBOutlet weak var filenameLabel: UILabel!
     
     @IBAction func selectPrinterPressed(sender: UIButton) {
-        var selectPrinterWindow : UIActionSheet = UIActionSheet(title: TEXT_SELECT_PRINTER, delegate: self, cancelButtonTitle: TEXT_CANCEL, destructiveButtonTitle: nil)
         
+        //Cancel button is added seperately due to a bug up to iOS 7.1. 
+        //http://stackoverflow.com/questions/5262428/uiactionsheet-buttonindex-values-faulty-when-using-more-than-6-custom-buttons
+        
+        var selectPrinterWindow : UIActionSheet = UIActionSheet(title: TEXT_SELECT_PRINTER, delegate: self, cancelButtonTitle: nil, destructiveButtonTitle: nil)
+        
+        selectPrinterWindow.addButtonWithTitle(TEXT_CANCEL)
         
         for printer in PRINTER_LIST {
             selectPrinterWindow.addButtonWithTitle(printer)
         }
         
-        
+    
         selectPrinterWindow.showInView(self.view)
         
     }
