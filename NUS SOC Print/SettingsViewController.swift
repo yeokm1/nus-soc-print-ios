@@ -93,10 +93,23 @@ class SettingsViewController: UIViewController, UITextFieldDelegate{
     }
     
     func showAlert(title: String, message : String){
-        var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: DIALOG_OK, style: UIAlertActionStyle.Default, handler: nil))
+        var systemVersion = UIDevice.currentDevice().systemVersion as NSString
+        
+        var systemVersionFloat = systemVersion.floatValue
+        
+        
+        if(systemVersionFloat >= 8.0){
+            var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: DIALOG_OK, style: UIAlertActionStyle.Default, handler: nil))
+            
+            self.presentViewController(alert, animated: true, completion: nil)
+        } else {
+            
+            var alertView : UIAlertView = UIAlertView(title: title, message: message, delegate: nil, cancelButtonTitle: DIALOG_OK)
+            alertView.show()
 
-        self.presentViewController(alert, animated: true, completion: nil)
+        }
+        
     }
     
     func textFieldShouldReturn(textField: UITextField!) -> Bool {
