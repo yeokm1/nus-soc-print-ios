@@ -49,6 +49,13 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
     }
     
     @IBAction func printButtonPress(sender: UIButton) {
+        var sshConnection : NMSSHSession = NMSSHSession(host: "127.0.0.1", andUsername: "yeokm1")
+        if(sshConnection.connected){
+            NSLog("Connected")
+        } else {
+            NSLog("Not Connected")
+        }
+        
     }
     
     @IBAction func checkStatusButtonPressed(sender: UIButton) {
