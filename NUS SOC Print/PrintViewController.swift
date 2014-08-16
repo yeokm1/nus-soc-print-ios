@@ -23,7 +23,11 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
     let TEXT_INSUFFICIENT_DETAILS_TEXT = "Please configure your Unix username, password and/or server in Settings before printing"
     
     
-    var selectedPrinter = -1
+    let TEXT_SELECTION_INCOMPLETE_TITLE = "Print options not chosen"
+    let TEXT_SELECTION_INCOMPLOTE_MESSAGE = "Please select a printer and/or import a file to print"
+    
+    
+    var selectedPrinter : Int = -1
     
 
     
@@ -54,8 +58,18 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
     
     @IBAction func printButtonPress(sender: UIButton) {
         
-
-
+        var credentials = getCredentialsAndShowWarning()
+        
+        var settingsOK = credentials.settingsOK
+        var username : String? = credentials.username
+        var password : String? = credentials.password
+        var server : String? = credentials.server
+        
+        
+        if(selectedPrinter < 0 || incomingURL == nil){
+            showAlert(TEXT_SELECTION_INCOMPLETE_TITLE, TEXT_SELECTION_INCOMPLOTE_MESSAGE, self)
+        }
+        
 
         
     }
@@ -78,7 +92,7 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
         getCredentialsAndShowWarning()
     }
     
-    func getCredentialsAndShowWarning() -> (allOK : Bool, username : String?, password : String?, server : String){
+    func getCredentialsAndShowWarning() -> (settingsOK : Bool, username : String?, password : String?, server : String){
         var preferences : Storage = Storage.sharedInstance;
         
         var username : String?  = preferences.getUsername()
