@@ -27,13 +27,12 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
     @IBOutlet weak var selectPrinter: UIButton!
     @IBOutlet weak var pdfShower: UIWebView!
     
-    @IBOutlet weak var printButton: UIButton!
-    
     @IBOutlet weak var filenameLabel: UILabel!
     
+
     @IBAction func selectPrinterPressed(sender: UIButton) {
         
-        //Cancel button is added seperately due to a bug up to iOS 7.1. 
+        //Cancel button is added separately due to a bug up to iOS 7.1.
         //http://stackoverflow.com/questions/5262428/uiactionsheet-buttonindex-values-faulty-when-using-more-than-6-custom-buttons
         
         var selectPrinterWindow : UIActionSheet = UIActionSheet(title: TEXT_SELECT_PRINTER, delegate: self, cancelButtonTitle: nil, destructiveButtonTitle: nil)
@@ -50,6 +49,9 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
     }
     
     @IBAction func printButtonPress(sender: UIButton) {
+    }
+    
+    @IBAction func checkStatusButtonPressed(sender: UIButton) {
     }
     
     
