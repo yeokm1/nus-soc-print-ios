@@ -19,6 +19,10 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
     let TEXT_SELECT_PRINTER = "Select Printer"
     let TEXT_CANCEL = "---Cancel---"
     
+    let TEXT_INSUFFICIENT_DETAILS_TITLE = "Application not set up"
+    let TEXT_INSUFFICIENT_DETAILS_TEXT = "Please configure your Unix username, password and/or server in Settings before printing"
+    
+    
     var selectedPrinter = -1
     
 
@@ -49,12 +53,10 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
     }
     
     @IBAction func printButtonPress(sender: UIButton) {
-        var sshConnection : NMSSHSession = NMSSHSession(host: "127.0.0.1", andUsername: "yeokm1")
-        if(sshConnection.connected){
-            NSLog("Connected")
-        } else {
-            NSLog("Not Connected")
-        }
+        
+
+
+
         
     }
     
@@ -69,6 +71,33 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "updatePDFToWebview", name: UIApplicationDidBecomeActiveNotification, object: nil)
         
 
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        getCredentialsAndShowWarning()
+    }
+    
+    func getCredentialsAndShowWarning() -> (allOK : Bool, username : String?, password : String?, server : String){
+        var preferences : Storage = Storage.sharedInstance;
+        
+        var username : String?  = preferences.getUsername()
+        var password : String? = preferences.getPassword()
+        var server : String = preferences.getServer()
+        
+        
+        if username == nil || username!.isEmpty
+            || password == nil || password!.isEmpty
+            || server.isEmpty {
+                showAlert(TEXT_INSUFFICIENT_DETAILS_TITLE, TEXT_INSUFFICIENT_DETAILS_TEXT, self)
+             return (false, username, password, server)
+                
+        } else {
+            return (true, username, password, server)
+
+        }
+        
+        
     }
     
 
