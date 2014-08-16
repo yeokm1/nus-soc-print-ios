@@ -86,7 +86,7 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
         //As index 0 is reserved for the cancelButton
         var actualSelectedIndex = buttonIndex - 1
         
-        if(buttonIndex != -1){
+        if(actualSelectedIndex != -1){
             selectedPrinter = actualSelectedIndex
             selectPrinter.setTitle(PRINTER_LIST[actualSelectedIndex], forState: UIControlState.Normal)
         }
