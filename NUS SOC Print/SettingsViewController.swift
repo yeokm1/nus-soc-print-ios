@@ -19,7 +19,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate{
     
     let DIALOG_EMPTY_FIELDS_TITLE = "Empty Fields"
     let DIALOG_EMPTY_FIELDS_TEXT = "Username/Password/Server fields are empty. This app will not work without your Unix credentials or a server setting."
-    let DIALOG_OK = "OK"
+
     
     
     @IBOutlet weak var usernameField: UITextField!
@@ -57,13 +57,13 @@ class SettingsViewController: UIViewController, UITextFieldDelegate{
         var server = serverField.text
         
         if username.isEmpty || password.isEmpty || server.isEmpty {
-            showAlert(DIALOG_EMPTY_FIELDS_TITLE, message: DIALOG_EMPTY_FIELDS_TEXT)
+            showAlert(DIALOG_EMPTY_FIELDS_TITLE, DIALOG_EMPTY_FIELDS_TEXT, self)
         } else {
             preferences.storeUsername(username)
             preferences.storePassword(password)
             preferences.storePrinter(printer)
             preferences.storeServer(server)
-            showAlert(DIALOG_SAVE_TITLE, message: DIALOG_SAVE_TEXT)
+            showAlert(DIALOG_SAVE_TITLE, DIALOG_SAVE_TEXT, self)
         }
     }
     
@@ -92,25 +92,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate{
         serverField.text = server
     }
     
-    func showAlert(title: String, message : String){
-        var systemVersion = UIDevice.currentDevice().systemVersion as NSString
-        
-        var systemVersionFloat = systemVersion.floatValue
-        
-        
-        if(systemVersionFloat >= 8.0){
-            var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: DIALOG_OK, style: UIAlertActionStyle.Default, handler: nil))
-            
-            self.presentViewController(alert, animated: true, completion: nil)
-        } else {
-            
-            var alertView : UIAlertView = UIAlertView(title: title, message: message, delegate: nil, cancelButtonTitle: DIALOG_OK)
-            alertView.show()
 
-        }
-        
-    }
     
     func textFieldShouldReturn(textField: UITextField!) -> Bool {
         textField.resignFirstResponder();
