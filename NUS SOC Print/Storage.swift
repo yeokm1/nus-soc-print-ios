@@ -15,6 +15,9 @@ private let KEY_SERVER = "KEY_SERVER"
 private let DEFAULT_SERVER = "sunfire.comp.nus.edu.sg"
 
 
+private let NATIVE_PRINTER_LIST = ["psts", "psts-sx", "pstsb", "pstsb-sx", "pstsc", "pstsc-sx", "psc008", "psc008-sx", "psc011", "psc011-sx", "psc245", "psc245-sx"]
+
+
 private let theOne : Storage = Storage()
 
 private var preferences : NSUserDefaults!
@@ -46,6 +49,22 @@ class Storage  {
     
     func getPrinter() -> String? {
         return preferences.stringForKey(KEY_PRINTER)
+    }
+    
+    func getPrinterList() -> Array<String> {
+        var storedPrinter : String? = getPrinter()
+        
+        if(storedPrinter == nil || storedPrinter!.isEmpty){
+            return NATIVE_PRINTER_LIST
+        } else {
+            var newList : Array<String> = [storedPrinter!]
+            for nativePrinter in NATIVE_PRINTER_LIST{
+                newList.append(nativePrinter)
+            }
+            
+            return newList
+            
+        }
     }
     
     func storePrinter(newPrinter : String) {

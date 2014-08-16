@@ -14,7 +14,7 @@ var incomingURL : NSURL?
 class PrintViewController: UIViewController, UIActionSheetDelegate {
     
     let TAG = "PrintViewController"
-    let PRINTER_LIST = ["psts", "psts-sx", "pstsb", "pstsb-sx", "pstsc", "pstsc-sx", "psc008", "psc008-sx", "psc011", "psc011-sx", "psc245", "psc245-sx"]
+
     
     let TEXT_SELECT_PRINTER = "Select Printer"
     let TEXT_CANCEL = "---Cancel---"
@@ -27,9 +27,9 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
     let TEXT_SELECTION_INCOMPLOTE_MESSAGE = "Please select a printer and/or import a file to print"
     
     
-    var selectedPrinter : Int = -1
+    var selectedPrinter : String? = nil
     
-
+    private var latestPrinterList : Array<String>? = nil
     
     
     @IBOutlet weak var selectPrinter: UIButton!
@@ -40,6 +40,10 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
 
     @IBAction func selectPrinterPressed(sender: UIButton) {
         
+        var storage : Storage = Storage.sharedInstance
+        
+        latestPrinterList = storage.getPrinterList()
+        
         //Cancel button is added separately due to a bug up to iOS 7.1.
         //http://stackoverflow.com/questions/5262428/uiactionsheet-buttonindex-values-faulty-when-using-more-than-6-custom-buttons
         
@@ -47,7 +51,7 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
         
         selectPrinterWindow.addButtonWithTitle(TEXT_CANCEL)
         
-        for printer in PRINTER_LIST {
+        for printer in latestPrinterList! {
             selectPrinterWindow.addButtonWithTitle(printer)
         }
         
@@ -66,7 +70,7 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
         var server : String? = credentials.server
         
         
-        if(selectedPrinter < 0 || incomingURL == nil){
+        if(selectedPrinter == nil || incomingURL == nil){
             showAlert(TEXT_SELECTION_INCOMPLETE_TITLE, TEXT_SELECTION_INCOMPLOTE_MESSAGE, self)
         }
         
@@ -143,8 +147,8 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
         var actualSelectedIndex = buttonIndex - 1
         
         if(actualSelectedIndex != -1){
-            selectedPrinter = actualSelectedIndex
-            selectPrinter.setTitle(PRINTER_LIST[actualSelectedIndex], forState: UIControlState.Normal)
+            selectedPrinter = latestPrinterList![actualSelectedIndex]
+            selectPrinter.setTitle(selectedPrinter, forState: UIControlState.Normal)
         }
         
         NSLog("%@ Selected Printer %d", TAG, actualSelectedIndex);
