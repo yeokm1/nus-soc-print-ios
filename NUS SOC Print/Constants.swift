@@ -17,12 +17,8 @@ let SERVER_UNREACHABLE = "Server unreachable. Check your internet connection"
 let DIALOG_OK = "OK"
 
 func showAlert(title: String, message : String, viewController : UIViewController){
-    var systemVersion = UIDevice.currentDevice().systemVersion as NSString
     
-    var systemVersionFloat = systemVersion.floatValue
-    
-    
-    if(systemVersionFloat >= 8.0){
+    if(isSystemAtLeastiOS8()){
         var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: DIALOG_OK, style: UIAlertActionStyle.Default, handler: nil))
         
@@ -32,6 +28,19 @@ func showAlert(title: String, message : String, viewController : UIViewControlle
         var alertView : UIAlertView = UIAlertView(title: title, message: message, delegate: nil, cancelButtonTitle: DIALOG_OK)
         alertView.show()
         
+    }
+    
+}
+
+
+func isSystemAtLeastiOS8() -> Bool{
+    var systemVersion = UIDevice.currentDevice().systemVersion as NSString
+    
+    var systemVersionFloat = systemVersion.floatValue
+    if(systemVersionFloat >= 8.0){
+        return true
+    } else {
+        return false
     }
     
 }
