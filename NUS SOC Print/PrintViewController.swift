@@ -45,7 +45,7 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
         latestPrinterList = storage.getPrinterList()
         
         //Cancel button is added separately due to a bug up to iOS 7.1.
-        //http://stackoverflow.com/questions/5262428/uiactionsheet-buttonindex-values-faulty-when-using-more-than-6-custom-buttons
+        // http://stackoverflow.com/a/6193431
         
         var selectPrinterWindow : UIActionSheet = UIActionSheet(title: TEXT_SELECT_PRINTER, delegate: self, cancelButtonTitle: nil, destructiveButtonTitle: nil)
         
@@ -85,6 +85,7 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         NSLog("%@ viewDidLoad", TAG);
+        
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "updatePDFToWebview", name: UIApplicationDidBecomeActiveNotification, object: nil)
         
