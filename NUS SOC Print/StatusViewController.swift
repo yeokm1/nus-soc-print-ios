@@ -76,6 +76,7 @@ class StatusViewController : UIViewController {
         let FORMAT_PRINTER_COMMAND = "lpq -P %@"
         let FORMAT_PRINTER_OUTPUT = "%@ : %@\n"
         let FORMAT_PRINTER_NO_OUTPUT = "%@ : No Output\n"
+        let TEXT_NO_JOB = "Print Queue Empty\n"
         
         var connection : SSHConnectivity?
         var username : String?
@@ -127,7 +128,12 @@ class StatusViewController : UIViewController {
                 if(commandOutput == nil){
                     lineToShowToUI = String(format: FORMAT_PRINTER_NO_OUTPUT, printer)
                 } else {
-                    lineToShowToUI = String(format: FORMAT_PRINTER_OUTPUT, printer, commandOutput!)
+                    
+                    if(commandOutput == "no entries\n"){
+                        lineToShowToUI = String(format: FORMAT_PRINTER_OUTPUT, printer, TEXT_NO_JOB)
+                    } else {
+                        lineToShowToUI = String(format: FORMAT_PRINTER_OUTPUT, printer, commandOutput!)
+                    }
                 }
                 
                 outputString += lineToShowToUI!
