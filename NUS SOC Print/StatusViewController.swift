@@ -26,6 +26,11 @@ class StatusViewController : UIViewController {
         getStatus()
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        getStatus()
+    }
+    
     
     func getStatus(){
         
@@ -63,12 +68,6 @@ class StatusViewController : UIViewController {
         
     }
     
-
-
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
     
     
     class GetStatusOperation : NSOperation {
