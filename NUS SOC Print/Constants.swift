@@ -12,6 +12,7 @@ import UIKit
 
 let CREDENTIALS_WRONG = "Username/Password incorrect"
 let CREDENTIALS_MISSING = "Username/Password not set"
+let FULL_CREDENTIALS_NOT_SET = "Username/Password/Server not set"
 let SERVER_UNREACHABLE = "Server unreachable. Check your internet connection"
 
 let DIALOG_OK = "OK"
