@@ -127,7 +127,7 @@
                                             <action selector="refreshButtonPressed:" destination="ZgB-QJ-dCW" eventType="touchUpInside" id="mgl-wd-YKc"/>
                                         </connections>
                                     </button>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" id="jzg-bh-VKe">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" id="jzg-bh-VKe">
                                         <rect key="frame" x="0.0" y="55" width="288" height="305"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
