@@ -12,6 +12,10 @@ import UIKit
 class StatusViewController : UIViewController {
     
     let TEXT_GETTING_STATUS = "Retrieving Status"
+    let FORMAT_PRINTER_COMMAND = "lpq -P %@"
+    let FORMAT_PRINTER_OUTPUT = "%@ : %@\n"
+    let FORMAT_PRINTER_NO_OUTPUT = "%@ : No Output\n"
+    
     var connection : SSHConnectivity?
     
     @IBOutlet weak var statusOutputView: UITextView!
@@ -26,6 +30,11 @@ class StatusViewController : UIViewController {
     
     
     func getStatus(){
+        
+        if(connection != nil){
+            return
+        }
+        
         var preferences : Storage = Storage.sharedInstance;
         
         
@@ -38,25 +47,70 @@ class StatusViewController : UIViewController {
         } else {
             statusOutputView.text = TEXT_GETTING_STATUS
             
-            connection = SSHConnectivity(hostname: hostname, username: username!, password: password!)
-            var connectionStatus = connection!.connect()
             
-            var serverFound : Bool = connectionStatus.serverFound
-            var authorised : Bool = connectionStatus.authorised
-            
-            
-            if(serverFound){
-                if(!authorised){
-                   statusOutputView.text = CREDENTIALS_WRONG
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {(void) in
+
+                
+                self.connection = SSHConnectivity(hostname: hostname, username: username!, password: password!)
+                var connectionStatus = self.connection!.connect()
+                
+                var serverFound : Bool = connectionStatus.serverFound
+                var authorised : Bool = connectionStatus.authorised
+                
+                if(serverFound){
+                    if(!authorised){
+                        self.showOnOutputViewOnUIThread(CREDENTIALS_WRONG)
+                        return
+                    }
+                } else {
+                    self.showOnOutputViewOnUIThread(SERVER_UNREACHABLE)
+                    return
                 }
-            } else {
-                statusOutputView.text = SERVER_UNREACHABLE
-            }
+                
+                
+                var printersArray : Array<String> = preferences.getPrinterList()
+                var outputString : String = ""
+                
+                for printer in printersArray {
+                    
+                    var command = String(format: self.FORMAT_PRINTER_COMMAND, printer)
+                    var commandOutput : String? = self.connection!.runCommand(command)
+                    
+                    var lineToShowToUI : String?
+                    
+                    if(commandOutput == nil){
+                        lineToShowToUI = String(format: self.FORMAT_PRINTER_NO_OUTPUT, printer)
+                    } else {
+                        lineToShowToUI = String(format: self.FORMAT_PRINTER_OUTPUT, printer, commandOutput!)
+                    }
+                    
+                    outputString += lineToShowToUI!
+                    self.showOnOutputViewOnUIThread(outputString)
+                    
+                }
+                
+                
+
+                
+                self.connection?.disconnect()
+                self.connection = nil
+                
+                
+                
+            });
             
         }
         
         
     }
+    
+    
+    func showOnOutputViewOnUIThread(output: String){
+        dispatch_async(dispatch_get_main_queue(), {(void) in
+            self.statusOutputView.text = output
+        });
+    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
