@@ -83,6 +83,10 @@ class QuotaViewController: UIViewController, NSURLConnectionDataDelegate {
         
         quotaOutput.text = ""
         
+        if(matches.count == 0){
+            quotaOutput.text = CREDENTIALS_WRONG
+        }
+        
         for match in matches {
             var quotaTypeRange : NSRange = match.rangeAtIndex(1)
             var quotaValueRange : NSRange = match.rangeAtIndex(2)
