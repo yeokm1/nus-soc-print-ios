@@ -20,7 +20,7 @@ class StatusViewController : UIViewController {
     @IBAction func closeButtonPressed(sender: UIBarButtonItem) {
         operation?.cancel()
 
-        self.dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     @IBAction func refreshButtonPressed(sender: UIButton) {
         getStatus()
