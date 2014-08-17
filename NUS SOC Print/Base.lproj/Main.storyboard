@@ -145,7 +145,7 @@
                                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" id="byX-Gs-zuZ">
+                                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" id="byX-Gs-zuZ">
                                                             <rect key="frame" x="14" y="43" width="261" height="2"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </progressView>
