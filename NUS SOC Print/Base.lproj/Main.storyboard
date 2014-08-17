@@ -92,6 +92,7 @@
                     <tabBarItem key="tabBarItem" title="Print" image="first" id="acW-dT-cKf"/>
                     <connections>
                         <outlet property="filenameLabel" destination="IYQ-lI-tnl" id="ZdP-JM-ls1"/>
+                        <outlet property="pagesPerSheetSelection" destination="prD-9g-Qf5" id="vaK-8x-xcy"/>
                         <outlet property="pdfShower" destination="bcF-AT-A65" id="z0K-PV-8rc"/>
                         <outlet property="selectPrinter" destination="qlM-Z8-eET" id="W23-9B-lvX"/>
                     </connections>

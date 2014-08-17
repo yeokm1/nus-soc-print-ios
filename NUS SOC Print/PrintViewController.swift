@@ -27,13 +27,14 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
     let TEXT_SELECTION_INCOMPLOTE_MESSAGE = "Please select a printer and/or import a file to print"
     
     
-    var selectedPrinter : String? = nil
+    var selectedPrinter : String!
     
-    private var latestPrinterList : Array<String>? = nil
+    private var latestPrinterList : Array<String>! = nil
     
     
     @IBOutlet weak var selectPrinter: UIButton!
     @IBOutlet weak var pdfShower: UIWebView!
+    @IBOutlet weak var pagesPerSheetSelection: UISegmentedControl!
     
     @IBOutlet weak var filenameLabel: UILabel!
     
@@ -159,11 +160,15 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
         
         if(controller.isKindOfClass(PrintingViewController)){
             NSLog("%@ prepareforSegue, going to printing view", TAG)
-        }
-
-
+            var printingController : PrintingViewController = controller as PrintingViewController
+            
+            var printer : String? = selectedPrinter
+            var pagesPerSheet : String = pagesPerSheetSelection.titleForSegmentAtIndex(pagesPerSheetSelection.selectedSegmentIndex)
         
-
+            printingController.printer = selectedPrinter
+            printingController.pagesPerSheet = pagesPerSheet
+            printingController.filePath = incomingURL
+        }
     }
     
     

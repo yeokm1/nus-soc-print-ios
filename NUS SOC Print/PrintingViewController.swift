@@ -13,6 +13,10 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
     
     let CELL_IDENTIFIER = "PrintingViewTableCell"
     
+    var printer : String!
+    var pagesPerSheet : String!
+    var filePath : NSURL!
+    
     @IBOutlet weak var progressTable: UITableView!
     
     
