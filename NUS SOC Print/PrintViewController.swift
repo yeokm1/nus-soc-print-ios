@@ -59,24 +59,7 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
         selectPrinterWindow.showInView(self.view)
         
     }
-    
-    @IBAction func printButtonPress(sender: UIButton) {
-        
-        var credentials = getCredentialsAndShowWarning()
-        
-        var settingsOK = credentials.settingsOK
-        var username : String? = credentials.username
-        var password : String? = credentials.password
-        var server : String? = credentials.server
-        
-        
-        if(selectedPrinter == nil || incomingURL == nil){
-            showAlert(TEXT_SELECTION_INCOMPLETE_TITLE, TEXT_SELECTION_INCOMPLOTE_MESSAGE, self)
-        }
-        
 
-        
-    }
     
     @IBAction func checkStatusButtonPressed(sender: UIButton) {
     }
@@ -140,6 +123,47 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject!) -> Bool {
+        if(identifier != nil && identifier! == "startingPrinting"){
+            
+            var credentials = getCredentialsAndShowWarning()
+            
+            var settingsOK = credentials.settingsOK
+            var username : String? = credentials.username
+            var password : String? = credentials.password
+            var server : String? = credentials.server
+            
+            if(!settingsOK){
+                return false
+            }
+            
+            
+            if(selectedPrinter == nil || incomingURL == nil){
+                showAlert(TEXT_SELECTION_INCOMPLETE_TITLE, TEXT_SELECTION_INCOMPLOTE_MESSAGE, self)
+                return false
+            } else {
+                return true
+            }
+            
+        } else {
+            return true
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
+
+        
+        var controller : UIViewController = segue.destinationViewController as UIViewController
+        
+        if(controller.isKindOfClass(PrintingViewController)){
+            NSLog("%@ prepareforSegue, going to printing view", TAG)
+        }
+
+
+        
+
     }
     
     

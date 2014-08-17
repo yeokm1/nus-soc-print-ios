@@ -93,7 +93,6 @@
 		5328AE1F19A0A9A5004675BA /* PrintView */ = {
 			isa = PBXGroup;
 			children = (
-				53628D16199A59AC009FF7A4 /* PrintViewController.swift */,
 				5328AE1919A09BBA004675BA /* PrintingViewController.swift */,
 				5328AE1D19A0A98A004675BA /* PrintingViewTableCell.swift */,
 				5345CEFB19A0685F006F920E /* StatusViewController.swift */,
@@ -124,6 +123,7 @@
 		538BEDDB1986A10B00C61282 /* NUS SOC Print */ = {
 			isa = PBXGroup;
 			children = (
+				53628D16199A59AC009FF7A4 /* PrintViewController.swift */,
 				5328AE1F19A0A9A5004675BA /* PrintView */,
 				533D2648199FAAFD00719717 /* NMSSH-Bridging-Header.h */,
 				5345CEF519A05BCF006F920E /* MainTabBarController.swift */,
