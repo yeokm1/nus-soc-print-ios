@@ -10,6 +10,8 @@
 		5328AE1619A072A7004675BA /* SSHConnectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5328AE1519A072A7004675BA /* SSHConnectivity.swift */; };
 		5328AE1819A07C80004675BA /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5328AE1719A07C80004675BA /* CFNetwork.framework */; };
 		5328AE1A19A09BBA004675BA /* PrintingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5328AE1919A09BBA004675BA /* PrintingViewController.swift */; };
+		5328AE1C19A0A255004675BA /* green-tick.png in Resources */ = {isa = PBXBuildFile; fileRef = 5328AE1B19A0A255004675BA /* green-tick.png */; };
+		5328AE1E19A0A98A004675BA /* PrintingViewTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5328AE1D19A0A98A004675BA /* PrintingViewTableCell.swift */; };
 		5345CEF419A05409006F920E /* behind_alert_view.png in Resources */ = {isa = PBXBuildFile; fileRef = 5345CEF319A05409006F920E /* behind_alert_view.png */; };
 		5345CEF619A05BCF006F920E /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5345CEF519A05BCF006F920E /* MainTabBarController.swift */; };
 		5345CEFC19A0685F006F920E /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5345CEFB19A0685F006F920E /* StatusViewController.swift */; };
@@ -42,6 +44,8 @@
 		5328AE1519A072A7004675BA /* SSHConnectivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSHConnectivity.swift; sourceTree = "<group>"; };
 		5328AE1719A07C80004675BA /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		5328AE1919A09BBA004675BA /* PrintingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintingViewController.swift; sourceTree = "<group>"; };
+		5328AE1B19A0A255004675BA /* green-tick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "green-tick.png"; sourceTree = "<group>"; };
+		5328AE1D19A0A98A004675BA /* PrintingViewTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintingViewTableCell.swift; sourceTree = "<group>"; };
 		533D2648199FAAFD00719717 /* NMSSH-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NMSSH-Bridging-Header.h"; sourceTree = "<group>"; };
 		5345CEF319A05409006F920E /* behind_alert_view.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = behind_alert_view.png; sourceTree = "<group>"; };
 		5345CEF519A05BCF006F920E /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -86,6 +90,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5328AE1F19A0A9A5004675BA /* PrintView */ = {
+			isa = PBXGroup;
+			children = (
+				53628D16199A59AC009FF7A4 /* PrintViewController.swift */,
+				5328AE1919A09BBA004675BA /* PrintingViewController.swift */,
+				5328AE1D19A0A98A004675BA /* PrintingViewTableCell.swift */,
+				5345CEFB19A0685F006F920E /* StatusViewController.swift */,
+			);
+			name = PrintView;
+			sourceTree = "<group>";
+		};
 		538BEDD01986A10B00C61282 = {
 			isa = PBXGroup;
 			children = (
@@ -109,12 +124,10 @@
 		538BEDDB1986A10B00C61282 /* NUS SOC Print */ = {
 			isa = PBXGroup;
 			children = (
+				5328AE1F19A0A9A5004675BA /* PrintView */,
 				533D2648199FAAFD00719717 /* NMSSH-Bridging-Header.h */,
 				5345CEF519A05BCF006F920E /* MainTabBarController.swift */,
 				538BEDDE1986A10B00C61282 /* AppDelegate.swift */,
-				53628D16199A59AC009FF7A4 /* PrintViewController.swift */,
-				5345CEFB19A0685F006F920E /* StatusViewController.swift */,
-				5328AE1919A09BBA004675BA /* PrintingViewController.swift */,
 				53628D18199A5A31009FF7A4 /* QuotaViewController.swift */,
 				53628D1A199A5B28009FF7A4 /* SettingsViewController.swift */,
 				53628D1C199A5BA9009FF7A4 /* HelpViewController.swift */,
@@ -131,6 +144,7 @@
 		538BEDDC1986A10B00C61282 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5328AE1B19A0A255004675BA /* green-tick.png */,
 				5345CEF319A05409006F920E /* behind_alert_view.png */,
 				538BEDDD1986A10B00C61282 /* Info.plist */,
 			);
@@ -249,6 +263,7 @@
 			files = (
 				5345CEF419A05409006F920E /* behind_alert_view.png in Resources */,
 				538BEDE61986A10B00C61282 /* Main.storyboard in Resources */,
+				5328AE1C19A0A255004675BA /* green-tick.png in Resources */,
 				538BEDE81986A10B00C61282 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -308,6 +323,7 @@
 				538BEDDF1986A10B00C61282 /* AppDelegate.swift in Sources */,
 				53628D1B199A5B28009FF7A4 /* SettingsViewController.swift in Sources */,
 				537747ED199B2A1400ADBF51 /* Constants.swift in Sources */,
+				5328AE1E19A0A98A004675BA /* PrintingViewTableCell.swift in Sources */,
 				53628D1D199A5BA9009FF7A4 /* HelpViewController.swift in Sources */,
 				5345CEFC19A0685F006F920E /* StatusViewController.swift in Sources */,
 				53628D1F199A687C009FF7A4 /* Storage.swift in Sources */,

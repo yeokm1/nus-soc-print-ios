@@ -11,7 +11,7 @@ import UIKit
 
 class PrintingViewController : UIViewController, UITableViewDataSource {
     
-    
+    let CELL_IDENTIFIER = "PrintingViewTableCell"
     
     @IBOutlet weak var progressTable: UITableView!
     
@@ -29,11 +29,19 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
     
     
     func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return 2
     }
     
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
-        return nil
+        
+        var cell : PrintingViewTableCell? = tableView.dequeueReusableCellWithIdentifier(CELL_IDENTIFIER) as? PrintingViewTableCell
+    
+
+        if (cell == nil) {
+            cell = PrintingViewTableCell(style: UITableViewCellStyle.Default, reuseIdentifier: CELL_IDENTIFIER)
+        }
+        
+        return cell;
     }
     
     
