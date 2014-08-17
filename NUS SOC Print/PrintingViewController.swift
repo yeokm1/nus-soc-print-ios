@@ -29,7 +29,7 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
     
     
     func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 7
     }
     
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
