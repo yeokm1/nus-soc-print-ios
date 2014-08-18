@@ -28,9 +28,19 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
     ,"Some housekeeping"
     ,"Uploading DOC converter"
     ,"Uploading PDF Formatter"
+    ,"Uploading your document"
     ,"Formatting PDF"
     ,"Converting to Postscript"
     ,"Sending to printer"]
+    
+    let POSITION_CONNECTING = 0
+    let POSITION_HOUSEKEEPING = 1
+    let POSITION_UPLOADING_DOC_CONVERTER = 2
+    let POSITION_UPLOADING_PDF_CONVERTER = 3
+    let POSITION_UPLOADING_USER_DOC = 4
+    let POSITION_FORMATTING_PDF = 5
+    let POSITION_CONVERTING_TO_POSTSCRIPT = 6
+    let POSITION_SENDING_TO_PRINTER = 7
     
     let CLOSE_TEXT = "Close"
     
@@ -38,6 +48,7 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
     let PROGRESS_INDETERMINATE : Array<Bool> =
     [true
     ,true
+    ,false
     ,false
     ,false
     ,true
@@ -99,7 +110,7 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
     
     
     func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
-        return 7
+        return HEADER_TEXT.count
     }
     
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
@@ -129,20 +140,25 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
         
         var cellEnabled : Bool = true
         
-        if(row == 2 && !uploadDocConverterRequired
-            || row == 3 && !uploadPDFConverterRequired){
+        if(row == POSITION_UPLOADING_DOC_CONVERTER && !uploadDocConverterRequired
+            || row == POSITION_UPLOADING_PDF_CONVERTER && !uploadPDFConverterRequired){
                 cell.header.enabled = false
                 cellEnabled = false
         }
         
 
         //Adjust Tick
-        if(currentProgress >= row && cellEnabled){
+        if(currentProgress > row && cellEnabled){
             cell.tick.hidden = false
         } else {
             cell.tick.hidden = true
         }
         
+        
+        if(PROGRESS_INDETERMINATE[row] && row == currentProgress && cellEnabled){
+            cell.activityIndicator.hidden = false
+            cell.activityIndicator.startAnimating()
+        }
 
         
         
