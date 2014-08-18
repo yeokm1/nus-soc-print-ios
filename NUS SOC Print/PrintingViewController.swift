@@ -25,6 +25,8 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
     let DIRECTORY_TO_USE = "socPrint/"
     let TEMP_DIRECTORY_TO_USE = "socPrint2"
     
+    let FORMAT_UPLOADING = "%d of %d (%d%%)"
+    
     
     let HEADER_TEXT : Array<String> =
     ["Connecting to server"
@@ -77,6 +79,17 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
     
     
     
+    var docConvSize : Int = 0
+    var docConvUploaded : UInt = 0
+    
+    var pdfConvSize : Int = 0
+    var pdfConvUploaded : UInt = 0
+    
+    var docToPrintSIze : Int = 0
+    var docToPrintUploaded : UInt = 0
+    
+    
+    
     var uploadDocConverterRequired : Bool = true
     var uploadPDFConverterRequired : Bool = true
     var filename : String!
@@ -100,12 +113,14 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
         
         var filenameNS : NSString = filename as NSString
         
-        var fileType : NSString = filenameNS.substringFromIndex(filenameNS.length - 4)
-    
+        var fileType : String = filenameNS.substringFromIndex(filenameNS.length - 4).lowercaseString
         
-        if(fileType.rangeOfString("pdf", options: NSStringCompareOptions.CaseInsensitiveSearch).location != Foundation.NSNotFound){
+        
+        if fileType.rangeOfString("pdf") == nil {
             uploadDocConverterRequired = false
         }
+        
+
 
         
         startPrinting()
@@ -162,6 +177,13 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
         if(PROGRESS_INDETERMINATE[row] && row == currentProgress && cellEnabled){
             cell.activityIndicator.hidden = false
             cell.activityIndicator.startAnimating()
+        }
+        
+        
+        if(row == POSITION_UPLOADING_DOC_CONVERTER){
+            var footerString : String = String(format: FORMAT_UPLOADING, docConvUploaded, docConvSize)
+            cell.smallFooter.text = footerString
+            
         }
 
         
@@ -275,11 +297,14 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
             if(parent.uploadDocConverterRequired){
                 parent.currentProgress = parent.POSITION_UPLOADING_DOC_CONVERTER
                 updateUI()
-                
+
                 var pathToDocConverter : String = NSBundle.mainBundle().pathForResource(parent.DOC_CONVERTER_NAME, ofType: "jar")
+                var docConvURL : NSURL = NSURL.fileURLWithPath(pathToDocConverter)
                 
+
+                var docConvSive : Int = getFileSizeOfFile(pathToDocConverter)
                 let docConvUploadProgressBlock = {(bytesUploaded : UInt) -> Bool in
-                    
+                    self.updateUIDocConvUpload(docConvSive, uploadedSize: bytesUploaded)
                     return true
                 }
                 
@@ -300,6 +325,28 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
             
         }
         
+        func updateUIDocConvUpload(totalSize : Int, uploadedSize : UInt){
+            
+            dispatch_async(dispatch_get_main_queue(), {(void) in
+                
+                self.parent.docConvSize = totalSize
+                self.parent.docConvUploaded = uploadedSize
+                
+                var docConvProgressIndexPath : NSIndexPath = NSIndexPath(forRow: self.parent.POSITION_UPLOADING_DOC_CONVERTER, inSection: 0)
+                self.parent.progressTable.reloadRowsAtIndexPaths([docConvProgressIndexPath], withRowAnimation: UITableViewRowAnimation.None)
+                
+            })
+            
+            
+            
+        }
+        
+        
+        func getFileSizeOfFile(path : String) -> Int {
+            var attributes : NSDictionary = NSFileManager.defaultManager().attributesOfItemAtPath(path, error: nil)
+            var size : Int = attributes.objectForKey(NSFileSize).longValue
+            return size
+        }
         
         
         func updateUI(){
@@ -315,7 +362,7 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
     }
     
     
-    
+
     
     
     
