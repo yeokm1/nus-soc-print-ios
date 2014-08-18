@@ -80,13 +80,13 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
     
     
     var docConvSize : Int = 0
-    var docConvUploaded : UInt = 0
+    var docConvUploaded : Int = 0
     
     var pdfConvSize : Int = 0
-    var pdfConvUploaded : UInt = 0
+    var pdfConvUploaded : Int = 0
     
-    var docToPrintSIze : Int = 0
-    var docToPrintUploaded : UInt = 0
+    var docToPrintSize : Int = 0
+    var docToPrintUploaded : Int = 0
     
     
     
@@ -116,7 +116,7 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
         var fileType : String = filenameNS.substringFromIndex(filenameNS.length - 4).lowercaseString
         
         
-        if fileType.rangeOfString("pdf") == nil {
+        if fileType.rangeOfString("pdf") != nil {
             uploadDocConverterRequired = false
         }
         
@@ -181,7 +181,14 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
         
         
         if(row == POSITION_UPLOADING_DOC_CONVERTER){
-            var footerString : String = String(format: FORMAT_UPLOADING, docConvUploaded, docConvSize)
+            
+            var percent : Int = 0
+            
+            if(docConvSize != 0){
+                percent = ( (docConvUploaded * 100) / docConvSize)
+            }
+            
+            var footerString : String = String(format: FORMAT_UPLOADING, docConvUploaded, docConvSize, percent)
             cell.smallFooter.text = footerString
             
         }
@@ -304,7 +311,10 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
 
                 var docConvSive : Int = getFileSizeOfFile(pathToDocConverter)
                 let docConvUploadProgressBlock = {(bytesUploaded : UInt) -> Bool in
-                    self.updateUIDocConvUpload(docConvSive, uploadedSize: bytesUploaded)
+      
+                    let bytesUploadedInt : Int = Int(bytesUploaded)
+                    
+                    self.updateUIDocConvUpload(docConvSive, uploadedSize: bytesUploadedInt)
                     return true
                 }
                 
@@ -325,15 +335,14 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
             
         }
         
-        func updateUIDocConvUpload(totalSize : Int, uploadedSize : UInt){
+        func updateUIDocConvUpload(totalSize : Int, uploadedSize : Int){
             
             dispatch_async(dispatch_get_main_queue(), {(void) in
                 
-                self.parent.docConvSize = totalSize
+                self.parent.docConvSize =  totalSize
                 self.parent.docConvUploaded = uploadedSize
-                
-                var docConvProgressIndexPath : NSIndexPath = NSIndexPath(forRow: self.parent.POSITION_UPLOADING_DOC_CONVERTER, inSection: 0)
-                self.parent.progressTable.reloadRowsAtIndexPaths([docConvProgressIndexPath], withRowAnimation: UITableViewRowAnimation.None)
+
+                self.parent.progressTable.reloadData()
                 
             })
             
