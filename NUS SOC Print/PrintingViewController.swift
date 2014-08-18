@@ -230,6 +230,9 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
         override func main() {
             
             //Step 0: Connecting to server
+            parent.currentProgress = parent.POSITION_CONNECTING
+            updateUI()
+            
             connection = SSHConnectivity(hostname: hostname!, username: username!, password: password!)
             var connectionStatus = connection.connect()
             
@@ -247,8 +250,7 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
             }
             
             //Step 1: Housekeeping, creating socPrint folder if not yet, delete all files except converters
-            
-            parent.currentProgress++
+            parent.currentProgress = parent.POSITION_HOUSEKEEPING
             updateUI()
             
             connection.createDirectory(parent.DIRECTORY_TO_USE)
@@ -264,8 +266,9 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
             connection.runCommand("mv " + parent.TEMP_DIRECTORY_TO_USE + " " + parent.DIRECTORY_TO_USE)
             
 
-            //Step2
-            parent.currentProgress++
+            
+            //Step 2 : Uploading DOC converter
+            parent.currentProgress = parent.POSITION_UPLOADING_DOC_CONVERTER
             updateUI()
             
             
