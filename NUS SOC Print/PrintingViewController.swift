@@ -26,7 +26,7 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
     let HEADER_TEXT : Array<String> =
     ["Connecting to server"
     ,"Some housekeeping"
-    ,"Uploading doc converter"
+    ,"Uploading DOC converter"
     ,"Uploading PDF Formatter"
     ,"Formatting PDF"
     ,"Converting to Postscript"
@@ -61,6 +61,12 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
     
     @IBOutlet weak var cancelButton: UIButton!
     
+    
+    
+    var uploadDocConverterRequired : Bool = true
+    var uploadPDFConverterRequired : Bool = true
+    var filename : String!
+    
     @IBAction func cancelButtonPressed(sender: UIButton) {
         operation?.cancel()
         dismissViewControllerAnimated(true, completion: nil)
@@ -70,6 +76,23 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         progressTable.dataSource = self
+        
+        
+        if(pagesPerSheet == "1"){
+            uploadPDFConverterRequired = false
+        }
+        
+        filename = filePath.absoluteString.lastPathComponent
+        
+        var filenameNS : NSString = filename as NSString
+        
+        var fileType : String = filenameNS.substringFromIndex(filenameNS.length - 3)
+        if("pdf".caseInsensitiveCompare(fileType) == NSComparisonResult.OrderedSame){
+            uploadDocConverterRequired = false
+        }
+        
+        
+        
         startPrinting()
     }
     
@@ -212,6 +235,11 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
             connection.runCommand("mv " + parent.TEMP_DIRECTORY_TO_USE + " " + parent.DIRECTORY_TO_USE)
             
 
+            //Step2
+            parent.currentProgress++
+            updateUI()
+            
+            
             
             
             self.connection.disconnect()
