@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		53232AFA19A1D43A00FE70DA /* nup_pdf.jar in Resources */ = {isa = PBXBuildFile; fileRef = 53232AF719A1D42A00FE70DA /* nup_pdf.jar */; };
+		53232AFB19A1D44000FE70DA /* docs-to-pdf-converter-1.7.jar in Resources */ = {isa = PBXBuildFile; fileRef = 53232AF619A1D42A00FE70DA /* docs-to-pdf-converter-1.7.jar */; };
 		5328AE1619A072A7004675BA /* SSHConnectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5328AE1519A072A7004675BA /* SSHConnectivity.swift */; };
 		5328AE1819A07C80004675BA /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5328AE1719A07C80004675BA /* CFNetwork.framework */; };
 		5328AE1A19A09BBA004675BA /* PrintingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5328AE1919A09BBA004675BA /* PrintingViewController.swift */; };
@@ -41,6 +43,8 @@
 
 /* Begin PBXFileReference section */
 		0B58A9287E28435DA8D57847 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		53232AF619A1D42A00FE70DA /* docs-to-pdf-converter-1.7.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; path = "docs-to-pdf-converter-1.7.jar"; sourceTree = "<group>"; };
+		53232AF719A1D42A00FE70DA /* nup_pdf.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; path = nup_pdf.jar; sourceTree = "<group>"; };
 		5328AE1519A072A7004675BA /* SSHConnectivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSHConnectivity.swift; sourceTree = "<group>"; };
 		5328AE1719A07C80004675BA /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		5328AE1919A09BBA004675BA /* PrintingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintingViewController.swift; sourceTree = "<group>"; };
@@ -144,6 +148,8 @@
 		538BEDDC1986A10B00C61282 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				53232AF619A1D42A00FE70DA /* docs-to-pdf-converter-1.7.jar */,
+				53232AF719A1D42A00FE70DA /* nup_pdf.jar */,
 				5328AE1B19A0A255004675BA /* green-tick.png */,
 				5345CEF319A05409006F920E /* behind_alert_view.png */,
 				538BEDDD1986A10B00C61282 /* Info.plist */,
@@ -261,6 +267,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53232AFB19A1D44000FE70DA /* docs-to-pdf-converter-1.7.jar in Resources */,
+				53232AFA19A1D43A00FE70DA /* nup_pdf.jar in Resources */,
 				5345CEF419A05409006F920E /* behind_alert_view.png in Resources */,
 				538BEDE61986A10B00C61282 /* Main.storyboard in Resources */,
 				5328AE1C19A0A255004675BA /* green-tick.png in Resources */,

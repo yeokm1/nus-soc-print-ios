@@ -74,10 +74,10 @@ class SSHConnectivity{
     }
     
     
-    func uploadFile(sourcePath : String, destinationPath : String){
-
+    func uploadFile(sourcePath : String, destinationPath : String, progress: ((UInt) -> Bool)){
+        session?.channel.uploadFile(sourcePath, to: destinationPath, progress: progress)
     }
-
+    
     
     func disconnect(){
         session?.disconnect()

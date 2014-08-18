@@ -13,13 +13,16 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
     
     let CELL_IDENTIFIER = "PrintingViewTableCell"
     
+    let PDF_CONVERTER_NAME = "nup_pdf"
     let PDF_CONVERTER_FILENAME = "nup_pdf.jar"
+    
+    let DOC_CONVERTER_NAME = "docs-to-pdf-converter-1.7"
     let DOC_CONVERTER_FILENAME = "docs-to-pdf-converter-1.7.jar"
     
     let PDF_CONVERTER_MD5 = "C1F8FF3F9DE7B2D2A2B41FBC0085888B"
     let DOC_CONVERTER_MD5 = "1FC140AD8074E333F9082300F4EA38DC"
     
-    let DIRECTORY_TO_USE = "socPrint"
+    let DIRECTORY_TO_USE = "socPrint/"
     let TEMP_DIRECTORY_TO_USE = "socPrint2"
     
     
@@ -97,12 +100,13 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
         
         var filenameNS : NSString = filename as NSString
         
-        var fileType : String = filenameNS.substringFromIndex(filenameNS.length - 3)
-        if("pdf".caseInsensitiveCompare(fileType) == NSComparisonResult.OrderedSame){
+        var fileType : NSString = filenameNS.substringFromIndex(filenameNS.length - 4)
+    
+        
+        if(fileType.rangeOfString("pdf", options: NSStringCompareOptions.CaseInsensitiveSearch).location != Foundation.NSNotFound){
             uploadDocConverterRequired = false
         }
-        
-        
+
         
         startPrinting()
     }
@@ -257,7 +261,7 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
             connection.createDirectory(parent.TEMP_DIRECTORY_TO_USE)
             
             //move .jar files in main directory to temp directory
-            connection.runCommand("mv " + parent.DIRECTORY_TO_USE + "/*.jar " + parent.TEMP_DIRECTORY_TO_USE)
+            connection.runCommand("mv " + parent.DIRECTORY_TO_USE + "*.jar " + parent.TEMP_DIRECTORY_TO_USE)
             
             //Remove main directory
             connection.runCommand("rm -rf " + parent.DIRECTORY_TO_USE)
@@ -268,10 +272,26 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
 
             
             //Step 2 : Uploading DOC converter
-            parent.currentProgress = parent.POSITION_UPLOADING_DOC_CONVERTER
-            updateUI()
-            
-            
+            if(parent.uploadDocConverterRequired){
+                parent.currentProgress = parent.POSITION_UPLOADING_DOC_CONVERTER
+                updateUI()
+                
+                var pathToDocConverter : String = NSBundle.mainBundle().pathForResource(parent.DOC_CONVERTER_NAME, ofType: "jar")
+                
+                let docConvUploadProgressBlock = {(bytesUploaded : UInt) -> Bool in
+                    
+                    return true
+                }
+                
+                connection.uploadFile(pathToDocConverter, destinationPath: parent.DIRECTORY_TO_USE + parent.DOC_CONVERTER_FILENAME, progress: docConvUploadProgressBlock)
+                
+                
+                
+                
+                
+            }
+
+
             
             
             self.connection.disconnect()
