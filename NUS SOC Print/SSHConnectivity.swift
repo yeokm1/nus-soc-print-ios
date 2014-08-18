@@ -13,7 +13,6 @@ class SSHConnectivity{
     let TAG = "SSHConnectivity"
     
     var session : NMSSHSession?
-    var sftpSession : NMSFTP?
     var username : String?
     var password : String?
     var hostname : String?
@@ -71,24 +70,16 @@ class SSHConnectivity{
     }
     
     func createDirectory(toBeCreated : String){
-        createSftpSessionIfNeeded()
-        sftpSession!.createDirectoryAtPath(toBeCreated)
+        runCommand("mkdir " + toBeCreated)
     }
     
     
     func uploadFile(sourcePath : String, destinationPath : String){
-        createSftpSessionIfNeeded()
+
     }
-    
-    func createSftpSessionIfNeeded(){
-        if(sftpSession == nil){
-            sftpSession = NMSFTP.connectWithSession(session)
-        }
-    }
-    
+
     
     func disconnect(){
-        sftpSession?.disconnect()
         session?.disconnect()
         session = nil
     }
