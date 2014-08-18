@@ -13,6 +13,7 @@ class SSHConnectivity{
     let TAG = "SSHConnectivity"
     
     var session : NMSSHSession?
+    var sftpSession : NMSFTP?
     var username : String?
     var password : String?
     var hostname : String?
@@ -57,11 +58,37 @@ class SSHConnectivity{
     }
     
     func runCommand(command : String) -> String?{
-        return session?.channel.execute(command, error: nil)
+        var commandOutput : String? =  session?.channel.execute(command, error: nil)
+        
+
+        if(commandOutput == nil){
+            commandOutput = "Nil"
+        }
+        
+        NSLog("%@ runCommand:%@, output:%@ ", TAG, command, commandOutput!)
+        
+        return commandOutput
+    }
+    
+    func createDirectory(toBeCreated : String){
+        createSftpSessionIfNeeded()
+        sftpSession!.createDirectoryAtPath(toBeCreated)
+    }
+    
+    
+    func uploadFile(sourcePath : String, destinationPath : String){
+        createSftpSessionIfNeeded()
+    }
+    
+    func createSftpSessionIfNeeded(){
+        if(sftpSession == nil){
+            sftpSession = NMSFTP.connectWithSession(session)
+        }
     }
     
     
     func disconnect(){
+        sftpSession?.disconnect()
         session?.disconnect()
         session = nil
     }

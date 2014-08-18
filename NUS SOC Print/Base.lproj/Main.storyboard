@@ -190,6 +190,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="cancelButton" destination="5fk-MP-7jn" id="USz-ju-U8g"/>
                         <outlet property="progressTable" destination="q6W-JP-Gyd" id="V9j-OJ-B7J"/>
                     </connections>
                 </viewController>

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-
+let TITLE_STOP = "Cannot continue"
 let CREDENTIALS_WRONG = "Username/Password incorrect"
 let CREDENTIALS_MISSING = "Username/Password not set"
 let FULL_CREDENTIALS_NOT_SET = "Username/Password/Server not set"

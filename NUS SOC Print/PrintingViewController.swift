@@ -13,6 +13,16 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
     
     let CELL_IDENTIFIER = "PrintingViewTableCell"
     
+    let PDF_CONVERTER_FILENAME = "nup_pdf.jar"
+    let DOC_CONVERTER_FILENAME = "docs-to-pdf-converter-1.7.jar"
+    
+    let PDF_CONVERTER_MD5 = "C1F8FF3F9DE7B2D2A2B41FBC0085888B"
+    let DOC_CONVERTER_MD5 = "1FC140AD8074E333F9082300F4EA38DC"
+    
+    let DIRECTORY_TO_USE = "socPrint"
+    let TEMP_DIRECTORY_TO_USE = "socPrint2"
+    
+    
     let HEADER_TEXT : Array<String> =
     ["Connecting to server"
     ,"Some housekeeping"
@@ -21,6 +31,8 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
     ,"Formatting PDF"
     ,"Converting to Postscript"
     ,"Sending to printer"]
+    
+    let CLOSE_TEXT = "Close"
     
     
     let PROGRESS_INDETERMINATE : Array<Bool> =
@@ -43,10 +55,14 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
     
     var currentProgress : Int = 0
     
+    var operation : PrintingOperation?
+    
     @IBOutlet weak var progressTable: UITableView!
     
+    @IBOutlet weak var cancelButton: UIButton!
     
     @IBAction func cancelButtonPressed(sender: UIButton) {
+        operation?.cancel()
         dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -54,6 +70,7 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         progressTable.dataSource = self
+        startPrinting()
     }
     
     
@@ -91,6 +108,127 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
         } else {
             cell.tick.hidden = false
         }
+        
+        
+        
+    }
+    
+    
+    func startPrinting(){
+        
+        if(operation != nil){
+            return
+        }
+        
+        var preferences : Storage = Storage.sharedInstance;
+        
+        
+        var username : String?  = preferences.getUsername()
+        var password : String? = preferences.getPassword()
+        var hostname : String = preferences.getServer()
+
+        
+        if(username == nil || username!.isEmpty || password == nil || password!.isEmpty){
+            showAlert(TITLE_STOP, FULL_CREDENTIALS_NOT_SET, self)
+        } else {
+            
+            currentProgress = 0
+            
+            operation = PrintingOperation(hostname: hostname, username: username!, password: password!, pagesPerSheet : pagesPerSheet, printerName : printer, parent : self)
+            
+            operation!.completionBlock = {(void) in
+                self.operation = nil
+                self.cancelButton.setTitle(self.CLOSE_TEXT, forState: UIControlState.Normal)
+            }
+            
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {(void) in
+                self.operation!.start()
+            })
+            
+            
+            
+        }
+        
+        
+    }
+    
+    
+    class PrintingOperation : NSOperation {
+        
+        var connection : SSHConnectivity!
+        var username : String!
+        var password : String!
+        var hostname : String!
+        var pagesPerSheet : String!
+        var printerName : String!
+        var parent : PrintingViewController!
+        
+        
+        init(hostname : String, username : String, password : String, pagesPerSheet : String, printerName : String, parent : PrintingViewController) {
+            self.username = username
+            self.password = password
+            self.hostname = hostname
+            self.pagesPerSheet = pagesPerSheet
+            self.printerName = printerName
+            self.parent = parent
+            
+        }
+        
+        override func main() {
+            
+            //Step 0: Connecting to server
+            connection = SSHConnectivity(hostname: hostname!, username: username!, password: password!)
+            var connectionStatus = connection.connect()
+            
+            var serverFound : Bool = connectionStatus.serverFound
+            var authorised : Bool = connectionStatus.authorised
+            
+            if(serverFound){
+                if(!authorised){
+                    showAlert(TITLE_STOP, CREDENTIALS_WRONG, parent)
+                    return
+                }
+            } else {
+                showAlert(TITLE_STOP, SERVER_UNREACHABLE, parent)
+                return
+            }
+            
+            //Step 1: Housekeeping, creating socPrint folder if not yet, delete all files except converters
+            
+            parent.currentProgress++
+            updateUI()
+            
+            connection.createDirectory(parent.DIRECTORY_TO_USE)
+            connection.createDirectory(parent.TEMP_DIRECTORY_TO_USE)
+            
+            //move .jar files in main directory to temp directory
+            connection.runCommand("mv " + parent.DIRECTORY_TO_USE + "/*.jar " + parent.TEMP_DIRECTORY_TO_USE)
+            
+            //Remove main directory
+            connection.runCommand("rm -rf " + parent.DIRECTORY_TO_USE)
+            
+            //Rename temp directory to main directory
+            connection.runCommand("mv " + parent.TEMP_DIRECTORY_TO_USE + " " + parent.DIRECTORY_TO_USE)
+            
+
+            
+            
+            self.connection.disconnect()
+            self.connection = nil
+            
+            
+        }
+        
+        
+        
+        func updateUI(){
+            dispatch_async(dispatch_get_main_queue(), {(void) in
+                self.parent.progressTable.reloadData()
+            })
+        }
+        
+        
         
         
         
