@@ -124,13 +124,26 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
         
         cell.progressBar.hidden = PROGRESS_INDETERMINATE[row]
         cell.activityIndicator.hidden = true
+        cell.header.enabled = true
+        
+        
+        var cellEnabled : Bool = true
+        
+        if(row == 2 && !uploadDocConverterRequired
+            || row == 3 && !uploadPDFConverterRequired){
+                cell.header.enabled = false
+                cellEnabled = false
+        }
+        
 
         //Adjust Tick
-        if(row >= currentProgress){
-            cell.tick.hidden = true
-        } else {
+        if(currentProgress >= row && cellEnabled){
             cell.tick.hidden = false
+        } else {
+            cell.tick.hidden = true
         }
+        
+
         
         
         
