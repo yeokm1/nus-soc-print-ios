@@ -77,7 +77,7 @@ class StatusViewController : UIViewController {
         let FORMAT_PRINTER_NO_OUTPUT = "%@ : No Output\n"
         let TEXT_NO_JOB = "Print Queue Empty\n"
         
-        var connection : SSHConnectivity?
+        var connection : SSHConnectivity!
         var username : String!
         var password : String!
         var hostname : String!
@@ -96,7 +96,7 @@ class StatusViewController : UIViewController {
         
         override func main() {
             connection = SSHConnectivity(hostname: hostname!, username: username!, password: password!)
-            var connectionStatus = connection!.connect()
+            var connectionStatus = connection.connect()
             
             var serverFound : Bool = connectionStatus.serverFound
             var authorised : Bool = connectionStatus.authorised
@@ -143,7 +143,7 @@ class StatusViewController : UIViewController {
             
             
             
-            self.connection?.disconnect()
+            self.connection.disconnect()
             self.connection = nil
             
             
