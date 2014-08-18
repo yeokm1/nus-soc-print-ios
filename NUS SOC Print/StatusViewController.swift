@@ -78,11 +78,11 @@ class StatusViewController : UIViewController {
         let TEXT_NO_JOB = "Print Queue Empty\n"
         
         var connection : SSHConnectivity?
-        var username : String?
-        var password : String?
-        var hostname : String?
+        var username : String!
+        var password : String!
+        var hostname : String!
         var printersArray : Array<String>
-        weak var outputView : UITextView?
+        weak var outputView : UITextView!
         
         
         init(hostname : String, username : String, password : String, printersList : Array<String>, outputView : UITextView) {
