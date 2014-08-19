@@ -70,8 +70,8 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
         super.viewDidLoad()
         NSLog("%@ viewDidLoad", TAG);
         
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updatePDFToWebview", name: UIApplicationDidBecomeActiveNotification, object: nil)
+    //TODO: Because of Xcode 6 Beta 6 error   
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updatePDFToWebview", name: UIApplicationDidBecomeActiveNotification, object: nil)
         
 
     }

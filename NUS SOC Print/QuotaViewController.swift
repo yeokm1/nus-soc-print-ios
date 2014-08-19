@@ -68,50 +68,52 @@ class QuotaViewController: UIViewController, NSURLConnectionDataDelegate {
     }
     
     //Should change this method to use Swift String instead of NSString once Apple improves the Range API for Swift String
-    func connection(connection: NSURLConnection!, didReceiveData data: NSData!) {
+  //                TODO: Because of Xcode 6 Beta 6 error  
 
-        
-        var dataString : NSString = NSString(data: data, encoding: NSUTF8StringEncoding)
-        
-        NSLog("%@ %@", TAG, dataString)
-        
-        
-        var regex : NSRegularExpression = NSRegularExpression.regularExpressionWithPattern(QUOTA_REGEX_PATTERN, options: NSRegularExpressionOptions.CaseInsensitive, error: nil)
-
-        var matches : Array = regex.matchesInString(dataString, options:nil, range: NSMakeRange(0, dataString.length))
-        
-        
-        quotaOutput.text = ""
-        
-        if(matches.count == 0){
-            quotaOutput.text = CREDENTIALS_WRONG
-        }
-        
-        for match in matches {
-            var quotaTypeRange : NSRange = match.rangeAtIndex(1)
-            var quotaValueRange : NSRange = match.rangeAtIndex(2)
-            
-
-        
-            var quotaType : String = stringByStrippingHTML(dataString.substringWithRange(quotaTypeRange))
-            var quotaValue : String = stringByStrippingHTML(dataString.substringWithRange(quotaValueRange))
-            
-        
-            NSLog("%@ %@ %@", TAG, quotaType, quotaValue)
-            
-            
-            var quotaString : String = quotaType + " : " + quotaValue + "\n\n"
-        
-            
-            quotaOutput.text = quotaOutput.text.stringByAppendingString(quotaString)
-            
-
-        }
-        
-    
-        
-        
-    }
+//    func connection(connection: NSURLConnection!, didReceiveData data: NSData!) {
+//
+//        
+//        var dataString : NSString = NSString(data: data, encoding: NSUTF8StringEncoding)
+//        
+//        NSLog("%@ %@", TAG, dataString)
+//        
+//        
+//        var regex : NSRegularExpression = NSRegularExpression.regularExpressionWithPattern(QUOTA_REGEX_PATTERN, options: NSRegularExpressionOptions.CaseInsensitive, error: nil)!
+//
+//        var matches : Array = regex.matchesInString(dataString, options:nil, range: NSMakeRange(0, dataString.length))
+//        
+//        
+//        quotaOutput.text = ""
+//        
+//        if(matches.count == 0){
+//            quotaOutput.text = CREDENTIALS_WRONG
+//        }
+//        
+//        for match in matches {
+//            var quotaTypeRange : NSRange = match.rangeAtIndex(1)
+//            var quotaValueRange : NSRange = match.rangeAtIndex(2)
+//            
+//
+//  //                TODO: Because of Xcode 6 Beta 6 error
+////            var quotaType : String = stringByStrippingHTML(dataString.substringWithRange(quotaTypeRange))
+////            var quotaValue : String = stringByStrippingHTML(dataString.substringWithRange(quotaValueRange))
+////            
+////        
+////            NSLog("%@ %@ %@", TAG, quotaType, quotaValue)
+////            
+////            
+////            var quotaString : String = quotaType + " : " + quotaValue + "\n\n"
+////        
+////            
+////            quotaOutput.text = quotaOutput.text.stringByAppendingString(quotaString)
+//            
+//
+//        }
+//        
+//    
+//        
+//        
+//    }
     
     
     
@@ -119,19 +121,21 @@ class QuotaViewController: UIViewController, NSURLConnectionDataDelegate {
         quotaOutput.text = SERVER_UNREACHABLE
     }
     
-    
-    func stringByStrippingHTML(input : String) -> String{
-        
-        var input2 = input as NSString
-
-        input2 = input2.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: NSStringCompareOptions.CaseInsensitiveSearch | NSStringCompareOptions.RegularExpressionSearch, range: NSMakeRange(0, input2.length))
-        
-    
-
-
-        return input2
-    
-    }
+//                TODO: Because of Xcode 6 Beta 6 error
+//    func stringByStrippingHTML(input : String) -> String{
+//
+//        var input2 = input as NSString
+//
+//
+//
+//        input2 = input2.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: NSStringCompareOptions.CaseInsensitiveSearch | NSStringCompareOptions.RegularExpressionSearch, range: NSMakeRange(0, input2.length))
+//        
+//    
+//
+//
+//        return input2
+//    
+//    }
 
     
     

@@ -109,7 +109,7 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
             uploadPDFConverterRequired = false
         }
         
-        filename = filePath.absoluteString.lastPathComponent
+        filename = filePath.lastPathComponent
         
         var filenameNS : NSString = filename as NSString
         
@@ -304,9 +304,9 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
             if(parent.uploadDocConverterRequired){
                 parent.currentProgress = parent.POSITION_UPLOADING_DOC_CONVERTER
                 updateUI()
-
-                var pathToDocConverter : String = NSBundle.mainBundle().pathForResource(parent.DOC_CONVERTER_NAME, ofType: "jar")
-                var docConvURL : NSURL = NSURL.fileURLWithPath(pathToDocConverter)
+                var pathToDocConverter : String = NSBundle.mainBundle().pathForResource(parent.DOC_CONVERTER_NAME, ofType: "jar")!
+                
+                var docConvURL : NSURL = NSURL.fileURLWithPath(pathToDocConverter)!
                 
 
                 var docConvSive : Int = getFileSizeOfFile(pathToDocConverter)
@@ -352,8 +352,8 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
         
         
         func getFileSizeOfFile(path : String) -> Int {
-            var attributes : NSDictionary = NSFileManager.defaultManager().attributesOfItemAtPath(path, error: nil)
-            var size : Int = attributes.objectForKey(NSFileSize).longValue
+            var attributes : NSDictionary = NSFileManager.defaultManager().attributesOfItemAtPath(path, error: nil)!
+            var size : Int = attributes.objectForKey(NSFileSize)!.longValue
             return size
         }
         
