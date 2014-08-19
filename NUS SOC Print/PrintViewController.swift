@@ -69,17 +69,24 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         NSLog("%@ viewDidLoad", TAG);
-        
-    //TODO: Because of Xcode 6 Beta 6 error   
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updatePDFToWebview", name: UIApplicationDidBecomeActiveNotification, object: nil)
-        
-
+        setSelfToDelegate(self)
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         getCredentialsAndShowWarning()
     }
+    
+    override func viewDidDisappear(animated: Bool) {
+        setSelfToDelegate(nil)
+        super.viewDidDisappear(animated)
+    }
+    
+    func setSelfToDelegate(myself : PrintViewController?){
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        appDelegate.printViewController = myself
+    }
+    
     
     func getCredentialsAndShowWarning() -> (settingsOK : Bool, username : String?, password : String?, server : String){
         var preferences : Storage = Storage.sharedInstance;

@@ -14,13 +14,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     let TAG = "Appdelegate"
     var window: UIWindow?
+    
+    var printViewController : PrintViewController?
 
     
     func application(application: UIApplication!, openURL url: NSURL!, sourceApplication: String!, annotation: AnyObject!) -> Bool {
         NSLog("%@ incoming file %@", TAG, url);
         
-        var vc : PrintViewController = getPrintController()
-        vc.receiveDocumentURL(url)
+        if(printViewController == nil){
+            var vc : PrintViewController = getPrintController()
+            vc.receiveDocumentURL(url)
+        } else {
+            printViewController!.receiveDocumentURL(url)
+            printViewController!.updatePDFToWebview()
+        }
         
         return true
     }
