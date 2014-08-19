@@ -74,16 +74,15 @@ class Storage  {
     
     func getServer() -> String {
         
-        //          TODO: Because of Xcode 6 Beta 6 error
-//        var storedServer : String? =  preferences.stringForKey(KEY_SERVER)
-//        
-//        
-//        if(storedServer == nil || storedServer!.isEmpty == 0){
-//            return DEFAULT_SERVER;
-//        } else {
-//            return storedServer!;
-//        }
-        return ""
+
+        var storedServer : String? =  preferences.stringForKey(KEY_SERVER)
+        
+        if(storedServer == nil || storedServer!.utf16Count == 0){
+            return DEFAULT_SERVER;
+        } else {
+            return storedServer!;
+        }
+
     }
     
     func storeServer(newServer : String) {
