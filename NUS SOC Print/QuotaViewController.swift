@@ -121,21 +121,29 @@ class QuotaViewController: UIViewController, NSURLConnectionDataDelegate {
         quotaOutput.text = SERVER_UNREACHABLE
     }
     
-//                TODO: Because of Xcode 6 Beta 6 error
-//    func stringByStrippingHTML(input : String) -> String{
-//
-//        var input2 = input as NSString
-//
-//
-//
-//        input2 = input2.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: NSStringCompareOptions.CaseInsensitiveSearch | NSStringCompareOptions.RegularExpressionSearch, range: NSMakeRange(0, input2.length))
-//        
-//    
-//
-//
-//        return input2
-//    
-//    }
+
+    func stringByStrippingHTML(input : String) -> String{
+
+        input.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: NSStringCompareOptions.RegularExpressionSearch, range: RangeMake(0, end: input.utf16Count))
+        return input
+    
+    }
+    
+    func RangeMake(start:Int, end:Int) -> Range<String.Index> {
+        assert(start <= end, "start must be less than or equal to end")
+        func rep(str: String, count: Int) -> String {
+            var result = ""
+            for i in 0 ... count {
+                result += str
+            }
+            return result
+        }
+        let length = end - start
+        let padding = rep(" ", start)
+        let dashes = rep("-", length)
+        let search = padding + dashes
+        return search.rangeOfString(dashes, options: nil, range: Range(start: search.startIndex, end: search.endIndex), locale: NSLocale.systemLocale())!
+    }
 
     
     
