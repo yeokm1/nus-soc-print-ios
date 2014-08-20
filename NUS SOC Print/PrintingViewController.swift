@@ -13,17 +13,7 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
     
     let CELL_IDENTIFIER = "PrintingViewTableCell"
     
-    let PDF_CONVERTER_NAME = "nup_pdf"
-    let PDF_CONVERTER_FILENAME = "nup_pdf.jar"
     
-    let DOC_CONVERTER_NAME = "docs-to-pdf-converter-1.7"
-    let DOC_CONVERTER_FILENAME = "docs-to-pdf-converter-1.7.jar"
-    
-    let PDF_CONVERTER_MD5 = "C1F8FF3F9DE7B2D2A2B41FBC0085888B"
-    let DOC_CONVERTER_MD5 = "1FC140AD8074E333F9082300F4EA38DC"
-    
-    let DIRECTORY_TO_USE = "socPrint/"
-    let TEMP_DIRECTORY_TO_USE = "socPrint2"
     
     let FORMAT_UPLOADING = "%@ of %@ (%.1f%%)"
     
@@ -298,6 +288,25 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
     
     class PrintingOperation : NSOperation {
         
+        
+        let PDF_CONVERTER_NAME = "nup_pdf"
+        let PDF_CONVERTER_FILENAME = "nup_pdf.jar"
+        
+        let DOC_CONVERTER_NAME = "docs-to-pdf-converter-1.7"
+        let DOC_CONVERTER_FILENAME = "docs-to-pdf-converter-1.7.jar"
+        
+        let PDF_CONVERTER_MD5 = "C1F8FF3F9DE7B2D2A2B41FBC0085888B"
+        let DOC_CONVERTER_MD5 = "1FC140AD8074E333F9082300F4EA38DC"
+        
+        let DIRECTORY_TO_USE = "socPrint/"
+        let TEMP_DIRECTORY_TO_USE = "socPrint2"
+        
+        let UPLOAD_PDF_FILENAME = "source.pdf"
+        let UPLOAD_PDF_FORMATTED_FILENAME = "formatted.pdf"
+        let UPLOAD_PS_FILENAME = "ps-converted.ps"
+        
+        
+        
         var connection : SSHConnectivity!
         var username : String!
         var password : String!
@@ -343,17 +352,17 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
             parent.currentProgress = parent.POSITION_HOUSEKEEPING
             updateUI()
             
-            connection.createDirectory(parent.DIRECTORY_TO_USE)
-            connection.createDirectory(parent.TEMP_DIRECTORY_TO_USE)
+            connection.createDirectory(DIRECTORY_TO_USE)
+            connection.createDirectory(TEMP_DIRECTORY_TO_USE)
             
             //move .jar files in main directory to temp directory
-            connection.runCommand("mv " + parent.DIRECTORY_TO_USE + "*.jar " + parent.TEMP_DIRECTORY_TO_USE)
+            connection.runCommand("mv " + DIRECTORY_TO_USE + "*.jar " + TEMP_DIRECTORY_TO_USE)
             
             //Remove main directory
-            connection.runCommand("rm -rf " + parent.DIRECTORY_TO_USE)
+            connection.runCommand("rm -rf " + DIRECTORY_TO_USE)
             
             //Rename temp directory to main directory
-            connection.runCommand("mv " + parent.TEMP_DIRECTORY_TO_USE + " " + parent.DIRECTORY_TO_USE)
+            connection.runCommand("mv " + TEMP_DIRECTORY_TO_USE + " " + DIRECTORY_TO_USE)
             
 
             
@@ -362,10 +371,10 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
                 parent.currentProgress = parent.POSITION_UPLOADING_DOC_CONVERTER
                 updateUI()
                 
-                var needToUpload = doesThisFileNeedToBeUploaded(parent.DOC_CONVERTER_FILENAME, md5Value: parent.DOC_CONVERTER_MD5)
+                var needToUpload = doesThisFileNeedToBeUploaded(DOC_CONVERTER_FILENAME, md5Value: DOC_CONVERTER_MD5)
                 
                 
-                var pathToDocConverter : String = NSBundle.mainBundle().pathForResource(parent.DOC_CONVERTER_NAME, ofType: "jar")!
+                var pathToDocConverter : String = NSBundle.mainBundle().pathForResource(DOC_CONVERTER_NAME, ofType: "jar")!
                 var docConvSize : Int = getFileSizeOfFile(pathToDocConverter)
                 
                 if(needToUpload){
@@ -382,7 +391,7 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
                         }
                     }
                     
-                    connection.uploadFile(pathToDocConverter, destinationPath: parent.DIRECTORY_TO_USE + parent.DOC_CONVERTER_FILENAME, progress: docConvUploadProgressBlock)
+                    connection.uploadFile(pathToDocConverter, destinationPath: DIRECTORY_TO_USE + DOC_CONVERTER_FILENAME, progress: docConvUploadProgressBlock)
                 
                 } else {
                     
@@ -398,10 +407,10 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
                 parent.currentProgress = parent.POSITION_UPLOADING_PDF_CONVERTER
                 updateUI()
                 
-                var needToUpload = doesThisFileNeedToBeUploaded(parent.PDF_CONVERTER_FILENAME, md5Value: parent.PDF_CONVERTER_MD5)
+                var needToUpload = doesThisFileNeedToBeUploaded(PDF_CONVERTER_FILENAME, md5Value: PDF_CONVERTER_MD5)
                 
                 
-                var pathToPdfConverter : String = NSBundle.mainBundle().pathForResource(parent.PDF_CONVERTER_NAME, ofType: "jar")!
+                var pathToPdfConverter : String = NSBundle.mainBundle().pathForResource(PDF_CONVERTER_NAME, ofType: "jar")!
                 var pdfConvSize : Int = getFileSizeOfFile(pathToPdfConverter)
                 
                 if(needToUpload){
@@ -418,7 +427,7 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
                         }
                     }
                     
-                    connection.uploadFile(pathToPdfConverter, destinationPath: parent.DIRECTORY_TO_USE + parent.PDF_CONVERTER_FILENAME, progress: pdfConvUploadProgressBlock)
+                    connection.uploadFile(pathToPdfConverter, destinationPath: DIRECTORY_TO_USE + PDF_CONVERTER_FILENAME, progress: pdfConvUploadProgressBlock)
                     
                 } else {
                     
@@ -427,6 +436,8 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
                 }
                 
             }
+            
+            //Step 4 : Uploading document
             
             
             
@@ -439,7 +450,7 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
         }
         
         func doesThisFileNeedToBeUploaded(filepath : String, md5Value : String) -> Bool{
-            var command = "md5 " + self.parent.DIRECTORY_TO_USE + filepath
+            var command = "md5 " + self.DIRECTORY_TO_USE + filepath
             var commandOutput = self.connection.runCommand(command)
             
             if(commandOutput.hasPrefix(md5Value)){
