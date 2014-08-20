@@ -346,6 +346,7 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
                     return
                 }
             } else {
+                parent.currentProgress = -1
                 showAlert(TITLE_STOP, SERVER_UNREACHABLE, parent)
                 return
             }
