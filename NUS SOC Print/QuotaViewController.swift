@@ -70,7 +70,6 @@ class QuotaViewController: UIViewController, NSURLConnectionDataDelegate {
 
     func connection(connection: NSURLConnection!, didReceiveData data: NSData!) {
 
-        
         var dataStringNS : NSString = NSString(data: data, encoding: NSUTF8StringEncoding)
         
         NSLog("%@ %@", TAG, dataStringNS)
@@ -123,9 +122,12 @@ class QuotaViewController: UIViewController, NSURLConnectionDataDelegate {
     
 
     func stringByStrippingHTML(input : String) -> String{
-
-
-        return input
+  
+        var regex : NSRegularExpression = NSRegularExpression.regularExpressionWithPattern("<[^>]+>", options: NSRegularExpressionOptions.CaseInsensitive, error: nil)!
+   
+        var output = regex.replace(input, with: "")
+        
+        return output
     
     }
     
