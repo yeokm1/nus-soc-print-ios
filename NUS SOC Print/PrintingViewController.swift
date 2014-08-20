@@ -33,11 +33,11 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
     ,"Some housekeeping"
     ,"Uploading DOC converter"
     ,"Uploading PDF Formatter"
-    ,"Uploading your document"
+    ,"Uploading %@"
     ,"Converting to PDF"
-    ,"Formatting PDF"
+    ,"Formatting to %@ pages"
     ,"Converting to Postscript"
-    ,"Sending to printer"]
+    ,"Sending to %@"]
     
     let POSITION_CONNECTING = 0
     let POSITION_HOUSEKEEPING = 1
@@ -152,7 +152,21 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
     
     
     func processCell(cell : PrintingViewTableCell, row : Int){
-        cell.header.text = HEADER_TEXT[row]
+
+        
+        if(row == POSITION_UPLOADING_USER_DOC){
+            cell.header.text = String(format:HEADER_TEXT[row], filename)
+        } else if(row == POSITION_FORMATTING_PDF){
+            cell.header.text = String(format:HEADER_TEXT[row], pagesPerSheet)
+        } else if(row == POSITION_SENDING_TO_PRINTER){
+            cell.header.text = String(format:HEADER_TEXT[row], printer)
+        } else {
+            cell.header.text = HEADER_TEXT[row]
+        }
+        
+        
+        
+        
         cell.smallFooter.text = ""
         
         cell.progressBar.hidden = PROGRESS_INDETERMINATE[row]
