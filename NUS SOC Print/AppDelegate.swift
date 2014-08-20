@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             vc.receiveDocumentURL(url)
         } else {
             printViewController!.receiveDocumentURL(url)
-            printViewController!.updatePDFToWebview()
+            printViewController!.updateDocumentToWebview()
         }
         
         return true

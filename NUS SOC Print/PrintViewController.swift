@@ -75,7 +75,7 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         getCredentialsAndShowWarning()
-        updatePDFToWebview()
+        updateDocumentToWebview()
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -112,7 +112,7 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
     }
     
 
-    func updatePDFToWebview(){
+    func updateDocumentToWebview(){
         
         var urlRequest : NSURLRequest = NSURLRequest(URL: incomingURL)
         
