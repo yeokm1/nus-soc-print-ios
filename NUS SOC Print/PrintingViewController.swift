@@ -330,34 +330,50 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
             if(parent.uploadDocConverterRequired){
                 parent.currentProgress = parent.POSITION_UPLOADING_DOC_CONVERTER
                 updateUI()
+                
+                var needToUpload = doesThisFileNeedToBeUploaded(parent.DOC_CONVERTER_NAME, md5Value: parent.DOC_CONVERTER_MD5)
+                
+                
                 var pathToDocConverter : String = NSBundle.mainBundle().pathForResource(parent.DOC_CONVERTER_NAME, ofType: "jar")!
+                var docConvSize : Int = getFileSizeOfFile(pathToDocConverter)
                 
-                var docConvURL : NSURL = NSURL.fileURLWithPath(pathToDocConverter)!
-                
-
-                var docConvSive : Int = getFileSizeOfFile(pathToDocConverter)
-                let docConvUploadProgressBlock = {(bytesUploaded : UInt) -> Bool in
-      
-                    let bytesUploadedInt : Int = Int(bytesUploaded)
+                if(needToUpload){
+                    var docConvURL : NSURL = NSURL.fileURLWithPath(pathToDocConverter)!
+                    let docConvUploadProgressBlock = {(bytesUploaded : UInt) -> Bool in
+                        
+                        let bytesUploadedInt : Int = Int(bytesUploaded)
+                        
+                        self.updateUIDocConvUpload(docConvSize, uploadedSize: bytesUploadedInt)
+                        return true
+                    }
                     
-                    self.updateUIDocConvUpload(docConvSive, uploadedSize: bytesUploadedInt)
-                    return true
+                    connection.uploadFile(pathToDocConverter, destinationPath: parent.DIRECTORY_TO_USE + parent.DOC_CONVERTER_FILENAME, progress: docConvUploadProgressBlock)
+                
+                } else {
+                    
+                    //Already exists, just use existing file
+                    self.updateUIDocConvUpload(docConvSize, uploadedSize: docConvSize)
                 }
-                
-                connection.uploadFile(pathToDocConverter, destinationPath: parent.DIRECTORY_TO_USE + parent.DOC_CONVERTER_FILENAME, progress: docConvUploadProgressBlock)
-                
-                
                 
                 
                 
             }
 
-
-            
-            
             self.connection.disconnect()
             self.connection = nil
             
+            
+        }
+        
+        func doesThisFileNeedToBeUploaded(filepath : String, md5Value : String) -> Bool{
+            var command = "md5 " + self.parent.DIRECTORY_TO_USE + filepath
+            var commandOutput = self.connection.runCommand(command)
+            
+            if(commandOutput.hasPrefix(md5Value)){
+                return true
+            } else {
+                return false
+            }
             
         }
         
