@@ -183,9 +183,9 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
         if(row == POSITION_UPLOADING_DOC_CONVERTER){
             
             var progress = generateProgressStringAndProgressFraction(docConvUploaded, totalSize: docConvSize)
-            
-            var footerString : String = progress.progressString
-            cell.smallFooter.text = footerString
+  
+            cell.smallFooter.text = progress.progressString
+            cell.progressBar.progress = progress.progressFraction
             
         }
 
@@ -196,14 +196,14 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
     
     
     
-    func generateProgressStringAndProgressFraction(currentSize : Int, totalSize : Int) -> (progressString : String, progressFraction : Double){
+    func generateProgressStringAndProgressFraction(currentSize : Int, totalSize : Int) -> (progressString : String, progressFraction : Float){
         var doubleCurrent = Double(currentSize)
         var doubleTotal = Double(totalSize)
         
-        var progressFraction : Double = 0
+        var progressFraction : Float = 0
         
         if(totalSize != 0){
-            progressFraction = doubleCurrent / doubleTotal
+            progressFraction = Float(doubleCurrent / doubleTotal)
         }
         
         var percent = progressFraction * 100
