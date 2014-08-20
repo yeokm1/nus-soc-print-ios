@@ -25,7 +25,7 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
     let DIRECTORY_TO_USE = "socPrint/"
     let TEMP_DIRECTORY_TO_USE = "socPrint2"
     
-    let FORMAT_UPLOADING = "%d of %d (%.1f%%)"
+    let FORMAT_UPLOADING = "%@ of %@ (%.1f%%)"
     
     
     let HEADER_TEXT : Array<String> =
@@ -208,7 +208,16 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
         
         var percent = progressFraction * 100
         
-        var formatString = String(format: FORMAT_UPLOADING, currentSize, totalSize, percent)
+        var byteCountFormatter = NSByteCountFormatter()
+        byteCountFormatter.zeroPadsFractionDigits = true
+        byteCountFormatter.countStyle = NSByteCountFormatterCountStyle.File
+        
+
+        var uploadedStr = byteCountFormatter.stringFromByteCount(Int64(currentSize))
+        
+        var totalStr = byteCountFormatter.stringFromByteCount(Int64(totalSize))
+
+        var formatString = String(format: FORMAT_UPLOADING, uploadedStr, totalStr, percent)
         
         return (formatString, progressFraction)
         
