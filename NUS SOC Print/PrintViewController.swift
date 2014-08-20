@@ -75,6 +75,7 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         getCredentialsAndShowWarning()
+        updatePDFToWebview()
     }
     
     override func viewDidDisappear(animated: Bool) {
