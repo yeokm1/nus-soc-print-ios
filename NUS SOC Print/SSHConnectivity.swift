@@ -74,6 +74,10 @@ class SSHConnectivity{
     }
     
     
+    func uploadFilePathURL(sourceURL : NSURL, destinationPath : String, progress: ((UInt) -> Bool)){
+        var filePath : String = sourceURL.absoluteString!
+        uploadFile(filePath, destinationPath: destinationPath, progress: progress)
+    }
     
     func uploadFile(sourcePath : String, destinationPath : String, progress: ((UInt) -> Bool)){
         session?.channel.uploadFile(sourcePath, to: destinationPath, progress: progress)

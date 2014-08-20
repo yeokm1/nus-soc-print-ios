@@ -266,7 +266,7 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
             
             currentProgress = 0
             
-            operation = PrintingOperation(hostname: hostname, username: username!, password: password!, pagesPerSheet : pagesPerSheet, printerName : printer, parent : self)
+            operation = PrintingOperation(hostname: hostname, username: username!, password: password!, filePath : filePath, pagesPerSheet : pagesPerSheet, printerName : printer, parent : self)
             
             operation!.completionBlock = {(void) in
                 self.operation = nil
@@ -314,12 +314,14 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
         var pagesPerSheet : String!
         var printerName : String!
         var parent : PrintingViewController!
+        var givenFilePath : NSURL!
         
         
-        init(hostname : String, username : String, password : String, pagesPerSheet : String, printerName : String, parent : PrintingViewController) {
+        init(hostname : String, username : String, password : String, filePath : NSURL, pagesPerSheet : String, printerName : String, parent : PrintingViewController) {
             self.username = username
             self.password = password
             self.hostname = hostname
+            self.givenFilePath = filePath
             self.pagesPerSheet = pagesPerSheet
             self.printerName = printerName
             self.parent = parent
