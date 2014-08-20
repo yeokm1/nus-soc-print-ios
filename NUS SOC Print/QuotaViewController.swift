@@ -67,53 +67,53 @@ class QuotaViewController: UIViewController, NSURLConnectionDataDelegate {
 
     }
     
-    //Should change this method to use Swift String instead of NSString once Apple improves the Range API for Swift String
-  //                TODO: Because of Xcode 6 Beta 6 error  
 
-//    func connection(connection: NSURLConnection!, didReceiveData data: NSData!) {
-//
-//        
-//        var dataString : NSString = NSString(data: data, encoding: NSUTF8StringEncoding)
-//        
-//        NSLog("%@ %@", TAG, dataString)
-//        
-//        
-//        var regex : NSRegularExpression = NSRegularExpression.regularExpressionWithPattern(QUOTA_REGEX_PATTERN, options: NSRegularExpressionOptions.CaseInsensitive, error: nil)!
-//
-//        var matches : Array = regex.matchesInString(dataString, options:nil, range: NSMakeRange(0, dataString.length))
-//        
-//        
-//        quotaOutput.text = ""
-//        
-//        if(matches.count == 0){
-//            quotaOutput.text = CREDENTIALS_WRONG
-//        }
-//        
-//        for match in matches {
-//            var quotaTypeRange : NSRange = match.rangeAtIndex(1)
-//            var quotaValueRange : NSRange = match.rangeAtIndex(2)
-//            
-//
-//  //                TODO: Because of Xcode 6 Beta 6 error
-////            var quotaType : String = stringByStrippingHTML(dataString.substringWithRange(quotaTypeRange))
-////            var quotaValue : String = stringByStrippingHTML(dataString.substringWithRange(quotaValueRange))
-////            
-////        
-////            NSLog("%@ %@ %@", TAG, quotaType, quotaValue)
-////            
-////            
-////            var quotaString : String = quotaType + " : " + quotaValue + "\n\n"
-////        
-////            
-////            quotaOutput.text = quotaOutput.text.stringByAppendingString(quotaString)
-//            
-//
-//        }
-//        
-//    
-//        
-//        
-//    }
+    func connection(connection: NSURLConnection!, didReceiveData data: NSData!) {
+
+        
+        var dataStringNS : NSString = NSString(data: data, encoding: NSUTF8StringEncoding)
+        
+        NSLog("%@ %@", TAG, dataStringNS)
+        
+  
+        var regex : NSRegularExpression = NSRegularExpression.regularExpressionWithPattern(QUOTA_REGEX_PATTERN, options: NSRegularExpressionOptions.CaseInsensitive, error: nil)!
+        
+        var matches : NSArray = dataStringNS.matchesWithDetails(regex)
+
+  
+        quotaOutput.text = ""
+        
+        if(matches.count == 0){
+            quotaOutput.text = CREDENTIALS_WRONG
+        }
+        
+        for match in matches {
+            
+            var groups : NSArray = match.groups
+            
+            var quotaTypeGroup : RxMatchGroup = groups.objectAtIndex(1) as RxMatchGroup
+            var quotaValueGroup : RxMatchGroup = groups.objectAtIndex(2) as RxMatchGroup
+            
+
+            var quotaType : String = stringByStrippingHTML(quotaTypeGroup.value)
+            var quotaValue : String = stringByStrippingHTML(quotaValueGroup.value)
+            
+        
+            NSLog("%@ %@ %@", TAG, quotaType, quotaValue)
+            
+            
+            var quotaString : String = quotaType + " : " + quotaValue + "\n\n"
+        
+            
+            quotaOutput.text = quotaOutput.text.stringByAppendingString(quotaString)
+            
+
+        }
+        
+    
+        
+        
+    }
     
     
     
@@ -124,7 +124,7 @@ class QuotaViewController: UIViewController, NSURLConnectionDataDelegate {
 
     func stringByStrippingHTML(input : String) -> String{
 
-        input.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: NSStringCompareOptions.RegularExpressionSearch, range: RangeMake(0, end: input.utf16Count))
+
         return input
     
     }

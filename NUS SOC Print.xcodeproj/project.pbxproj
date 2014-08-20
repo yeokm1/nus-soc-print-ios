@@ -14,6 +14,7 @@
 		5328AE1A19A09BBA004675BA /* PrintingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5328AE1919A09BBA004675BA /* PrintingViewController.swift */; };
 		5328AE1C19A0A255004675BA /* green-tick.png in Resources */ = {isa = PBXBuildFile; fileRef = 5328AE1B19A0A255004675BA /* green-tick.png */; };
 		5328AE1E19A0A98A004675BA /* PrintingViewTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5328AE1D19A0A98A004675BA /* PrintingViewTableCell.swift */; };
+		533B293619A4759000523049 /* RegExCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 533B293519A4759000523049 /* RegExCategories.m */; };
 		5345CEF419A05409006F920E /* behind_alert_view.png in Resources */ = {isa = PBXBuildFile; fileRef = 5345CEF319A05409006F920E /* behind_alert_view.png */; };
 		5345CEF619A05BCF006F920E /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5345CEF519A05BCF006F920E /* MainTabBarController.swift */; };
 		5345CEFC19A0685F006F920E /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5345CEFB19A0685F006F920E /* StatusViewController.swift */; };
@@ -50,6 +51,8 @@
 		5328AE1919A09BBA004675BA /* PrintingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintingViewController.swift; sourceTree = "<group>"; };
 		5328AE1B19A0A255004675BA /* green-tick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "green-tick.png"; sourceTree = "<group>"; };
 		5328AE1D19A0A98A004675BA /* PrintingViewTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintingViewTableCell.swift; sourceTree = "<group>"; };
+		533B293419A4759000523049 /* RegExCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegExCategories.h; sourceTree = "<group>"; };
+		533B293519A4759000523049 /* RegExCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegExCategories.m; sourceTree = "<group>"; };
 		533D2648199FAAFD00719717 /* NMSSH-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NMSSH-Bridging-Header.h"; sourceTree = "<group>"; };
 		5345CEF319A05409006F920E /* behind_alert_view.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = behind_alert_view.png; sourceTree = "<group>"; };
 		5345CEF519A05BCF006F920E /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -141,6 +144,8 @@
 				5328AE1519A072A7004675BA /* SSHConnectivity.swift */,
 				538BEDE71986A10B00C61282 /* Images.xcassets */,
 				538BEDDC1986A10B00C61282 /* Supporting Files */,
+				533B293419A4759000523049 /* RegExCategories.h */,
+				533B293519A4759000523049 /* RegExCategories.m */,
 			);
 			path = "NUS SOC Print";
 			sourceTree = "<group>";
@@ -325,6 +330,7 @@
 			files = (
 				53628D17199A59AC009FF7A4 /* PrintViewController.swift in Sources */,
 				53628D19199A5A31009FF7A4 /* QuotaViewController.swift in Sources */,
+				533B293619A4759000523049 /* RegExCategories.m in Sources */,
 				5328AE1A19A09BBA004675BA /* PrintingViewController.swift in Sources */,
 				5345CEF619A05BCF006F920E /* MainTabBarController.swift in Sources */,
 				5328AE1619A072A7004675BA /* SSHConnectivity.swift in Sources */,
