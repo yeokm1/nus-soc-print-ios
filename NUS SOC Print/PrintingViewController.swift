@@ -170,7 +170,6 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
         cell.smallFooter.text = ""
         
         cell.progressBar.hidden = PROGRESS_INDETERMINATE[row]
-        cell.activityIndicator.hidden = true
         cell.header.enabled = true
         
         
@@ -193,9 +192,12 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
         }
         
         
-        if(PROGRESS_INDETERMINATE[row] && row == currentProgress && cellEnabled){
+        if(row == currentProgress && cellEnabled && !cell.activityIndicator.isAnimating()){
             cell.activityIndicator.hidden = false
             cell.activityIndicator.startAnimating()
+        } else {
+            cell.activityIndicator.stopAnimating()
+            cell.activityIndicator.hidden = true
         }
         
         
@@ -203,6 +205,16 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
             
             var progress = generateProgressStringAndProgressFraction(docConvUploaded, totalSize: docConvSize)
   
+            cell.smallFooter.text = progress.progressString
+            cell.progressBar.progress = progress.progressFraction
+            
+        }
+        
+        
+        if(row == POSITION_UPLOADING_PDF_CONVERTER){
+            
+            var progress = generateProgressStringAndProgressFraction(pdfConvUploaded, totalSize: pdfConvSize)
+            
             cell.smallFooter.text = progress.progressString
             cell.progressBar.progress = progress.progressFraction
             
@@ -378,9 +390,47 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
                     self.updateUIDocConvUpload(docConvSize, uploadedSize: docConvSize)
                 }
                 
+            }
+            
+            
+            //Step 3 : Uploading PDF converter
+            if(parent.uploadPDFConverterRequired && !cancelled){
+                parent.currentProgress = parent.POSITION_UPLOADING_PDF_CONVERTER
+                updateUI()
                 
+                var needToUpload = doesThisFileNeedToBeUploaded(parent.PDF_CONVERTER_FILENAME, md5Value: parent.PDF_CONVERTER_MD5)
+                
+                
+                var pathToPdfConverter : String = NSBundle.mainBundle().pathForResource(parent.PDF_CONVERTER_NAME, ofType: "jar")!
+                var pdfConvSize : Int = getFileSizeOfFile(pathToPdfConverter)
+                
+                if(needToUpload){
+                    var pdfConvURL : NSURL = NSURL.fileURLWithPath(pathToPdfConverter)!
+                    let pdfConvUploadProgressBlock = {(bytesUploaded : UInt) -> Bool in
+                        
+                        let bytesUploadedInt : Int = Int(bytesUploaded)
+                        
+                        self.updateUIPDFConvUpload(pdfConvSize, uploadedSize: bytesUploadedInt)
+                        if(self.cancelled){
+                            return false
+                        } else {
+                            return true
+                        }
+                    }
+                    
+                    connection.uploadFile(pathToPdfConverter, destinationPath: parent.DIRECTORY_TO_USE + parent.PDF_CONVERTER_FILENAME, progress: pdfConvUploadProgressBlock)
+                    
+                } else {
+                    
+                    //Already exists, just use existing file
+                    self.updateUIPDFConvUpload(pdfConvSize, uploadedSize: pdfConvSize)
+                }
                 
             }
+            
+            
+            
+            
 
             self.connection.disconnect()
             self.connection = nil
@@ -400,19 +450,26 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
             
         }
         
+        func updateUIPDFConvUpload(totalSize : Int, uploadedSize : Int){
+            
+            dispatch_async(dispatch_get_main_queue(), {(void) in
+                
+                self.parent.pdfConvSize = totalSize
+                self.parent.pdfConvUploaded = uploadedSize
+                self.parent.progressTable.reloadData()
+                
+            })
+        }
+        
         func updateUIDocConvUpload(totalSize : Int, uploadedSize : Int){
             
             dispatch_async(dispatch_get_main_queue(), {(void) in
                 
-                self.parent.docConvSize =  totalSize
+                self.parent.docConvSize = totalSize
                 self.parent.docConvUploaded = uploadedSize
-
                 self.parent.progressTable.reloadData()
                 
             })
-            
-            
-            
         }
         
         
