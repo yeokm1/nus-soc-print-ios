@@ -68,7 +68,7 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSLog("%@ viewDidLoad", TAG);
+//        NSLog("%@ viewDidLoad", TAG);
         setSelfToDelegate(self)
     }
     
