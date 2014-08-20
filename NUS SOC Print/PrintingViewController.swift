@@ -182,20 +182,35 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
         
         if(row == POSITION_UPLOADING_DOC_CONVERTER){
             
-            var percent : Double = 0
+            var progress = generateProgressStringAndProgressFraction(docConvUploaded, totalSize: docConvSize)
             
-            if(docConvSize != 0){
-                var doubleUploaded = Double(docConvUploaded)
-                var doubleSize = Double(docConvSize)
-                percent = (doubleUploaded / doubleSize) * 100
-            }
-            
-            var footerString : String = String(format: FORMAT_UPLOADING, docConvUploaded, docConvSize, percent)
+            var footerString : String = progress.progressString
             cell.smallFooter.text = footerString
             
         }
 
         
+        
+        
+    }
+    
+    
+    
+    func generateProgressStringAndProgressFraction(currentSize : Int, totalSize : Int) -> (progressString : String, progressFraction : Double){
+        var doubleCurrent = Double(currentSize)
+        var doubleTotal = Double(totalSize)
+        
+        var progressFraction : Double = 0
+        
+        if(totalSize != 0){
+            progressFraction = doubleCurrent / doubleTotal
+        }
+        
+        var percent = progressFraction * 100
+        
+        var formatString = String(format: FORMAT_UPLOADING, currentSize, totalSize, percent)
+        
+        return (formatString, progressFraction)
         
         
     }
