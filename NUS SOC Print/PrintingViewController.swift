@@ -34,6 +34,7 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
     ,"Uploading DOC converter"
     ,"Uploading PDF Formatter"
     ,"Uploading your document"
+    ,"Converting to PDF"
     ,"Formatting PDF"
     ,"Converting to Postscript"
     ,"Sending to printer"]
@@ -43,9 +44,10 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
     let POSITION_UPLOADING_DOC_CONVERTER = 2
     let POSITION_UPLOADING_PDF_CONVERTER = 3
     let POSITION_UPLOADING_USER_DOC = 4
-    let POSITION_FORMATTING_PDF = 5
-    let POSITION_CONVERTING_TO_POSTSCRIPT = 6
-    let POSITION_SENDING_TO_PRINTER = 7
+    let POSITION_CONVERTING_TO_PDF = 5
+    let POSITION_FORMATTING_PDF = 6
+    let POSITION_CONVERTING_TO_POSTSCRIPT = 7
+    let POSITION_SENDING_TO_PRINTER = 8
     
     let CLOSE_TEXT = "Close"
     
@@ -56,6 +58,7 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
     ,false
     ,false
     ,false
+    ,true
     ,true
     ,true
     ,true]
@@ -160,8 +163,10 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
         var cellEnabled : Bool = true
         
         if(row == POSITION_UPLOADING_DOC_CONVERTER && !uploadDocConverterRequired
+            || row == POSITION_CONVERTING_TO_PDF && !uploadDocConverterRequired
             || row == POSITION_UPLOADING_PDF_CONVERTER && !uploadPDFConverterRequired){
                 cell.header.enabled = false
+                cell.smallFooter.enabled = false
                 cellEnabled = false
         }
         
