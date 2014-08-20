@@ -25,7 +25,7 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
     let DIRECTORY_TO_USE = "socPrint/"
     let TEMP_DIRECTORY_TO_USE = "socPrint2"
     
-    let FORMAT_UPLOADING = "%d of %d (%d%%)"
+    let FORMAT_UPLOADING = "%d of %d (%.1f%%)"
     
     
     let HEADER_TEXT : Array<String> =
@@ -182,10 +182,12 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
         
         if(row == POSITION_UPLOADING_DOC_CONVERTER){
             
-            var percent : Int = 0
+            var percent : Double = 0
             
             if(docConvSize != 0){
-                percent = ( (docConvUploaded * 100) / docConvSize)
+                var doubleUploaded = Double(docConvUploaded)
+                var doubleSize = Double(docConvSize)
+                percent = (doubleUploaded / doubleSize) * 100
             }
             
             var footerString : String = String(format: FORMAT_UPLOADING, docConvUploaded, docConvSize, percent)
