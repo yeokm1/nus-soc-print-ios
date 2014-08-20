@@ -346,11 +346,11 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
 
             
             //Step 2 : Uploading DOC converter
-            if(parent.uploadDocConverterRequired){
+            if(parent.uploadDocConverterRequired && !cancelled){
                 parent.currentProgress = parent.POSITION_UPLOADING_DOC_CONVERTER
                 updateUI()
                 
-                var needToUpload = doesThisFileNeedToBeUploaded(parent.DOC_CONVERTER_NAME, md5Value: parent.DOC_CONVERTER_MD5)
+                var needToUpload = doesThisFileNeedToBeUploaded(parent.DOC_CONVERTER_FILENAME, md5Value: parent.DOC_CONVERTER_MD5)
                 
                 
                 var pathToDocConverter : String = NSBundle.mainBundle().pathForResource(parent.DOC_CONVERTER_NAME, ofType: "jar")!
@@ -363,7 +363,11 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
                         let bytesUploadedInt : Int = Int(bytesUploaded)
                         
                         self.updateUIDocConvUpload(docConvSize, uploadedSize: bytesUploadedInt)
-                        return true
+                        if(self.cancelled){
+                            return false
+                        } else {
+                            return true
+                        }
                     }
                     
                     connection.uploadFile(pathToDocConverter, destinationPath: parent.DIRECTORY_TO_USE + parent.DOC_CONVERTER_FILENAME, progress: docConvUploadProgressBlock)
@@ -389,9 +393,9 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
             var commandOutput = self.connection.runCommand(command)
             
             if(commandOutput.hasPrefix(md5Value)){
-                return true
-            } else {
                 return false
+            } else {
+                return true
             }
             
         }
