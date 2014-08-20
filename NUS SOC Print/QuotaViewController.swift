@@ -130,24 +130,7 @@ class QuotaViewController: UIViewController, NSURLConnectionDataDelegate {
         return output
     
     }
-    
-    func RangeMake(start:Int, end:Int) -> Range<String.Index> {
-        assert(start <= end, "start must be less than or equal to end")
-        func rep(str: String, count: Int) -> String {
-            var result = ""
-            for i in 0 ... count {
-                result += str
-            }
-            return result
-        }
-        let length = end - start
-        let padding = rep(" ", start)
-        let dashes = rep("-", length)
-        let search = padding + dashes
-        return search.rangeOfString(dashes, options: nil, range: Range(start: search.startIndex, end: search.endIndex), locale: NSLocale.systemLocale())!
-    }
 
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
