@@ -36,7 +36,8 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
     @IBOutlet weak var pdfShower: UIWebView!
     @IBOutlet weak var pagesPerSheetSelection: UISegmentedControl!
     
-    @IBOutlet weak var filenameLabel: UILabel!
+
+    @IBOutlet weak var filenameView: UITextView!
     
 
     @IBAction func selectPrinterPressed(sender: UIButton) {
@@ -122,7 +123,7 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
             pdfShower.loadRequest(urlRequest)
             var filename : String = incomingURL!.lastPathComponent
             
-            filenameLabel.text = filename
+            filenameView.text = filename
             
             
         }
