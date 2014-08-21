@@ -320,6 +320,7 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
         let TEMP_DIRECTORY_TO_USE = "socPrint2"
         
         let UPLOAD_FILENAME = "source." //Add path extension later
+        let UPLOAD_SOURCE_PDF_FILENAME = "source.pdf"
         let UPLOAD_PDF_FORMATTED_FILENAME = "formatted.pdf"
         let UPLOAD_PS_FILENAME = "ps-converted.ps"
         
