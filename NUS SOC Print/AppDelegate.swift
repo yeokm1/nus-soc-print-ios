@@ -24,6 +24,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         var filemgr : NSFileManager = NSFileManager.defaultManager()
         
+        
+        
+        //Remove existing files in temporary directory
+        var directoryContents : Array = filemgr.contentsOfDirectoryAtPath(NSTemporaryDirectory(), error: nil)!
+        
+        for path in directoryContents {
+            var fullPath = NSTemporaryDirectory().stringByAppendingPathComponent(path as String)
+            filemgr.removeItemAtPath(fullPath, error: nil)
+        }
+
+        
+        
+    
+        //Move file to tmp directory
         var newURLPath = NSURL(fileURLWithPath: NSTemporaryDirectory().stringByAppendingPathComponent(url.lastPathComponent))
         
         filemgr.moveItemAtURL(url, toURL: newURLPath, error: nil)
