@@ -335,7 +335,7 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
         var parent : PrintingViewController!
         var givenFilePath : String!
         var uploadedFilepath : String!
-        
+    
         
         init(hostname : String, username : String, password : String, filePath : String, pagesPerSheet : String, printerName : String, parent : PrintingViewController) {
             self.username = username
@@ -500,18 +500,29 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
             }
             
             
-            //Step 6 : Format PDF to required pages per sheet
+            //Step 6 : Format PDF to required pages per sheet if required
             
-            if(parent.uploadPDFConverterRequired && !cancelled){
-                parent.currentProgress = parent.POSITION_FORMATTING_PDF
-                updateUI()
+            var pdfFilepathToConvertToPS : String!
+
+            if(!cancelled){
                 
-                
-                
+                if(parent.uploadPDFConverterRequired){
+                    parent.currentProgress = parent.POSITION_FORMATTING_PDF
+                    updateUI()
+                    
+                    
+                    var formattingCommand : String = "java -jar " + PDF_CONVERTER_FILEPATH + " " + UPLOAD_SOURCE_PDF_FILEPATH + " " + UPLOAD_PDF_FORMATTED_FILEPATH + " " + pagesPerSheet
+                    
+                    connection.runCommand(formattingCommand)
+                    
+                    pdfFilepathToConvertToPS = UPLOAD_PDF_FORMATTED_FILEPATH
+                } else {
+                    pdfFilepathToConvertToPS = UPLOAD_SOURCE_PDF_FILEPATH
+                }
+    
             }
-            
-            
-            
+
+        
             
             
 
