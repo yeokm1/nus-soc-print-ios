@@ -487,6 +487,21 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
                 
             }
             
+            //Step 5 : Convert document to PDF if necessary
+            if(parent.uploadDocConverterRequired && !cancelled){
+                parent.currentProgress = parent.POSITION_CONVERTING_TO_PDF
+                updateUI()
+                
+                var converterPath : String = DIRECTORY_TO_USE + DOC_CONVERTER_FILENAME
+                var sourceFilename : String = DIRECTORY_TO_USE + uploadedFilename
+                var destinationFilename : String = DIRECTORY_TO_USE + UPLOAD_SOURCE_PDF_FILENAME
+                
+                var conversionCommand : String = "java -jar " + converterPath + " -i " + sourceFilename + " -o " + destinationFilename;
+                
+                connection.runCommand(conversionCommand)
+                
+            }
+            
             
             
             
