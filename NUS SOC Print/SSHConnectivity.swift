@@ -80,6 +80,7 @@ class SSHConnectivity{
     }
     
     func uploadFile(sourcePath : String, destinationPath : String, progress: ((UInt) -> Bool)){
+        NSLog("%@ uploading file from %@ to %@", TAG, sourcePath, destinationPath)
         session?.channel.uploadFile(sourcePath, to: destinationPath, progress: progress)
     }
     
