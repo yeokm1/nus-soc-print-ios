@@ -38,6 +38,7 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
     let POSITION_FORMATTING_PDF = 6
     let POSITION_CONVERTING_TO_POSTSCRIPT = 7
     let POSITION_SENDING_TO_PRINTER = 8
+    let POSITION_COMPLETED = 9
     
     let CLOSE_TEXT = "Close"
     
@@ -530,11 +531,25 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
                 var conversionCommand : String = "pdftops " + pdfFilepathToConvertToPS + " " + UPLOAD_PS_FILEPATH
                 connection.runCommand(conversionCommand)
             }
+            
+            
+            //Final Step 8 : Send to printer
+            
+            if(!cancelled){
+                parent.currentProgress = parent.POSITION_SENDING_TO_PRINTER
+                updateUI()
+                
+                var printingCommand : String = "lpr -p " + printerName + " " + UPLOAD_PS_FILEPATH
+                connection.runCommand(printingCommand)
+                
+            }
+            
+            parent.currentProgress = parent.POSITION_COMPLETED
+            updateUI()
 
         
             
-            
-
+        
             self.connection.disconnect()
             self.connection = nil
             
