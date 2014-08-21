@@ -20,7 +20,7 @@ class PrintingViewController : UIViewController, UITableViewDelegate, UITableVie
     
     let DIALOG_YES = "Yes"
     let DIALOG_NO = "No"
-    let DIALOG_TITLE = "Stop printing operation?"
+    let DIALOG_TITLE = "Are you sure you want to cancel this print operation?"
     
     
     
