@@ -58,7 +58,6 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="checkStatusButtonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="a8N-ze-SEX"/>
                                     <segue destination="ZgB-QJ-dCW" kind="modal" id="aOS-j3-llO"/>
                                 </connections>
                             </button>

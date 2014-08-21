@@ -61,10 +61,6 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
         selectPrinterWindow.showInView(self.view)
         
     }
-
-    
-    @IBAction func checkStatusButtonPressed(sender: UIButton) {
-    }
     
     
     override func viewDidLoad() {
