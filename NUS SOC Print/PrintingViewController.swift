@@ -304,7 +304,11 @@ class PrintingViewController : UIViewController, UITableViewDelegate, UITableVie
             
             operation!.completionBlock = {(void) in
                 self.operation = nil
-                self.cancelButton.setTitle(self.CLOSE_TEXT, forState: UIControlState.Normal)
+                
+                dispatch_async(dispatch_get_main_queue(), {(void) in
+                    self.cancelButton.setTitle(self.CLOSE_TEXT, forState: UIControlState.Normal)
+                })
+
             }
             
             
