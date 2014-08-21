@@ -104,12 +104,7 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
         
         filename = filePath.lastPathComponent
         
-        var filenameNS : NSString = filename as NSString
-        
-        var fileType : String = filenameNS.substringFromIndex(filenameNS.length - 4).lowercaseString
-        
-        
-        if fileType.rangeOfString("pdf") != nil {
+        if(isFileAPdf(filename)){
             uploadDocConverterRequired = false
         }
         
@@ -117,6 +112,19 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
 
         
         startPrinting()
+    }
+    
+    func isFileAPdf(filename : String) -> Bool{
+        var filenameNS : NSString = filename as NSString
+        
+        var fileType : String = filenameNS.substringFromIndex(filenameNS.length - 4).lowercaseString
+        
+        
+        if fileType.rangeOfString("pdf") == nil {
+            return false
+        } else {
+            return true
+        }
     }
     
     
