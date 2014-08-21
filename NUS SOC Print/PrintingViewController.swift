@@ -425,21 +425,23 @@ class PrintingViewController : UIViewController, UITableViewDataSource, UIAlertV
             }
             
             //Step 1: Housekeeping, creating socPrint folder if not yet, delete all files except converters
-            parent.currentProgress = parent.POSITION_HOUSEKEEPING
-            updateUI()
             
-            connection.createDirectory(TEMP_DIRECTORY)
-            connection.createDirectory(TEMP_DIRECTORY_2)
+            if(!cancelled){
+                parent.currentProgress = parent.POSITION_HOUSEKEEPING
+                updateUI()
             
-            //move .jar files in main directory to temp directory
-            connection.runCommand("mv " + TEMP_DIRECTORY + "*.jar " + TEMP_DIRECTORY_2)
+                connection.createDirectory(TEMP_DIRECTORY)
+                connection.createDirectory(TEMP_DIRECTORY_2)
             
-            //Remove main directory
-            connection.runCommand("rm -rf " + TEMP_DIRECTORY)
+                //move .jar files in main directory to temp directory
+                connection.runCommand("mv " + TEMP_DIRECTORY + "*.jar " + TEMP_DIRECTORY_2)
             
-            //Rename temp directory to main directory
-            connection.runCommand("mv " + TEMP_DIRECTORY_2 + " " + TEMP_DIRECTORY)
+                //Remove main directory
+                connection.runCommand("rm -rf " + TEMP_DIRECTORY)
             
+                //Rename temp directory to main directory
+                connection.runCommand("mv " + TEMP_DIRECTORY_2 + " " + TEMP_DIRECTORY)
+            }
 
             
             //Step 2 : Uploading DOC converter
