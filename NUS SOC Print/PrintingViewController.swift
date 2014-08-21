@@ -193,7 +193,8 @@ class PrintingViewController : UIViewController, UITableViewDataSource, UIAlertV
         
         if(row == POSITION_UPLOADING_DOC_CONVERTER && !uploadDocConverterRequired
             || row == POSITION_CONVERTING_TO_PDF && !uploadDocConverterRequired
-            || row == POSITION_UPLOADING_PDF_CONVERTER && !uploadPDFConverterRequired){
+            || row == POSITION_UPLOADING_PDF_CONVERTER && !uploadPDFConverterRequired
+            || row == POSITION_FORMATTING_PDF && !uploadPDFConverterRequired){
                 cell.header.enabled = false
                 cell.smallFooter.enabled = false
                 cellEnabled = false
