@@ -61,6 +61,7 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
     var printer : String!
     var pagesPerSheet : String!
     var filePath : NSURL!
+    var filePathString : String!
     
     var currentProgress : Int = 0
     
@@ -103,6 +104,7 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
         }
         
         filename = filePath.lastPathComponent
+        filePathString = filePath.path
         
         if(isFileAPdf(filename)){
             uploadDocConverterRequired = false
@@ -217,6 +219,14 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
             cell.progressBar.progress = progress.progressFraction
             
         }
+        
+        
+        if(row == POSITION_UPLOADING_USER_DOC){
+            var progress = generateProgressStringAndProgressFraction(docToPrintUploaded, totalSize: docToPrintSize)
+            
+            cell.smallFooter.text = progress.progressString
+            cell.progressBar.progress = progress.progressFraction
+        }
 
         
         
@@ -274,7 +284,7 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
             
             currentProgress = 0
             
-            operation = PrintingOperation(hostname: hostname, username: username!, password: password!, filePath : filePath, pagesPerSheet : pagesPerSheet, printerName : printer, parent : self)
+            operation = PrintingOperation(hostname: hostname, username: username!, password: password!, filePath : filePathString, pagesPerSheet : pagesPerSheet, printerName : printer, parent : self)
             
             operation!.completionBlock = {(void) in
                 self.operation = nil
@@ -322,10 +332,10 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
         var pagesPerSheet : String!
         var printerName : String!
         var parent : PrintingViewController!
-        var givenFilePath : NSURL!
+        var givenFilePath : String!
         
         
-        init(hostname : String, username : String, password : String, filePath : NSURL, pagesPerSheet : String, printerName : String, parent : PrintingViewController) {
+        init(hostname : String, username : String, password : String, filePath : String, pagesPerSheet : String, printerName : String, parent : PrintingViewController) {
             self.username = username
             self.password = password
             self.hostname = hostname
@@ -450,6 +460,43 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
             
             //Step 4 : Uploading document
             
+            if(!cancelled){
+                parent.currentProgress = parent.POSITION_UPLOADING_USER_DOC
+                updateUI()
+            
+                var documentSize : Int = getFileSizeOfFile(givenFilePath)
+                
+                var uploadedFilename : String!
+                
+                if(parent.uploadDocConverterRequired){
+                    //Means this is not a PDF file, we need to convert it later
+                    
+                } else {
+                    //This is a PDF file, no need to convert later
+                    uploadedFilename = UPLOAD_PDF_FILENAME
+                }
+                
+                
+                let documentUploadProgressBlock = {(bytesUploaded : UInt) -> Bool in
+                    
+                    let bytesUploadedInt : Int = Int(bytesUploaded)
+                    
+                    self.updateUIDocToPrintUpload(documentSize, uploadedSize: bytesUploadedInt)
+                    if(self.cancelled){
+                        return false
+                    } else {
+                        return true
+                    }
+                }
+                
+                connection.uploadFile(givenFilePath, destinationPath: DIRECTORY_TO_USE + uploadedFilename, progress: documentUploadProgressBlock)
+                
+                
+                
+                
+            }
+            
+            
             
             
             
@@ -471,6 +518,18 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
             }
             
         }
+        
+        func updateUIDocToPrintUpload(totalSize : Int, uploadedSize : Int){
+            
+            dispatch_async(dispatch_get_main_queue(), {(void) in
+                
+                self.parent.docToPrintSize = totalSize
+                self.parent.docToPrintUploaded = uploadedSize
+                self.parent.progressTable.reloadData()
+                
+            })
+        }
+        
         
         func updateUIPDFConvUpload(totalSize : Int, uploadedSize : Int){
             
