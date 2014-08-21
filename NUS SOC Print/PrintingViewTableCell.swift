@@ -17,4 +17,19 @@ class PrintingViewTableCell : UITableViewCell {
     @IBOutlet weak var tick: UIImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        header.text = ""
+        smallFooter.text = ""
+        progressBar.hidden = true
+        progressBar.setProgress(0, animated: false)
+        tick.hidden = true
+        if(activityIndicator.isAnimating()){
+            activityIndicator.stopAnimating()
+        }
+        
+        activityIndicator.hidden = true
+        
+    }
+    
 }

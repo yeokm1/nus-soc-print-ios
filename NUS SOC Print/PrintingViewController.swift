@@ -9,11 +9,13 @@
 import Foundation
 import UIKit
 
-class PrintingViewController : UIViewController, UITableViewDataSource, UIAlertViewDelegate {
+class PrintingViewController : UIViewController, UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate {
     
     let TAG = "PrintingViewController"
     
     let CELL_IDENTIFIER = "PrintingViewTableCell"
+    let CELL_ROW_ZERO_HEIGHT : CGFloat = 0
+    let CELL_ROW_HEIGHT : CGFloat = 52
     let FORMAT_UPLOADING = "%@ of %@ (%.1f%%)"
     
     let DIALOG_YES = "Yes"
@@ -108,12 +110,11 @@ class PrintingViewController : UIViewController, UITableViewDataSource, UIAlertV
         operation?.cancel()
         dismissViewControllerAnimated(true, completion: nil)
     }
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        progressTable.dataSource = self
-        
+
         
         if(pagesPerSheet == "1"){
             uploadPDFConverterRequired = false
@@ -126,11 +127,14 @@ class PrintingViewController : UIViewController, UITableViewDataSource, UIAlertV
             uploadDocConverterRequired = false
         }
         
+        progressTable.delegate = self
+        progressTable.dataSource = self
 
 
-        
         startPrinting()
+        
     }
+    
     
     func isFileAPdf(filename : String) -> Bool{
         var filenameNS : NSString = filename as NSString
@@ -145,7 +149,18 @@ class PrintingViewController : UIViewController, UITableViewDataSource, UIAlertV
         }
     }
     
-    
+    func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
+        var row : Int = indexPath.row
+
+        if(row == POSITION_UPLOADING_DOC_CONVERTER && !uploadDocConverterRequired
+            || row == POSITION_CONVERTING_TO_PDF && !uploadDocConverterRequired
+            || row == POSITION_UPLOADING_PDF_CONVERTER && !uploadPDFConverterRequired
+            || row == POSITION_FORMATTING_PDF && !uploadPDFConverterRequired){
+            return CELL_ROW_ZERO_HEIGHT
+        }  else {
+            return CELL_ROW_HEIGHT
+        }
+    }
     
     func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
         return HEADER_TEXT.count
@@ -168,7 +183,8 @@ class PrintingViewController : UIViewController, UITableViewDataSource, UIAlertV
     
     
     func processCell(cell : PrintingViewTableCell, row : Int){
-
+        
+        cell.clipsToBounds = true
         
         if(row == POSITION_UPLOADING_USER_DOC){
             cell.header.text = String(format:HEADER_TEXT[row], filename)
@@ -181,35 +197,18 @@ class PrintingViewController : UIViewController, UITableViewDataSource, UIAlertV
         }
         
         
-        
-        
-        cell.smallFooter.text = ""
-        
         cell.progressBar.hidden = PROGRESS_INDETERMINATE[row]
-        cell.header.enabled = true
-        
-        
-        var cellEnabled : Bool = true
-        
-        if(row == POSITION_UPLOADING_DOC_CONVERTER && !uploadDocConverterRequired
-            || row == POSITION_CONVERTING_TO_PDF && !uploadDocConverterRequired
-            || row == POSITION_UPLOADING_PDF_CONVERTER && !uploadPDFConverterRequired
-            || row == POSITION_FORMATTING_PDF && !uploadPDFConverterRequired){
-                cell.header.enabled = false
-                cell.smallFooter.enabled = false
-                cellEnabled = false
-        }
-        
+
 
         //Adjust Tick
-        if(currentProgress > row && cellEnabled){
+        if(currentProgress > row){
             cell.tick.hidden = false
         } else {
             cell.tick.hidden = true
         }
         
         
-        if(row == currentProgress && cellEnabled && !cell.activityIndicator.isAnimating()){
+        if(row == currentProgress && !cell.activityIndicator.isAnimating()){
             cell.activityIndicator.hidden = false
             cell.activityIndicator.startAnimating()
         } else {
