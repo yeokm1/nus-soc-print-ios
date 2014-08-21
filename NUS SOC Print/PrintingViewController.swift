@@ -501,7 +501,6 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
             
             
             //Step 6 : Format PDF to required pages per sheet if required
-            
             var pdfFilepathToConvertToPS : String!
 
             if(!cancelled){
@@ -520,6 +519,16 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
                     pdfFilepathToConvertToPS = UPLOAD_SOURCE_PDF_FILEPATH
                 }
     
+            }
+            
+            
+            //Step 7 : Converting to postscript
+            if(!cancelled){
+                parent.currentProgress = parent.POSITION_CONVERTING_TO_POSTSCRIPT
+                updateUI()
+                
+                var conversionCommand : String = "pdftops " + pdfFilepathToConvertToPS + " " + UPLOAD_PS_FILEPATH
+                connection.runCommand(conversionCommand)
             }
 
         
