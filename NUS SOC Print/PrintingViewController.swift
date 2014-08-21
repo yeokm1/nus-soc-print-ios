@@ -308,21 +308,21 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
         
         
         let PDF_CONVERTER_NAME = "nup_pdf"
-        let PDF_CONVERTER_FILENAME = "nup_pdf.jar"
+        let PDF_CONVERTER_FILEPATH = "socPrint/nup_pdf.jar"
         
         let DOC_CONVERTER_NAME = "docs-to-pdf-converter-1.7"
-        let DOC_CONVERTER_FILENAME = "docs-to-pdf-converter-1.7.jar"
+        let DOC_CONVERTER_FILEPATH = "socPrint/docs-to-pdf-converter-1.7.jar"
         
         let PDF_CONVERTER_MD5 = "C1F8FF3F9DE7B2D2A2B41FBC0085888B"
         let DOC_CONVERTER_MD5 = "1FC140AD8074E333F9082300F4EA38DC"
         
-        let DIRECTORY_TO_USE = "socPrint/"
-        let TEMP_DIRECTORY_TO_USE = "socPrint2"
+        let TEMP_DIRECTORY = "socPrint/"
+        let TEMP_DIRECTORY_2 = "socPrint2"
         
-        let UPLOAD_FILENAME = "source." //Add path extension later
-        let UPLOAD_SOURCE_PDF_FILENAME = "source.pdf"
-        let UPLOAD_PDF_FORMATTED_FILENAME = "formatted.pdf"
-        let UPLOAD_PS_FILENAME = "ps-converted.ps"
+        let UPLOAD_FILEPATH = "socPrint/source." //Add path extension later
+        let UPLOAD_SOURCE_PDF_FILEPATH = "socPrint/source.pdf"
+        let UPLOAD_PDF_FORMATTED_FILEPATH = "socPrint/formatted.pdf"
+        let UPLOAD_PS_FILEPATH = "socPrint/ps-converted.ps"
         
         
         
@@ -334,7 +334,7 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
         var printerName : String!
         var parent : PrintingViewController!
         var givenFilePath : String!
-        var uploadedFilename : String!
+        var uploadedFilepath : String!
         
         
         init(hostname : String, username : String, password : String, filePath : String, pagesPerSheet : String, printerName : String, parent : PrintingViewController) {
@@ -345,7 +345,7 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
             self.pagesPerSheet = pagesPerSheet
             self.printerName = printerName
             var fileExtension : String = givenFilePath.pathExtension
-            uploadedFilename = UPLOAD_FILENAME + fileExtension
+            uploadedFilepath = UPLOAD_FILEPATH + fileExtension
             self.parent = parent
             
         }
@@ -377,17 +377,17 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
             parent.currentProgress = parent.POSITION_HOUSEKEEPING
             updateUI()
             
-            connection.createDirectory(DIRECTORY_TO_USE)
-            connection.createDirectory(TEMP_DIRECTORY_TO_USE)
+            connection.createDirectory(TEMP_DIRECTORY)
+            connection.createDirectory(TEMP_DIRECTORY_2)
             
             //move .jar files in main directory to temp directory
-            connection.runCommand("mv " + DIRECTORY_TO_USE + "*.jar " + TEMP_DIRECTORY_TO_USE)
+            connection.runCommand("mv " + TEMP_DIRECTORY + "*.jar " + TEMP_DIRECTORY_2)
             
             //Remove main directory
-            connection.runCommand("rm -rf " + DIRECTORY_TO_USE)
+            connection.runCommand("rm -rf " + TEMP_DIRECTORY)
             
             //Rename temp directory to main directory
-            connection.runCommand("mv " + TEMP_DIRECTORY_TO_USE + " " + DIRECTORY_TO_USE)
+            connection.runCommand("mv " + TEMP_DIRECTORY_2 + " " + TEMP_DIRECTORY)
             
 
             
@@ -396,7 +396,7 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
                 parent.currentProgress = parent.POSITION_UPLOADING_DOC_CONVERTER
                 updateUI()
                 
-                var needToUpload = doesThisFileNeedToBeUploaded(DOC_CONVERTER_FILENAME, md5Value: DOC_CONVERTER_MD5)
+                var needToUpload = doesThisFileNeedToBeUploaded(DOC_CONVERTER_FILEPATH, md5Value: DOC_CONVERTER_MD5)
                 
                 
                 var pathToDocConverter : String = NSBundle.mainBundle().pathForResource(DOC_CONVERTER_NAME, ofType: "jar")!
@@ -416,7 +416,7 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
                         }
                     }
                     
-                    connection.uploadFile(pathToDocConverter, destinationPath: DIRECTORY_TO_USE + DOC_CONVERTER_FILENAME, progress: docConvUploadProgressBlock)
+                    connection.uploadFile(pathToDocConverter, destinationPath: DOC_CONVERTER_FILEPATH, progress: docConvUploadProgressBlock)
                 
                 } else {
                     
@@ -432,7 +432,7 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
                 parent.currentProgress = parent.POSITION_UPLOADING_PDF_CONVERTER
                 updateUI()
                 
-                var needToUpload = doesThisFileNeedToBeUploaded(PDF_CONVERTER_FILENAME, md5Value: PDF_CONVERTER_MD5)
+                var needToUpload = doesThisFileNeedToBeUploaded(PDF_CONVERTER_FILEPATH, md5Value: PDF_CONVERTER_MD5)
                 
                 
                 var pathToPdfConverter : String = NSBundle.mainBundle().pathForResource(PDF_CONVERTER_NAME, ofType: "jar")!
@@ -452,7 +452,7 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
                         }
                     }
                     
-                    connection.uploadFile(pathToPdfConverter, destinationPath: DIRECTORY_TO_USE + PDF_CONVERTER_FILENAME, progress: pdfConvUploadProgressBlock)
+                    connection.uploadFile(pathToPdfConverter, destinationPath: PDF_CONVERTER_FILEPATH, progress: pdfConvUploadProgressBlock)
                     
                 } else {
                     
@@ -483,7 +483,7 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
                     }
                 }
                 
-                connection.uploadFile(givenFilePath, destinationPath: DIRECTORY_TO_USE + uploadedFilename, progress: documentUploadProgressBlock)
+                connection.uploadFile(givenFilePath, destinationPath: uploadedFilepath, progress: documentUploadProgressBlock)
                 
             }
             
@@ -491,14 +491,22 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
             if(parent.uploadDocConverterRequired && !cancelled){
                 parent.currentProgress = parent.POSITION_CONVERTING_TO_PDF
                 updateUI()
+
                 
-                var converterPath : String = DIRECTORY_TO_USE + DOC_CONVERTER_FILENAME
-                var sourceFilename : String = DIRECTORY_TO_USE + uploadedFilename
-                var destinationFilename : String = DIRECTORY_TO_USE + UPLOAD_SOURCE_PDF_FILENAME
-                
-                var conversionCommand : String = "java -jar " + converterPath + " -i " + sourceFilename + " -o " + destinationFilename;
+                var conversionCommand : String = "java -jar " + DOC_CONVERTER_FILEPATH + " -i " + uploadedFilepath + " -o " + UPLOAD_SOURCE_PDF_FILEPATH;
                 
                 connection.runCommand(conversionCommand)
+                
+            }
+            
+            
+            //Step 6 : Format PDF to required pages per sheet
+            
+            if(parent.uploadPDFConverterRequired && !cancelled){
+                parent.currentProgress = parent.POSITION_FORMATTING_PDF
+                updateUI()
+                
+                
                 
             }
             
@@ -514,7 +522,7 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
         }
         
         func doesThisFileNeedToBeUploaded(filepath : String, md5Value : String) -> Bool{
-            var command = "md5 " + self.DIRECTORY_TO_USE + filepath
+            var command = "md5 " + filepath
             var commandOutput = self.connection.runCommand(command)
             
             if(commandOutput.hasPrefix(md5Value)){
