@@ -21,13 +21,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication!, openURL url: NSURL!, sourceApplication: String!, annotation: AnyObject!) -> Bool {
         NSLog("%@ incoming file %@", TAG, url);
         
+        
+        var filemgr : NSFileManager = NSFileManager.defaultManager()
+        
+        var newURLPath = NSURL(fileURLWithPath: NSTemporaryDirectory().stringByAppendingPathComponent(url.lastPathComponent))
+        
+        filemgr.moveItemAtURL(url, toURL: newURLPath, error: nil)
+        
+        
         if(printViewController == nil){
             var vc : PrintViewController = getPrintController()
-            vc.receiveDocumentURL(url)
+            vc.receiveDocumentURL(newURLPath)
         } else {
-            printViewController!.receiveDocumentURL(url)
+            printViewController!.receiveDocumentURL(newURLPath)
             printViewController!.updateDocumentToWebview()
         }
+        
+
+        
         
         return true
     }
