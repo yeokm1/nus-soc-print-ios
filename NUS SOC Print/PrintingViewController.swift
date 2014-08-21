@@ -119,7 +119,7 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
     func isFileAPdf(filename : String) -> Bool{
         var filenameNS : NSString = filename as NSString
         
-        var fileType : String = filenameNS.substringFromIndex(filenameNS.length - 4).lowercaseString
+        var fileType : String = filenameNS.pathExtension
         
         
         if fileType.rangeOfString("pdf") == nil {
@@ -319,7 +319,7 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
         let DIRECTORY_TO_USE = "socPrint/"
         let TEMP_DIRECTORY_TO_USE = "socPrint2"
         
-        let UPLOAD_PDF_FILENAME = "source.pdf"
+        let UPLOAD_FILENAME = "source." //Add path extension later
         let UPLOAD_PDF_FORMATTED_FILENAME = "formatted.pdf"
         let UPLOAD_PS_FILENAME = "ps-converted.ps"
         
@@ -333,6 +333,7 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
         var printerName : String!
         var parent : PrintingViewController!
         var givenFilePath : String!
+        var uploadedFilename : String!
         
         
         init(hostname : String, username : String, password : String, filePath : String, pagesPerSheet : String, printerName : String, parent : PrintingViewController) {
@@ -342,6 +343,8 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
             self.givenFilePath = filePath
             self.pagesPerSheet = pagesPerSheet
             self.printerName = printerName
+            var fileExtension : String = givenFilePath.pathExtension
+            uploadedFilename = UPLOAD_FILENAME + fileExtension
             self.parent = parent
             
         }
@@ -465,17 +468,7 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
                 updateUI()
             
                 var documentSize : Int = getFileSizeOfFile(givenFilePath)
-                
-                var uploadedFilename : String!
-                
-                if(parent.uploadDocConverterRequired){
-                    //Means this is not a PDF file, we need to convert it later
-                    
-                } else {
-                    //This is a PDF file, no need to convert later
-                    uploadedFilename = UPLOAD_PDF_FILENAME
-                }
-                
+            
                 
                 let documentUploadProgressBlock = {(bytesUploaded : UInt) -> Bool in
                     
@@ -490,9 +483,6 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
                 }
                 
                 connection.uploadFile(givenFilePath, destinationPath: DIRECTORY_TO_USE + uploadedFilename, progress: documentUploadProgressBlock)
-                
-                
-                
                 
             }
             
