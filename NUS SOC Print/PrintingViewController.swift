@@ -9,13 +9,17 @@
 import Foundation
 import UIKit
 
-class PrintingViewController : UIViewController, UITableViewDataSource {
+class PrintingViewController : UIViewController, UITableViewDataSource, UIAlertViewDelegate {
+    
+    let TAG = "PrintingViewController"
     
     let CELL_IDENTIFIER = "PrintingViewTableCell"
-    
-    
-    
     let FORMAT_UPLOADING = "%@ of %@ (%.1f%%)"
+    
+    let DIALOG_YES = "Yes"
+    let DIALOG_NO = "No"
+    let DIALOG_TITLE = "Stop printing operation?"
+    
     
     
     let HEADER_TEXT : Array<String> =
@@ -90,6 +94,17 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
     var filename : String!
     
     @IBAction func cancelButtonPressed(sender: UIButton) {
+        if(operation == nil){
+            cancelAndClose()
+        } else {
+            showOkCancelAlert(DIALOG_TITLE, message: "", viewController: self)
+        }
+        
+        
+
+    }
+    
+    func cancelAndClose(){
         operation?.cancel()
         dismissViewControllerAnimated(true, completion: nil)
     }
@@ -302,6 +317,41 @@ class PrintingViewController : UIViewController, UITableViewDataSource {
         }
         
         
+    }
+    
+    
+    func showOkCancelAlert(title: String, message : String, viewController : UIViewController){
+        
+        if(isSystemAtLeastiOS8()){
+            var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+            
+            let cancelBlock = {(action: UIAlertAction!) -> Void in
+                self.cancelCurrentOperation()
+            }
+            
+            alert.addAction(UIAlertAction(title: DIALOG_YES, style: UIAlertActionStyle.Default, handler: cancelBlock))
+            alert.addAction(UIAlertAction(title: DIALOG_NO, style: UIAlertActionStyle.Default, handler: nil))
+            
+            viewController.presentViewController(alert, animated: true, completion: nil)
+        } else {
+            
+            var alertView : UIAlertView = UIAlertView(title: title, message: message, delegate: self, cancelButtonTitle: DIALOG_NO, otherButtonTitles: DIALOG_YES)
+                alertView.show()
+            
+        }
+        
+    }
+    
+    func alertView(alertView: UIAlertView!, clickedButtonAtIndex buttonIndex: Int) {
+        NSLog("%@ alertview clicked %d", TAG, buttonIndex)
+        if(buttonIndex == 1){
+            cancelCurrentOperation()
+        }
+    }
+    
+    func cancelCurrentOperation(){
+        NSLog("%@ Cancel current operation", TAG)
+        cancelAndClose()
     }
     
     
