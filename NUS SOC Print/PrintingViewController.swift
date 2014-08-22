@@ -208,14 +208,20 @@ class PrintingViewController : UIViewController, UITableViewDelegate, UITableVie
         }
         
         
-        if(row == currentProgress && !cell.activityIndicator.isAnimating()){
-            cell.activityIndicator.hidden = false
-            cell.activityIndicator.startAnimating()
+        if(row == currentProgress){
+            if(operation == nil){
+                //Means the operation has ended on the current progress, show a cross to mean an error
+                cell.activityIndicator.stopAnimating()
+                cell.activityIndicator.hidden = true
+                cell.cross.hidden = false
+            } else if(!cell.activityIndicator.isAnimating()){
+                cell.activityIndicator.hidden = false
+                cell.activityIndicator.startAnimating()
+            }
         } else {
             cell.activityIndicator.stopAnimating()
             cell.activityIndicator.hidden = true
         }
-        
         
         if(row == POSITION_UPLOADING_DOC_CONVERTER){
             
@@ -419,12 +425,11 @@ class PrintingViewController : UIViewController, UITableViewDelegate, UITableVie
             
             if(serverFound){
                 if(!authorised){
-                    showAlertInUIThread(TITLE_STOP, CREDENTIALS_WRONG, parent)
+                    stepFailAndCleanUpOperation(CREDENTIALS_WRONG)
                     return
                 }
             } else {
-                parent.currentProgress = -1
-                showAlertInUIThread(TITLE_STOP, SERVER_UNREACHABLE, parent)
+                stepFailAndCleanUpOperation(SERVER_UNREACHABLE)
                 return
             }
             
@@ -610,6 +615,16 @@ class PrintingViewController : UIViewController, UITableViewDelegate, UITableVie
             self.connection = nil
             
             
+        }
+        
+        func stepFailAndCleanUpOperation(messageToShow : String){
+            showAlertInUIThread(TITLE_STOP, messageToShow, parent)
+            self.connection.disconnect()
+            self.connection = nil
+
+            dispatch_async(dispatch_get_main_queue(), {(void) in
+                self.parent.progressTable.reloadData()
+            })
         }
         
         func doesThisFileNeedToBeUploaded(filepath : String, md5Value : String) -> Bool{
