@@ -17,6 +17,12 @@ let SERVER_UNREACHABLE = "Server unreachable. Check your internet connection"
 
 let DIALOG_OK = "OK"
 
+func showAlertInUIThread(title: String, message : String, viewController : UIViewController){
+    dispatch_async(dispatch_get_main_queue(), {(void) in
+        showAlert(title, message, viewController)
+    })
+}
+
 func showAlert(title: String, message : String, viewController : UIViewController){
     
     if(isSystemAtLeastiOS8()){

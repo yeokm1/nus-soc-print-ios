@@ -419,12 +419,12 @@ class PrintingViewController : UIViewController, UITableViewDelegate, UITableVie
             
             if(serverFound){
                 if(!authorised){
-                    showAlert(TITLE_STOP, CREDENTIALS_WRONG, parent)
+                    showAlertInUIThread(TITLE_STOP, CREDENTIALS_WRONG, parent)
                     return
                 }
             } else {
                 parent.currentProgress = -1
-                showAlert(TITLE_STOP, SERVER_UNREACHABLE, parent)
+                showAlertInUIThread(TITLE_STOP, SERVER_UNREACHABLE, parent)
                 return
             }
             
