@@ -249,6 +249,10 @@ class PrintingViewController : UIViewController, UITableViewDelegate, UITableVie
             cell.smallFooter.text = progress.progressString
             cell.progressBar.progress = progress.progressFraction
         }
+        
+        if(row == POSITION_CONVERTING_TO_PDF || row == POSITION_CONVERTING_TO_POSTSCRIPT){
+            cell.smallFooter.text = TEXT_INDETERMINATE
+        }
 
         
         
