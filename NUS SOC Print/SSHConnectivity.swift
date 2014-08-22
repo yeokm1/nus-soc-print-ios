@@ -74,14 +74,14 @@ class SSHConnectivity{
     }
     
     
-    func uploadFilePathURL(sourceURL : NSURL, destinationPath : String, progress: ((UInt) -> Bool)){
+    func uploadFilePathURL(sourceURL : NSURL, destinationPath : String, progress: ((UInt) -> Bool)) -> Bool{
         var filePath : String = sourceURL.absoluteString!
-        uploadFile(filePath, destinationPath: destinationPath, progress: progress)
+        return uploadFile(filePath, destinationPath: destinationPath, progress: progress)
     }
     
-    func uploadFile(sourcePath : String, destinationPath : String, progress: ((UInt) -> Bool)){
+    func uploadFile(sourcePath : String, destinationPath : String, progress: ((UInt) -> Bool)) -> Bool{
         NSLog("%@ uploading file from %@ to %@", TAG, sourcePath, destinationPath)
-        session?.channel.uploadFile(sourcePath, to: destinationPath, progress: progress)
+        return session!.channel.uploadFile(sourcePath, to: destinationPath, progress: progress)
     }
     
     
