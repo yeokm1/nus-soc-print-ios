@@ -385,8 +385,8 @@ class PrintingViewController : UIViewController, UITableViewDelegate, UITableVie
         let UPLOAD_PDF_FORMATTED_FILEPATH = "socPrint/formatted.pdf"
         let UPLOAD_PS_FILEPATH = "socPrint/ps-converted.ps"
         
-        
-        
+        let DIALOG_UPLOAD_DOC_CONV_FAILED = "Upload of document converter failed"
+
         var connection : SSHConnectivity!
         var username : String!
         var password : String!
@@ -478,7 +478,12 @@ class PrintingViewController : UIViewController, UITableViewDelegate, UITableVie
                         }
                     }
                     
-                    connection.uploadFile(pathToDocConverter, destinationPath: DOC_CONVERTER_FILEPATH, progress: docConvUploadProgressBlock)
+                    var uploadStatus = connection.uploadFile(pathToDocConverter, destinationPath: DOC_CONVERTER_FILEPATH, progress: docConvUploadProgressBlock)
+                    
+                    if(!uploadStatus){
+                        stepFailAndCleanUpOperation(DIALOG_UPLOAD_DOC_CONV_FAILED)
+                        return
+                    }
                 
                 } else {
                     
