@@ -16,7 +16,9 @@ class PrintingViewTableCell : UITableViewCell {
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var tick: UIImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var cross: UIImageView!
     
+
     override func prepareForReuse() {
         super.prepareForReuse()
         header.text = ""
@@ -24,6 +26,7 @@ class PrintingViewTableCell : UITableViewCell {
         progressBar.hidden = true
         progressBar.setProgress(0, animated: false)
         tick.hidden = true
+        cross.hidden = true
         if(activityIndicator.isAnimating()){
             activityIndicator.stopAnimating()
         }

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
     </dependencies>
     <scenes>
@@ -164,10 +163,15 @@
                                                             <rect key="frame" x="256" y="8" width="24" height="24"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </imageView>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="redx.png" id="QST-vR-foO">
+                                                            <rect key="frame" x="256" y="8" width="24" height="24"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
                                                     </subviews>
                                                 </tableViewCellContentView>
                                                 <connections>
                                                     <outlet property="activityIndicator" destination="es4-5u-Fu8" id="xPI-VL-3Mf"/>
+                                                    <outlet property="cross" destination="QST-vR-foO" id="15R-1f-VrF"/>
                                                     <outlet property="header" destination="OQt-Tb-to6" id="zpH-oP-CZ6"/>
                                                     <outlet property="progressBar" destination="byX-Gs-zuZ" id="tzN-6O-mzZ"/>
                                                     <outlet property="smallFooter" destination="fqc-Cm-c3w" id="uLX-y4-j0P"/>
@@ -455,6 +459,7 @@
         <image name="behind_alert_view.png" width="320" height="460"/>
         <image name="first" width="30" height="30"/>
         <image name="green-tick.png" width="100" height="100"/>
+        <image name="redx.png" width="48" height="48"/>
         <image name="second" width="30" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
