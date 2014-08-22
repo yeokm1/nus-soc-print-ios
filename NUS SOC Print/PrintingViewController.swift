@@ -388,6 +388,7 @@ class PrintingViewController : UIViewController, UITableViewDelegate, UITableVie
         let DIALOG_UPLOAD_DOC_CONV_FAILED = "Upload of document converter failed"
         let DIALOG_UPLOAD_PDF_FORMATTER_FAILED = "Upload of PDF formatter failed"
         let DIALOG_UPLOAD_DOCUMENT_FAILED = "Upload of your document failed"
+        let DIALOG_CONVERT_TO_PDF_FAILED = "Converting your document to PDF failed"
 
         var connection : SSHConnectivity!
         var username : String!
@@ -575,7 +576,11 @@ class PrintingViewController : UIViewController, UITableViewDelegate, UITableVie
                 
                 var conversionCommand : String = "java -jar " + DOC_CONVERTER_FILEPATH + " -i " + uploadedFilepath + " -o " + UPLOAD_SOURCE_PDF_FILEPATH;
                 
-                connection.runCommand(conversionCommand)
+                var reply : String = connection.runCommand(conversionCommand)
+                if(reply.utf16Count != 0){
+                    stepFailAndCleanUpOperation(DIALOG_CONVERT_TO_PDF_FAILED, messageToShow : reply)
+                }
+                
                 
             }
             
@@ -636,10 +641,15 @@ class PrintingViewController : UIViewController, UITableViewDelegate, UITableVie
         }
         
         func stepFailAndCleanUpOperation(messageToShow : String){
-            showAlertInUIThread(TITLE_STOP, messageToShow, parent)
+            stepFailAndCleanUpOperation(TITLE_STOP, messageToShow: messageToShow)
+        }
+        
+        
+        func stepFailAndCleanUpOperation(title : String, messageToShow : String){
+            showAlertInUIThread(title, messageToShow, parent)
             self.connection.disconnect()
             self.connection = nil
-
+            
             dispatch_async(dispatch_get_main_queue(), {(void) in
                 self.parent.progressTable.reloadData()
             })
