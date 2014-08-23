@@ -43,6 +43,9 @@ class StatusViewController : UIViewController {
             return
         }
         
+        statusOperation?.cancel()
+        statusOperation = nil
+        
         var preferences : Storage = Storage.sharedInstance;
         
         
@@ -78,6 +81,10 @@ class StatusViewController : UIViewController {
         if(statusOperation != nil){
             return
         }
+        
+        deleteOperation?.cancel()
+        deleteOperation = nil
+        
         
         var preferences : Storage = Storage.sharedInstance;
         
@@ -175,9 +182,10 @@ class StatusViewController : UIViewController {
                 showOnOutputViewOnUIThread(outputString)
                 
             }
-            
-            outputString += DELETION_COMMAND_SENT_TO_ALL
-            showOnOutputViewOnUIThread(outputString)
+            if(!cancelled){
+                outputString += DELETION_COMMAND_SENT_TO_ALL
+                showOnOutputViewOnUIThread(outputString)
+            }
             
             
             self.connection.disconnect()
