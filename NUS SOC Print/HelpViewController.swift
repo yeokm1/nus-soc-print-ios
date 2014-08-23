@@ -11,6 +11,9 @@ import UIKit
 
 class HelpViewController: UIViewController {
     
+    @IBAction func videoButtonPress(sender: UIButton) {
+        UIApplication.sharedApplication().openURL(NSURL(string: "http://www.youtube.com/watch?v=PRGcK7gzbnM"))
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
