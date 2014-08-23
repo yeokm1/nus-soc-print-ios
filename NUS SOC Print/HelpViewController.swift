@@ -16,14 +16,17 @@ class HelpViewController: UIViewController {
     }
 
     @IBAction func emailMe(sender: UIButton) {
+        
+        var device = getDeviceSpec()
         var subject : String = "NUS%20SOC%20Print%20iOS"
         var myEmail : String = "yeokm1@gmail.com"
         
-        var urlString : String = String(format: "mailto:?to=%@&subject=%@", myEmail, subject)
+        var urlString : String = String(format: "mailto:?to=%@&subject=%@(%@)(%@)", myEmail, subject, device.model, device.osVersion)
         
         var url : NSURL = NSURL(string: urlString)
         
         UIApplication.sharedApplication().openURL(url)
+       
 
         
     }
@@ -39,6 +42,12 @@ class HelpViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func getDeviceSpec() -> (model : String, osVersion : String) {
+        var platform = UIDevice.currentDevice().platform()
+        var version = getSystemVersion()
+        return (platform, version)
     }
     
     

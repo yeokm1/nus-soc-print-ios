@@ -39,9 +39,14 @@ func showAlert(title: String, message : String, viewController : UIViewControlle
     
 }
 
+func getSystemVersion() -> String{
+    var systemVersion = UIDevice.currentDevice().systemVersion
+    return systemVersion
+}
+
 
 func isSystemAtLeastiOS8() -> Bool{
-    var systemVersion = UIDevice.currentDevice().systemVersion as NSString
+    var systemVersion = getSystemVersion() as NSString
     
     var systemVersionFloat = systemVersion.floatValue
     if(systemVersionFloat >= 8.0){
