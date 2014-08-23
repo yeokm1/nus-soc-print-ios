@@ -117,10 +117,10 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
         //iOS8 beta 5 has this bug of not displaying the PDF and showing "failed to find PDF header: `%PDF' not found." in the log
         
         if(incomingURL != nil){
-            pdfShower.loadRequest(urlRequest)
+            pdfShower?.loadRequest(urlRequest)
             var filename : String = incomingURL!.lastPathComponent
             
-            filenameView.text = filename
+            filenameView?.text = filename
             
             
         }
