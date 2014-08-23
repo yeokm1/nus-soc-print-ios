@@ -44,10 +44,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         if(printViewController == nil){
-            NSLog("%@ printController is nil",TAG)
+            NSLog("%@ openURL printController is nil",TAG)
             incomingURL = newURLPath
         } else {
-            NSLog("%@ printController is set",TAG)
+            NSLog("%@ openURL printController is set",TAG)
             printViewController!.receiveDocumentURL(newURLPath)
             printViewController!.updateDocumentToWebview()
         }
@@ -81,6 +81,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(application: UIApplication!) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         NSLog("%@ applicationDidBecomeActive", TAG)
+        if(printViewController != nil){
+            NSLog("%@ app become active update printcontroller", TAG)
+            printViewController!.updateDocumentToWebview()
+        }
     }
 
     func applicationWillTerminate(application: UIApplication!) {
