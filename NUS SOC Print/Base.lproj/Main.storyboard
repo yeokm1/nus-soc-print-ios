@@ -453,10 +453,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" selectable="NO" id="lGQ-u4-J5E">
-                                <rect key="frame" x="28" y="127" width="292" height="196"/>
+                                <rect key="frame" x="28" y="127" width="292" height="202.5"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">1. Open another app like Dropbox, iBooks or IVLE.
+                                <string key="text">1. Open another app like Dropbox or IVLE.
 2. Open the document you want to print
 3. Click the "Export" icon
 4. Choose "Open In"
