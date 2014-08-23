@@ -21,6 +21,9 @@ An iOS Application that prints office documents and PDF files to Unix printers i
 
 <a href="url"><img src="screenshots/quota.png" align="left" height="568" width="320" ></a>
 
+<a href="url"><img src="screenshots/help.png" align="left" height="568" width="320" ></a>
+
+
 ##Dependencies
 1. Swift language
 2. Xcode 6 beta 6
