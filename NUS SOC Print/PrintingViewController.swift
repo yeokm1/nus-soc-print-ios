@@ -583,6 +583,7 @@ class PrintingViewController : UIViewController, UITableViewDelegate, UITableVie
                 var reply : String = connection.runCommand(conversionCommand)
                 if(reply.utf16Count != 0){
                     stepFailAndCleanUpOperation(DIALOG_CONVERT_TO_PDF_FAILED, messageToShow : reply)
+                    return
                 }
                 
                 
