@@ -14,6 +14,10 @@ I'm waiting for Apple to start accepting Swift app submissions on the App Store 
 6. Deleting of existing job in print queue
 7. Runs on iOS7.0 and up for maximum compatibility
 
+##The original HacknRoll 2014 Video
+[![](http://img.youtube.com/vi/PRGcK7gzbnM/0.jpg)](http://www.youtube.com/watch?v=PRGcK7gzbnM)
+<br>Narrated by Yong Quan
+
 
 ##Screenshots
 
