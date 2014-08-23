@@ -75,7 +75,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
-        // Override point for customization after application launch.
+        // Optional: automatically send uncaught exceptions to Google Analytics.
+        GAI.sharedInstance().trackUncaughtExceptions = true
+        
+        // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
+        GAI.sharedInstance().dispatchInterval = 20
+        
+        // Optional: set Logger to VERBOSE for debug information. Can't work in swift
+        //GAI.sharedInstance().logger.logLevel = kGAILogLevelVerbose
+
+        // Initialize tracker. Replace with your tracking ID.
+        GAI.sharedInstance().trackerWithTrackingId("UA-46031707-2")
+
         return true
     }
 

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		530E45DB19A8CE9D00B9F1F0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 530E45DA19A8CE9D00B9F1F0 /* CoreData.framework */; };
+		530E45DD19A8CEA600B9F1F0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 530E45DC19A8CEA600B9F1F0 /* SystemConfiguration.framework */; };
+		530E45DF19A8CEB200B9F1F0 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 530E45DE19A8CEB200B9F1F0 /* libz.dylib */; };
+		530E45E119A8D23100B9F1F0 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 530E45E019A8D23100B9F1F0 /* libGoogleAnalyticsServices.a */; };
+		530E45E319A8D27B00B9F1F0 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 530E45E219A8D27B00B9F1F0 /* libsqlite3.dylib */; };
 		53232AFA19A1D43A00FE70DA /* nup_pdf.jar in Resources */ = {isa = PBXBuildFile; fileRef = 53232AF719A1D42A00FE70DA /* nup_pdf.jar */; };
 		53232AFB19A1D44000FE70DA /* docs-to-pdf-converter-1.7.jar in Resources */ = {isa = PBXBuildFile; fileRef = 53232AF619A1D42A00FE70DA /* docs-to-pdf-converter-1.7.jar */; };
 		5328AE1619A072A7004675BA /* SSHConnectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5328AE1519A072A7004675BA /* SSHConnectivity.swift */; };
@@ -46,6 +51,20 @@
 
 /* Begin PBXFileReference section */
 		0B58A9287E28435DA8D57847 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		530E45D119A8CE7700B9F1F0 /* GAI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAI.h; path = "NUS SOC Print/GAI.h"; sourceTree = "<group>"; };
+		530E45D219A8CE7700B9F1F0 /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAIDictionaryBuilder.h; path = "NUS SOC Print/GAIDictionaryBuilder.h"; sourceTree = "<group>"; };
+		530E45D319A8CE7700B9F1F0 /* GAIEcommerceProduct.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAIEcommerceProduct.h; path = "NUS SOC Print/GAIEcommerceProduct.h"; sourceTree = "<group>"; };
+		530E45D419A8CE7700B9F1F0 /* GAIEcommerceProductAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAIEcommerceProductAction.h; path = "NUS SOC Print/GAIEcommerceProductAction.h"; sourceTree = "<group>"; };
+		530E45D519A8CE7700B9F1F0 /* GAIEcommercePromotion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAIEcommercePromotion.h; path = "NUS SOC Print/GAIEcommercePromotion.h"; sourceTree = "<group>"; };
+		530E45D619A8CE7700B9F1F0 /* GAIFields.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAIFields.h; path = "NUS SOC Print/GAIFields.h"; sourceTree = "<group>"; };
+		530E45D719A8CE7700B9F1F0 /* GAILogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAILogger.h; path = "NUS SOC Print/GAILogger.h"; sourceTree = "<group>"; };
+		530E45D819A8CE7700B9F1F0 /* GAITrackedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAITrackedViewController.h; path = "NUS SOC Print/GAITrackedViewController.h"; sourceTree = "<group>"; };
+		530E45D919A8CE7700B9F1F0 /* GAITracker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAITracker.h; path = "NUS SOC Print/GAITracker.h"; sourceTree = "<group>"; };
+		530E45DA19A8CE9D00B9F1F0 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		530E45DC19A8CEA600B9F1F0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		530E45DE19A8CEB200B9F1F0 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		530E45E019A8D23100B9F1F0 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalyticsServices.a; path = "NUS SOC Print/libGoogleAnalyticsServices.a"; sourceTree = "<group>"; };
+		530E45E219A8D27B00B9F1F0 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		53232AF619A1D42A00FE70DA /* docs-to-pdf-converter-1.7.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; path = "docs-to-pdf-converter-1.7.jar"; sourceTree = "<group>"; };
 		53232AF719A1D42A00FE70DA /* nup_pdf.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; path = nup_pdf.jar; sourceTree = "<group>"; };
 		5328AE1519A072A7004675BA /* SSHConnectivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSHConnectivity.swift; sourceTree = "<group>"; };
@@ -86,6 +105,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				530E45E319A8D27B00B9F1F0 /* libsqlite3.dylib in Frameworks */,
+				530E45DF19A8CEB200B9F1F0 /* libz.dylib in Frameworks */,
+				530E45DD19A8CEA600B9F1F0 /* SystemConfiguration.framework in Frameworks */,
+				530E45DB19A8CE9D00B9F1F0 /* CoreData.framework in Frameworks */,
+				530E45E119A8D23100B9F1F0 /* libGoogleAnalyticsServices.a in Frameworks */,
 				5328AE1819A07C80004675BA /* CFNetwork.framework in Frameworks */,
 				53CD62CE199F08F300979ED0 /* UIKit.framework in Frameworks */,
 				F81F5101FAC4495081E5F372 /* libPods.a in Frameworks */,
@@ -102,6 +126,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		530E45C719A8CE1500B9F1F0 /* Google Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				530E45D119A8CE7700B9F1F0 /* GAI.h */,
+				530E45D219A8CE7700B9F1F0 /* GAIDictionaryBuilder.h */,
+				530E45D319A8CE7700B9F1F0 /* GAIEcommerceProduct.h */,
+				530E45D419A8CE7700B9F1F0 /* GAIEcommerceProductAction.h */,
+				530E45D519A8CE7700B9F1F0 /* GAIEcommercePromotion.h */,
+				530E45D619A8CE7700B9F1F0 /* GAIFields.h */,
+				530E45D719A8CE7700B9F1F0 /* GAILogger.h */,
+				530E45D819A8CE7700B9F1F0 /* GAITrackedViewController.h */,
+				530E45D919A8CE7700B9F1F0 /* GAITracker.h */,
+			);
+			name = "Google Analytics";
+			sourceTree = "<group>";
+		};
 		5328AE1F19A0A9A5004675BA /* PrintView */ = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +155,7 @@
 		538BEDD01986A10B00C61282 = {
 			isa = PBXGroup;
 			children = (
+				530E45C719A8CE1500B9F1F0 /* Google Analytics */,
 				538BEDDB1986A10B00C61282 /* NUS SOC Print */,
 				538BEDF01986A10B00C61282 /* NUS SOC PrintTests */,
 				538BEDDA1986A10B00C61282 /* Products */,
@@ -190,6 +231,11 @@
 		B621572D458A432EA73BF4BF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				530E45E219A8D27B00B9F1F0 /* libsqlite3.dylib */,
+				530E45E019A8D23100B9F1F0 /* libGoogleAnalyticsServices.a */,
+				530E45DE19A8CEB200B9F1F0 /* libz.dylib */,
+				530E45DC19A8CEA600B9F1F0 /* SystemConfiguration.framework */,
+				530E45DA19A8CE9D00B9F1F0 /* CoreData.framework */,
 				5328AE1719A07C80004675BA /* CFNetwork.framework */,
 				53CD62CC199F05E800979ED0 /* UIKit.framework */,
 				53CD62CA199F05A900979ED0 /* Foundation.framework */,
@@ -471,6 +517,12 @@
 				INFOPLIST_FILE = "NUS SOC Print/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/NUS",
+					SOC,
+					Print,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "NUS SOC Print/App-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -487,6 +539,12 @@
 				INFOPLIST_FILE = "NUS SOC Print/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/NUS",
+					SOC,
+					Print,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "NUS SOC Print/App-Bridging-Header.h";
 			};
