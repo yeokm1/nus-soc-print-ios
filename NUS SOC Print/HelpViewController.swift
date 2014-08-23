@@ -34,7 +34,7 @@ class HelpViewController: GAITrackedViewController {
         var majorVersion : String = infoDict.objectForKey("CFBundleShortVersionString") as String
         var minorVersion : String = infoDict.objectForKey("CFBundleVersion") as String
         
-        var appString = String(format: "(Ver:%@,%@)", majorVersion, minorVersion)
+        var appString = String(format: "Ver:%@,%@", majorVersion, minorVersion)
 
         return appString
         
@@ -50,8 +50,9 @@ class HelpViewController: GAITrackedViewController {
         var device = getDeviceSpec()
         var subject : String = "NUS%20SOC%20Print%20iOS"
         var myEmail : String = "yeokm1@gmail.com"
+        var versionString : String = getVersionString()
         
-        var urlString : String = String(format: "mailto:?to=%@&subject=%@(%@)(%@)", myEmail, subject, device.model, device.osVersion)
+        var urlString : String = String(format: "mailto:?to=%@&subject=%@(%@)(%@)(%@)", myEmail, subject, device.model, device.osVersion, versionString)
         
         var url : NSURL = NSURL(string: urlString)
         
