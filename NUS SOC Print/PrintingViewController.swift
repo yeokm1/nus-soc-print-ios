@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class PrintingViewController : UIViewController, UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate {
+class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate {
     
     let TAG = "PrintingViewController"
     
@@ -133,6 +133,11 @@ class PrintingViewController : UIViewController, UITableViewDelegate, UITableVie
 
         startPrinting()
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.screenName = TAG;
     }
     
     

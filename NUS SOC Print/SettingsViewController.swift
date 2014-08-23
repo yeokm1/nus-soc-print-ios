@@ -10,7 +10,9 @@ import Foundation
 import UIKit
 
 
-class SettingsViewController: UIViewController, UITextFieldDelegate{
+class SettingsViewController: GAITrackedViewController, UITextFieldDelegate{
+    
+    let TAG = "SettingsViewController"
     
     let RESET_PASSWORD_LINK = "https://mysoc.nus.edu.sg/~myacct/"
     
@@ -46,6 +48,12 @@ class SettingsViewController: UIViewController, UITextFieldDelegate{
         serverField.delegate = self
         
         loadAllValuesToUI()
+    }
+    
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.screenName = TAG;
     }
     
     func saveStuff(){

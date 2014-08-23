@@ -11,7 +11,7 @@ import UIKit
 
 var incomingURL : NSURL?
 
-class PrintViewController: UIViewController, UIActionSheetDelegate {
+class PrintViewController: GAITrackedViewController, UIActionSheetDelegate {
     
     let TAG = "PrintViewController"
 
@@ -79,6 +79,11 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
         NSLog("%@ viewdidDisappear", TAG)
         setSelfToDelegate(nil)
         super.viewDidDisappear(animated)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+         self.screenName = TAG;
     }
     
     func setSelfToDelegate(myself : PrintViewController?){

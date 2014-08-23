@@ -9,7 +9,15 @@
 import Foundation
 import UIKit
 
-class HelpViewController: UIViewController {
+class HelpViewController: GAITrackedViewController {
+    
+    let TAG = "HelpViewController"
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.screenName = TAG;
+    }
+    
     
     @IBAction func videoButtonPress(sender: UIButton) {
         UIApplication.sharedApplication().openURL(NSURL(string: "http://www.youtube.com/watch?v=PRGcK7gzbnM"))
@@ -34,15 +42,9 @@ class HelpViewController: UIViewController {
     @IBAction func goToSourceCodePage(sender: UIButton) {
         UIApplication.sharedApplication().openURL(NSURL(string: "https://github.com/yeokm1/nus-soc-print-ios"))
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
+
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
     
     func getDeviceSpec() -> (model : String, osVersion : String) {
         var platform = UIDevice.currentDevice().platform()

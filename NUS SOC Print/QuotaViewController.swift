@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class QuotaViewController: UIViewController, NSURLConnectionDataDelegate {
+class QuotaViewController: GAITrackedViewController, NSURLConnectionDataDelegate {
     
     let TAG = "QuotaViewController"
     let TEXT_REFRESHING = "Refreshing Quota..."
@@ -24,6 +24,12 @@ class QuotaViewController: UIViewController, NSURLConnectionDataDelegate {
     
     @IBAction func refreshButtonPress(sender: UIButton) {
         refreshQuota()
+    }
+    
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.screenName = TAG;
     }
     
     

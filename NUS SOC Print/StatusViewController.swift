@@ -9,7 +9,9 @@
 import Foundation
 import UIKit
 
-class StatusViewController : UIViewController {
+class StatusViewController : GAITrackedViewController {
+    
+    let TAG = "StatusViewController"
     
     let TEXT_GETTING_STATUS = "Retrieving Status"
     var statusOperation : GetStatusOperation?
@@ -35,6 +37,11 @@ class StatusViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getStatus()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.screenName = TAG;
     }
     
     func startDeleting(){
