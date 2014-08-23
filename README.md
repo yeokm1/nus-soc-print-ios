@@ -34,7 +34,7 @@ Dependencies
 4. NMSSH SSH library (installed via Cocoapods)
 
 ##Compiling the project
-1. Swift is only available on Xcode 6 beta so you have to download and install manually from Apple's website
+1. Swift is only available from Xcode 6 beta so you have to download and install manually from Apple's website
 2. Install Cocoapods `sudo gem install cocoapods`
 3. Change directory to where you pulled the project and run `pod install`
 4. Open the project using `NUS SOC Print.xcworkspace` instead of the `.xcodeproject` file
