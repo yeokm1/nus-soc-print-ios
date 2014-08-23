@@ -3,6 +3,8 @@ nus-soc-print-ios
 
 An iOS Application that prints office documents and PDF files to Unix printers in NUS School Of Computing. A port from my [Android App](https://github.com/yeokm1/nus-soc-print/) Certain features I felt that are hardly used by people have been dropped compared to the Android version to improve the UI cleanliness. 
 
+I'm waiting for Apple to start accepting Swift app submissions on the App Store
+
 ##Features
 1. Print PDF, DOC, DOCX, PPT, PPTX and ODT files
 2. Remaining quota check
@@ -16,13 +18,11 @@ An iOS Application that prints office documents and PDF files to Unix printers i
 ##Screenshots
 
 <a href="url"><img src="screenshots/print.png" align="left" height="568" width="320" ></a>
-
+<br>
 <a href="url"><img src="screenshots/printing.png" align="left" height="568" width="320" ></a>
-
+<br>
 <a href="url"><img src="screenshots/quota.png" align="left" height="568" width="320" ></a>
-
-<a href="url"><img src="screenshots/help.png" align="left" height="568" width="320" ></a>
-
+<br>
 
 ##Dependencies
 1. Swift language
@@ -36,3 +36,6 @@ An iOS Application that prints office documents and PDF files to Unix printers i
 2. Install Cocoapods `sudo gem install cocoapods`
 3. Change directory to where you pulled the project and run `pod install`
 4. Open the project using `NUS SOC Print.xcworkspace` instead of the `.xcodeproject` file
+
+##Credits
+Many thanks to Kai Yao and Yong Quan for initially working with me during the HacknRoll 2014 to kickstart this app. I just brought it to (nearly) the finish line.
