@@ -76,6 +76,7 @@ class PrintViewController: UIViewController, UIActionSheetDelegate {
     }
     
     override func viewDidDisappear(animated: Bool) {
+        NSLog("%@ viewdidDisappear", TAG)
         setSelfToDelegate(nil)
         super.viewDidDisappear(animated)
     }
