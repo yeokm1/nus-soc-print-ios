@@ -391,8 +391,8 @@
                                     <action selector="saveButtonPress:" destination="K0G-mf-rUD" eventType="touchUpInside" id="UJV-nG-VRa"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Tap the button to go to the password reset page. Log in with your NUSNET password to reset your Unix account password." id="ubL-G3-n7h">
-                                <rect key="frame" x="10" y="449" width="294" height="60"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Tap the button to go to the password reset page. Log in with your NUSNET password to reset your Unix account password." selectable="NO" id="ubL-G3-n7h">
+                                <rect key="frame" x="10" y="449" width="294" height="66"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
