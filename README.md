@@ -18,13 +18,11 @@ I'm waiting for Apple to start accepting Swift app submissions on the App Store
 ##Screenshots
 
 <a href="url"><img src="screenshots/print.png" align="left" height="568" width="320" ></a>
-<br>
+<p></p>
 <a href="url"><img src="screenshots/printing.png" align="left" height="568" width="320" ></a>
-<br>
+<p></p>
 <a href="url"><img src="screenshots/quota.png" align="left" height="568" width="320" ></a>
-<br>
-<a href="url"><img src="screenshots/help.png" align="left" height="568" width="320" ></a>
-<br>
+<p></p>
 
 ##Dependencies
 1. Swift language
