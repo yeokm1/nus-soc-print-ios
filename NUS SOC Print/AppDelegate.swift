@@ -43,6 +43,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         filemgr.moveItemAtURL(url, toURL: newURLPath, error: nil)
         
         
+        //Remove stuff from /Document/Inbox directory
+        
+        var searchDirectories : NSArray = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
+        var documentsDirectory : NSString = searchDirectories.objectAtIndex(0) as NSString
+        var inboxDirectory = documentsDirectory.stringByAppendingPathComponent("Inbox")
+        
+        var filesInInbox : NSArray = filemgr.contentsOfDirectoryAtPath(inboxDirectory, error: nil)!
+        
+        for filePath in filesInInbox{
+            var fullPath : String = inboxDirectory.stringByAppendingPathComponent(filePath as String)
+            filemgr.removeItemAtPath(fullPath, error: nil)
+        }
+        
+
+        
         if(printViewController == nil){
             NSLog("%@ openURL printController is nil",TAG)
             incomingURL = newURLPath
