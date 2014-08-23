@@ -44,8 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         if(printViewController == nil){
-            var vc : PrintViewController = getPrintController()
-            vc.receiveDocumentURL(newURLPath)
+            incomingURL = newURLPath
         } else {
             printViewController!.receiveDocumentURL(newURLPath)
             printViewController!.updateDocumentToWebview()
@@ -87,11 +86,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
-    func getPrintController() -> PrintViewController {
-        var storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        var vc : PrintViewController = storyboard.instantiateViewControllerWithIdentifier("printID") as PrintViewController;
-        return vc
-    }
+//    func getPrintController() -> PrintViewController {
+//        var storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        var vc : PrintViewController = storyboard.instantiateViewControllerWithIdentifier("printID") as PrintViewController;
+//        return vc
+//    }
 
 
 }
