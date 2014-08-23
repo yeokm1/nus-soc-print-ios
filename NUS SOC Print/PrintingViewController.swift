@@ -373,16 +373,17 @@ class PrintingViewController : UIViewController, UITableViewDelegate, UITableVie
         
         
         let PDF_CONVERTER_NAME = "nup_pdf"
+        let PDF_CONVERTER_FILENAME = "nup_pdf.jar"
         let PDF_CONVERTER_FILEPATH = "socPrint/nup_pdf.jar"
         
         let DOC_CONVERTER_NAME = "docs-to-pdf-converter-1.7"
+        let DOC_CONVERTER_FILENAME = "docs-to-pdf-converter-1.7.jar"
         let DOC_CONVERTER_FILEPATH = "socPrint/docs-to-pdf-converter-1.7.jar"
         
         let PDF_CONVERTER_MD5 = "C1F8FF3F9DE7B2D2A2B41FBC0085888B"
         let DOC_CONVERTER_MD5 = "1FC140AD8074E333F9082300F4EA38DC"
         
         let TEMP_DIRECTORY = "socPrint/"
-        let TEMP_DIRECTORY_2 = "socPrint2"
         
         let UPLOAD_FILEPATH = "socPrint/source." //Add path extension later
         let UPLOAD_SOURCE_PDF_FILEPATH = "socPrint/source.pdf"
@@ -447,16 +448,10 @@ class PrintingViewController : UIViewController, UITableViewDelegate, UITableVie
                 updateUI()
             
                 connection.createDirectory(TEMP_DIRECTORY)
-                connection.createDirectory(TEMP_DIRECTORY_2)
-            
-                //move .jar files in main directory to temp directory
-                connection.runCommand("mv " + TEMP_DIRECTORY + "*.jar " + TEMP_DIRECTORY_2)
-            
-                //Remove main directory
-                connection.runCommand("rm -rf " + TEMP_DIRECTORY)
-            
-                //Rename temp directory to main directory
-                connection.runCommand("mv " + TEMP_DIRECTORY_2 + " " + TEMP_DIRECTORY)
+                
+                var houseKeepingCommand = "find " + TEMP_DIRECTORY + " -type f \\( \\! -name '" + PDF_CONVERTER_FILENAME + "' \\) \\( \\! -name '" + DOC_CONVERTER_FILENAME + "' \\) -exec rm '{}' \\;"
+                
+                connection.runCommand(houseKeepingCommand)
             }
 
             
