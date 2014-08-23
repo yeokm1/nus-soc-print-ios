@@ -21,6 +21,8 @@ I'm waiting for Apple to start accepting Swift app submissions on the App Store 
 <p></p>
 <a href="url"><img src="screenshots/printing.png" align="centre" height="568" width="320" ></a>
 <p></p>
+<a href="url"><img src="screenshots/status.png" align="centre" height="568" width="320" ></a>
+<p></p>
 <a href="url"><img src="screenshots/quota.png" align="centre" height="568" width="320" ></a>
 <p></p>
 
