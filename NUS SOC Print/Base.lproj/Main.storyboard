@@ -478,6 +478,9 @@ PDF, DOC, DOCX, PPT, PPTX and ODT
                                 <state key="normal" title="Problems? Email me">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="emailMe:" destination="fto-R4-QFb" eventType="touchUpInside" id="6ph-jY-1rA"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="zvh-hD-Djz">
                                 <rect key="frame" x="217" y="481" width="87" height="30"/>
@@ -485,6 +488,9 @@ PDF, DOC, DOCX, PPT, PPTX and ODT
                                 <state key="normal" title="Source code">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="goToSourceCodePage:" destination="fto-R4-QFb" eventType="touchUpInside" id="zcU-e1-Y2B"/>
+                                </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" selectable="NO" id="m8W-En-7nZ">
                                 <rect key="frame" x="16" y="430" width="288" height="47.5"/>

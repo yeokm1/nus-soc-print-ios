@@ -14,6 +14,13 @@ class HelpViewController: UIViewController {
     @IBAction func videoButtonPress(sender: UIButton) {
         UIApplication.sharedApplication().openURL(NSURL(string: "http://www.youtube.com/watch?v=PRGcK7gzbnM"))
     }
+
+    @IBAction func emailMe(sender: UIButton) {
+    }
+    
+    @IBAction func goToSourceCodePage(sender: UIButton) {
+        UIApplication.sharedApplication().openURL(NSURL(string: "https://github.com/yeokm1/nus-soc-print-ios"))
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
