@@ -34,8 +34,8 @@ class HelpViewController: GAITrackedViewController {
         var majorVersion : String = infoDict.objectForKey("CFBundleShortVersionString") as String
         var minorVersion : String = infoDict.objectForKey("CFBundleVersion") as String
         
-        var appString = String(format: "%@ (%@)", majorVersion, minorVersion)
-        
+        var appString = String(format: "(Ver:%@,%@)", majorVersion, minorVersion)
+
         return appString
         
     }
