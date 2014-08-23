@@ -273,7 +273,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" selectable="NO" id="6jq-8p-a0Q">
-                                <rect key="frame" x="0.0" y="20" width="320" height="447"/>
+                                <rect key="frame" x="0.0" y="57" width="320" height="410"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <accessibility key="accessibilityConfiguration">
@@ -457,7 +457,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">1. Open another app like Dropbox, iBooks or IVLE.
-2. Select the document you want to print
+2. Open the document you want to print
 3. Click the "Export" icon
 4. Choose "Open In"
 5. Select "NUS SOC Print"
