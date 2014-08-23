@@ -44,8 +44,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         if(printViewController == nil){
+            NSLog("%@ printController is nil",TAG)
             incomingURL = newURLPath
         } else {
+            NSLog("%@ printController is set",TAG)
             printViewController!.receiveDocumentURL(newURLPath)
             printViewController!.updateDocumentToWebview()
         }
