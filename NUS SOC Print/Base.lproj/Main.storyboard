@@ -90,7 +90,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Print" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Print" image="Print" id="acW-dT-cKf"/>
                     <connections>
                         <outlet property="filenameView" destination="o44-pS-uOY" id="mmh-8W-seZ"/>
                         <outlet property="pagesPerSheetSelection" destination="prD-9g-Qf5" id="vaK-8x-xcy"/>
@@ -295,7 +295,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Quota" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Quota" image="Quota" id="cPa-gy-q4n"/>
                     <connections>
                         <outlet property="quotaOutput" destination="6jq-8p-a0Q" id="cgk-gc-clg"/>
                     </connections>
@@ -408,7 +408,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Settings" id="C7e-IY-KKA"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="Settings" id="C7e-IY-KKA"/>
                     <connections>
                         <outlet property="passwordField" destination="hzU-sU-MsO" id="3ZY-Az-LeK"/>
                         <outlet property="printerField" destination="Cyv-an-bAz" id="iYl-es-Qga"/>
@@ -429,7 +429,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Help" id="pvn-Bg-8mW"/>
+                    <tabBarItem key="tabBarItem" title="Help" image="Help" id="pvn-Bg-8mW"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jOw-wX-D6c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -458,11 +458,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Help" width="50" height="50"/>
+        <image name="Print" width="50" height="50"/>
+        <image name="Quota" width="50" height="50"/>
+        <image name="Settings" width="50" height="50"/>
         <image name="behind_alert_view.png" width="320" height="460"/>
-        <image name="first" width="30" height="30"/>
         <image name="green-tick.png" width="100" height="100"/>
         <image name="redx.png" width="48" height="48"/>
-        <image name="second" width="30" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
