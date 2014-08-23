@@ -16,6 +16,16 @@ class HelpViewController: UIViewController {
     }
 
     @IBAction func emailMe(sender: UIButton) {
+        var subject : String = "NUS%20SOC%20Print%20iOS"
+        var myEmail : String = "yeokm1@gmail.com"
+        
+        var urlString : String = String(format: "mailto:?to=%@&subject=%@", myEmail, subject)
+        
+        var url : NSURL = NSURL(string: urlString)
+        
+        UIApplication.sharedApplication().openURL(url)
+
+        
     }
     
     @IBAction func goToSourceCodePage(sender: UIButton) {
