@@ -624,7 +624,7 @@ class PrintingViewController : UIViewController, UITableViewDelegate, UITableVie
                 parent.currentProgress = parent.POSITION_SENDING_TO_PRINTER
                 updateUI()
                 
-                var printingCommand : String = "lpr -p " + printerName + " " + UPLOAD_PS_FILEPATH
+                var printingCommand : String = "lpr -P " + printerName + " " + UPLOAD_PS_FILEPATH
                 var output = connection.runCommand(printingCommand)
                 if(output.utf16Count != 0){
                     var dialogTitle = String(format: DIALOG_PRINTER_NOT_EXIST, printerName)
