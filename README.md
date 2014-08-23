@@ -23,6 +23,8 @@ I'm waiting for Apple to start accepting Swift app submissions on the App Store
 <br>
 <a href="url"><img src="screenshots/quota.png" align="left" height="568" width="320" ></a>
 <br>
+<a href="url"><img src="screenshots/help.png" align="left" height="568" width="320" ></a>
+<br>
 
 ##Dependencies
 1. Swift language
