@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="49e-Tb-3d3">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
     </dependencies>
     <scenes>
@@ -501,8 +502,15 @@ PDF, DOC, DOCX, PPT, PPTX and ODT
                                     <action selector="goToSourceCodePage:" destination="fto-R4-QFb" eventType="touchUpInside" id="zcU-e1-Y2B"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NKk-dc-I9K">
+                                <rect key="frame" x="16" y="463" width="141" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" selectable="NO" id="m8W-En-7nZ">
-                                <rect key="frame" x="16" y="430" width="288" height="47.5"/>
+                                <rect key="frame" x="16" y="419" width="288" height="47.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">© 2014, Yeo Kheng Meng under the MIT licence. With special thanks to Kai Yao and Yong Quan.
@@ -515,6 +523,9 @@ PDF, DOC, DOCX, PPT, PPTX and ODT
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Help" image="Help" id="pvn-Bg-8mW"/>
+                    <connections>
+                        <outlet property="placeToPutVersion" destination="NKk-dc-I9K" id="TR0-0x-Bs8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jOw-wX-D6c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

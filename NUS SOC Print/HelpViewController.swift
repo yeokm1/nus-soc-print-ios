@@ -11,11 +11,33 @@ import UIKit
 
 class HelpViewController: GAITrackedViewController {
     
+    @IBOutlet weak var placeToPutVersion: UILabel!
+    
+    
     let TAG = "HelpViewController"
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.screenName = TAG;
+    }
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        var versionString = getVersionString()
+        placeToPutVersion.text = versionString
+    }
+    
+    
+    func getVersionString() -> String {
+        var infoDict : NSDictionary = NSBundle.mainBundle().infoDictionary
+        var majorVersion : String = infoDict.objectForKey("CFBundleShortVersionString") as String
+        var minorVersion : String = infoDict.objectForKey("CFBundleVersion") as String
+        
+        var appString = String(format: "%@ (%@)", majorVersion, minorVersion)
+        
+        return appString
+        
     }
     
     
