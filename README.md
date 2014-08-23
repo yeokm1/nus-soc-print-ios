@@ -3,7 +3,7 @@ nus-soc-print-ios
 
 An iOS Application that prints office documents and PDF files to Unix printers in NUS School Of Computing. A port from my [Android App](https://github.com/yeokm1/nus-soc-print/) Certain features I felt that are hardly used by people have been dropped compared to the Android version to improve the UI cleanliness. 
 
-I'm waiting for Apple to start accepting Swift app submissions on the App Store
+I'm waiting for Apple to start accepting Swift app submissions on the App Store before doing so myself.
 
 ##Features
 1. Print PDF, DOC, DOCX, PPT, PPTX and ODT files
