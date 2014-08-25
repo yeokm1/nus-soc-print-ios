@@ -111,7 +111,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if(printViewController == nil){
 
-            let delay = 1 * Double(NSEC_PER_SEC)
+            let delay = 2 * Double(NSEC_PER_SEC)
             let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
    
         
