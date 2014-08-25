@@ -24,7 +24,7 @@ class PrintViewController: GAITrackedViewController, UIActionSheetDelegate {
     
     
     let TEXT_SELECTION_INCOMPLETE_TITLE = "Print options not chosen"
-    let TEXT_SELECTION_INCOMPLOTE_MESSAGE = "Please select a printer and/or import a file to print"
+    let TEXT_SELECTION_INCOMPLETE_MESSAGE = "Please select a printer and/or import a file to print"
     
     
     var selectedPrinter : String!
@@ -153,7 +153,7 @@ class PrintViewController: GAITrackedViewController, UIActionSheetDelegate {
             
             
             if(selectedPrinter == nil || incomingURL == nil){
-                showAlert(TEXT_SELECTION_INCOMPLETE_TITLE, TEXT_SELECTION_INCOMPLOTE_MESSAGE, self)
+                showAlert(TEXT_SELECTION_INCOMPLETE_TITLE, TEXT_SELECTION_INCOMPLETE_MESSAGE, self)
                 return false
             } else {
                 return true
