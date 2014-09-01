@@ -381,11 +381,16 @@ class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UI
         let PDF_CONVERTER_FILENAME = "nup_pdf.jar"
         let PDF_CONVERTER_FILEPATH = "socPrint/nup_pdf.jar"
         
+        let PDF_CONVERTER_6PAGE_NAME = "Multivalent"
+        let PDF_CONVERTER_6PAGE_FILENAME = "Multivalent.jar"
+        let PDF_CONVERTER_6PAGE_FILEPATH = "socPrint/Multivalent.jar"
+        
         let DOC_CONVERTER_NAME = "docs-to-pdf-converter-1.7"
         let DOC_CONVERTER_FILENAME = "docs-to-pdf-converter-1.7.jar"
         let DOC_CONVERTER_FILEPATH = "socPrint/docs-to-pdf-converter-1.7.jar"
         
         let PDF_CONVERTER_MD5 = "C1F8FF3F9DE7B2D2A2B41FBC0085888B"
+        let PDF_CONVERTER_6PAGE_MD5 = "813BB651A1CC6EA230F28AAC47F78051"
         let DOC_CONVERTER_MD5 = "1FC140AD8074E333F9082300F4EA38DC"
         
         let TEMP_DIRECTORY = "socPrint/"

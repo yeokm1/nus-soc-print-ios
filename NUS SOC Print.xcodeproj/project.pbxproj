@@ -122,6 +122,7 @@
 		537747EC199B2A1400ADBF51 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		537B301A19A883D800038669 /* UIDevice-Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice-Hardware.h"; sourceTree = "<group>"; };
 		537B301B19A883D800038669 /* UIDevice-Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice-Hardware.m"; sourceTree = "<group>"; };
+		538A5C5B19B43C0400C34D9F /* Multivalent.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; path = Multivalent.jar; sourceTree = "<group>"; };
 		538BEDD91986A10B00C61282 /* NUS SOC Print.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NUS SOC Print.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		538BEDDD1986A10B00C61282 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		538BEDDE1986A10B00C61282 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -280,6 +281,7 @@
 			children = (
 				5353871019A736FD0021DB6A /* redx.png */,
 				53232AF619A1D42A00FE70DA /* docs-to-pdf-converter-1.7.jar */,
+				538A5C5B19B43C0400C34D9F /* Multivalent.jar */,
 				53232AF719A1D42A00FE70DA /* nup_pdf.jar */,
 				5328AE1B19A0A255004675BA /* green-tick.png */,
 				5345CEF319A05409006F920E /* behind_alert_view.png */,
