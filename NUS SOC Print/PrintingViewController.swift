@@ -381,6 +381,7 @@ class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UI
         let PDF_CONVERTER_FILENAME = "nup_pdf.jar"
         let PDF_CONVERTER_FILEPATH = "socPrint/nup_pdf.jar"
         
+        //This converter is for 6 pages/sheet as nup_pdf cannot generate such a file
         let PDF_CONVERTER_6PAGE_NAME = "Multivalent"
         let PDF_CONVERTER_6PAGE_FILENAME = "Multivalent.jar"
         let PDF_CONVERTER_6PAGE_FILEPATH = "socPrint/Multivalent.jar"
@@ -397,6 +398,7 @@ class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UI
         
         let UPLOAD_FILEPATH = "socPrint/source." //Add path extension later
         let UPLOAD_SOURCE_PDF_FILEPATH = "socPrint/source.pdf"
+        let UPLOAD_PDF_FORMATTED_6PAGE_FILEPATH = "socPrint/source-up.pdf"
         let UPLOAD_PDF_FORMATTED_FILEPATH = "socPrint/formatted.pdf"
         let UPLOAD_PS_FILEPATH = "socPrint/ps-converted.ps"
         
@@ -624,12 +626,18 @@ class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UI
                     parent.currentProgress = parent.POSITION_FORMATTING_PDF
                     updateUI()
                     
-                    
-                    var formattingCommand : String = "java -jar " + PDF_CONVERTER_FILEPATH + " " + UPLOAD_SOURCE_PDF_FILEPATH + " " + UPLOAD_PDF_FORMATTED_FILEPATH + " " + pagesPerSheet
+                    var formattingCommand : String!;
+                    if(pagesPerSheet == "6"){
+                        formattingCommand = "java -classpath " + PDF_CONVERTER_6PAGE_FILEPATH + " tool.pdf.Impose -paper a4 -nup 6 " + UPLOAD_SOURCE_PDF_FILEPATH;
+                        pdfFilepathToConvertToPS = UPLOAD_PDF_FORMATTED_6PAGE_FILEPATH
+                    } else {
+                        formattingCommand = "java -jar " + PDF_CONVERTER_FILEPATH + " " + UPLOAD_SOURCE_PDF_FILEPATH + " " + UPLOAD_PDF_FORMATTED_FILEPATH + " " + pagesPerSheet
+                        pdfFilepathToConvertToPS = UPLOAD_PDF_FORMATTED_FILEPATH
+                    }
                     
                     connection.runCommand(formattingCommand)
                     
-                    pdfFilepathToConvertToPS = UPLOAD_PDF_FORMATTED_FILEPATH
+                    
                 } else {
                     pdfFilepathToConvertToPS = UPLOAD_SOURCE_PDF_FILEPATH
                 }
