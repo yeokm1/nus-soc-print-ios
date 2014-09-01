@@ -31,6 +31,7 @@
 		53628D1F199A687C009FF7A4 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53628D1E199A687C009FF7A4 /* Storage.swift */; };
 		537747ED199B2A1400ADBF51 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537747EC199B2A1400ADBF51 /* Constants.swift */; };
 		537B301C19A883D800038669 /* UIDevice-Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 537B301B19A883D800038669 /* UIDevice-Hardware.m */; };
+		538A5C5D19B43EA600C34D9F /* Multivalent.jar in Resources */ = {isa = PBXBuildFile; fileRef = 538A5C5B19B43C0400C34D9F /* Multivalent.jar */; };
 		538BEDDF1986A10B00C61282 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538BEDDE1986A10B00C61282 /* AppDelegate.swift */; };
 		538BEDE61986A10B00C61282 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 538BEDE41986A10B00C61282 /* Main.storyboard */; };
 		538BEDE81986A10B00C61282 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 538BEDE71986A10B00C61282 /* Images.xcassets */; };
@@ -406,6 +407,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				538A5C5D19B43EA600C34D9F /* Multivalent.jar in Resources */,
 				53232AFB19A1D44000FE70DA /* docs-to-pdf-converter-1.7.jar in Resources */,
 				53232AFA19A1D43A00FE70DA /* nup_pdf.jar in Resources */,
 				5345CEF419A05409006F920E /* behind_alert_view.png in Resources */,

@@ -512,10 +512,29 @@ class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UI
                 parent.currentProgress = parent.POSITION_UPLOADING_PDF_CONVERTER
                 updateUI()
                 
-                var needToUpload = doesThisFileNeedToBeUploaded(PDF_CONVERTER_FILEPATH, md5Value: PDF_CONVERTER_MD5)
                 
                 
-                var pathToPdfConverter : String = NSBundle.mainBundle().pathForResource(PDF_CONVERTER_NAME, ofType: "jar")!
+                var actualFilePath : String!
+                var actualMD5 : String!
+                var actualName : String!
+
+                
+                
+                if(pagesPerSheet == "6"){
+                    actualFilePath = PDF_CONVERTER_6PAGE_FILEPATH
+                    actualMD5 = PDF_CONVERTER_6PAGE_MD5
+                    actualName = PDF_CONVERTER_6PAGE_NAME
+                } else {
+                    actualFilePath = PDF_CONVERTER_FILEPATH
+                    actualMD5 = PDF_CONVERTER_MD5
+                    actualName = PDF_CONVERTER_NAME
+                }
+                
+                
+                var needToUpload = doesThisFileNeedToBeUploaded(actualFilePath, md5Value: actualMD5)
+                
+                
+                var pathToPdfConverter : String = NSBundle.mainBundle().pathForResource(actualName, ofType: "jar")!
                 var pdfConvSize : Int = getFileSizeOfFile(pathToPdfConverter)
                 
                 if(needToUpload){
@@ -532,7 +551,7 @@ class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UI
                         }
                     }
                     
-                    var uploadStatus = connection.uploadFile(pathToPdfConverter, destinationPath: PDF_CONVERTER_FILEPATH, progress: pdfConvUploadProgressBlock)
+                    var uploadStatus = connection.uploadFile(pathToPdfConverter, destinationPath: actualFilePath, progress: pdfConvUploadProgressBlock)
                     
                     if(!uploadStatus){
                         stepFailAndCleanUpOperation(DIALOG_UPLOAD_PDF_FORMATTER_FAILED)
