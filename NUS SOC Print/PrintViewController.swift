@@ -119,7 +119,7 @@ class PrintViewController: GAITrackedViewController, UIActionSheetDelegate {
         
         var urlRequest : NSURLRequest = NSURLRequest(URL: incomingURL)
         
-        //iOS8 beta 5 has this bug of not displaying the PDF and showing "failed to find PDF header: `%PDF' not found." in the log
+        //iOS8 beta 6 still has this bug of not displaying the PDF and showing "failed to find PDF header: `%PDF' not found." in the log
         
         if(incomingURL != nil){
             pdfShower?.loadRequest(urlRequest)
