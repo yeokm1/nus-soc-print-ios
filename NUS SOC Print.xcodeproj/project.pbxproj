@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		530E45DB19A8CE9D00B9F1F0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 530E45DA19A8CE9D00B9F1F0 /* CoreData.framework */; };
 		530E45DD19A8CEA600B9F1F0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 530E45DC19A8CEA600B9F1F0 /* SystemConfiguration.framework */; };
-		530E45DF19A8CEB200B9F1F0 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 530E45DE19A8CEB200B9F1F0 /* libz.dylib */; };
 		530E45E319A8D27B00B9F1F0 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 530E45E219A8D27B00B9F1F0 /* libsqlite3.dylib */; };
 		530E460A19A8D93900B9F1F0 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 530E45F919A8D86300B9F1F0 /* libGoogleAnalyticsServices.a */; };
+		5317559819B762BB00876766 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 530E45DE19A8CEB200B9F1F0 /* libz.dylib */; };
 		53232AFA19A1D43A00FE70DA /* nup_pdf.jar in Resources */ = {isa = PBXBuildFile; fileRef = 53232AF719A1D42A00FE70DA /* nup_pdf.jar */; };
 		53232AFB19A1D44000FE70DA /* docs-to-pdf-converter-1.7.jar in Resources */ = {isa = PBXBuildFile; fileRef = 53232AF619A1D42A00FE70DA /* docs-to-pdf-converter-1.7.jar */; };
 		5328AE1619A072A7004675BA /* SSHConnectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5328AE1519A072A7004675BA /* SSHConnectivity.swift */; };
@@ -142,9 +142,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5317559819B762BB00876766 /* libz.dylib in Frameworks */,
 				530E460A19A8D93900B9F1F0 /* libGoogleAnalyticsServices.a in Frameworks */,
 				530E45E319A8D27B00B9F1F0 /* libsqlite3.dylib in Frameworks */,
-				530E45DF19A8CEB200B9F1F0 /* libz.dylib in Frameworks */,
 				530E45DD19A8CEA600B9F1F0 /* SystemConfiguration.framework in Frameworks */,
 				530E45DB19A8CE9D00B9F1F0 /* CoreData.framework in Frameworks */,
 				5328AE1819A07C80004675BA /* CFNetwork.framework in Frameworks */,
@@ -602,6 +602,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BD9CEAF5A71A43A3A13A9950 /* Pods.xcconfig */;
 			buildSettings = {
+				ARCHS = armv7;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
@@ -616,6 +617,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "NUS SOC Print/App-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VALID_ARCHS = armv7;
 			};
 			name = Debug;
 		};
@@ -623,6 +625,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BD9CEAF5A71A43A3A13A9950 /* Pods.xcconfig */;
 			buildSettings = {
+				ARCHS = armv7;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
@@ -636,6 +639,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "NUS SOC Print/App-Bridging-Header.h";
+				VALID_ARCHS = armv7;
 			};
 			name = Release;
 		};

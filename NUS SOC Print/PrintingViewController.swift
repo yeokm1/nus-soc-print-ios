@@ -434,6 +434,21 @@ class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UI
         
         override func main() {
             
+   //Supposed to send usability data but seems to have compile problem
+//            var fileType : String = givenFilePath.pathExtension
+//            
+//            var tracker  = GAI.sharedInstance().defaultTracker
+//            
+//            var dictPrinterName : NSMutableDictionary = GAIDictionaryBuilder.createEventWithCategory("printing", action: "printer", label: printerName, value: nil).build()
+//            var dictPagesPerSheet : NSMutableDictionary =  GAIDictionaryBuilder.createEventWithCategory("printing", action: "pagesPerSheet", label: pagesPerSheet, value: nil).build()
+//            var dictFileType : NSMutableDictionary =  GAIDictionaryBuilder.createEventWithCategory("printing", action: "fileType", label: fileType, value: nil).build()
+//
+//            tracker.send(dictPrinterName)
+//            tracker.send(dictPagesPerSheet)
+//            tracker.send(dictFileType)
+            
+            
+            
             //Step 0: Connecting to server
             parent.currentProgress = parent.POSITION_CONNECTING
             updateUI()
