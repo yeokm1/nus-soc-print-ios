@@ -4,7 +4,6 @@
 
 #import <Foundation/Foundation.h>
 #import <NMSSH/NMSSH.h>
-#import "GAI.h"
-#import "GAIDictionaryBuilder.h"
+#import <GAI.h>
 #import "RegExCategories.h"
 #import "UIDevice-Hardware.h"
