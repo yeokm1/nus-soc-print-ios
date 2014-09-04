@@ -6,6 +6,13 @@
 // project.
 
 
+// GoogleAnalytics-iOS-SDK
+#define COCOAPODS_POD_AVAILABLE_GoogleAnalytics_iOS_SDK
+// This library does not follow semantic-versioning,
+// so we were not able to define version macros.
+// Please contact the author.
+// Version: 3.0.3c.
+
 // NMSSH
 #define COCOAPODS_POD_AVAILABLE_NMSSH
 #define COCOAPODS_VERSION_MAJOR_NMSSH 2
