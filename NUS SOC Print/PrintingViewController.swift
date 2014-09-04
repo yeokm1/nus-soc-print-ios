@@ -400,7 +400,7 @@ class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UI
         let UPLOAD_SOURCE_PDF_FILEPATH = "socPrint/source.pdf"
         let UPLOAD_PDF_FORMATTED_6PAGE_FILEPATH = "socPrint/source-up.pdf"
         let UPLOAD_PDF_FORMATTED_FILEPATH = "socPrint/formatted.pdf"
-        let UPLOAD_PS_FILEPATH = "socPrint/ps-converted.ps"
+        let UPLOAD_PS_FILEPATH_FORMAT = "socPrint/\"%@.ps\""
         
         let DIALOG_UPLOAD_DOC_CONV_FAILED = "Upload of document converter failed"
         let DIALOG_UPLOAD_PDF_FORMATTER_FAILED = "Upload of PDF formatter failed"
@@ -658,14 +658,16 @@ class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UI
                 }
     
             }
-            
+            var psFileNameNoString = givenFilePath.lastPathComponent.stringByDeletingPathExtension
+
+            var psFilePath = String(format: UPLOAD_PS_FILEPATH_FORMAT, psFileNameNoString)
             
             //Step 7 : Converting to postscript
             if(!cancelled){
                 parent.currentProgress = parent.POSITION_CONVERTING_TO_POSTSCRIPT
                 updateUI()
                 
-                var conversionCommand : String = "pdftops " + pdfFilepathToConvertToPS + " " + UPLOAD_PS_FILEPATH
+                var conversionCommand : String = "pdftops " + pdfFilepathToConvertToPS + " " + psFilePath
                 connection.runCommand(conversionCommand)
             }
             
@@ -676,7 +678,7 @@ class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UI
                 parent.currentProgress = parent.POSITION_SENDING_TO_PRINTER
                 updateUI()
                 
-                var printingCommand : String = "lpr -P " + printerName + " " + UPLOAD_PS_FILEPATH
+                var printingCommand : String = "lpr -P " + printerName + " " + psFilePath
                 var output = connection.runCommand(printingCommand)
                 if(output.utf16Count != 0){
                     stepFailAndCleanUpOperation(DIALOG_PRINT_COMMAND_ERROR, messageToShow: output)
