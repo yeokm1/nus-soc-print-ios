@@ -31,7 +31,7 @@ class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UI
     ,"Uploading PDF Formatter"
     ,"Uploading %@"
     ,"Converting to PDF"
-    ,"Formatting to %@ pages"
+    ,"Formatting to %@ pages/sheet"
     ,"Converting to Postscript"
     ,"Sending to %@"]
     
