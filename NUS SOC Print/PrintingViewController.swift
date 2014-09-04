@@ -406,7 +406,7 @@ class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UI
         let DIALOG_UPLOAD_PDF_FORMATTER_FAILED = "Upload of PDF formatter failed"
         let DIALOG_UPLOAD_DOCUMENT_FAILED = "Upload of your document failed"
         let DIALOG_CONVERT_TO_PDF_FAILED = "Converting your document to PDF failed"
-        let DIALOG_PRINTER_NOT_EXIST = "Printer %@ does not exist"
+        let DIALOG_PRINT_COMMAND_ERROR = "Printing command error"
 
         var connection : SSHConnectivity!
         var username : String!
@@ -679,8 +679,7 @@ class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UI
                 var printingCommand : String = "lpr -P " + printerName + " " + UPLOAD_PS_FILEPATH
                 var output = connection.runCommand(printingCommand)
                 if(output.utf16Count != 0){
-                    var dialogTitle = String(format: DIALOG_PRINTER_NOT_EXIST, printerName)
-                    stepFailAndCleanUpOperation(dialogTitle, messageToShow: output)
+                    stepFailAndCleanUpOperation(DIALOG_PRINT_COMMAND_ERROR, messageToShow: output)
                     return
                 }
                 
