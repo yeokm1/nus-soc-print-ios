@@ -44,6 +44,7 @@ Dependencies
 2. Install Cocoapods `sudo gem install cocoapods`
 3. Change directory to where you pulled the project and run `pod install`
 4. Open the project using `NUS SOC Print.xcworkspace` instead of the `.xcodeproject` file
+5. You may need to adjust the team name to deploy on your personal device. Go to Project Settings, General, NUS SOC Print Target. Choose None or your team name from the drop down menu.
 
 ##Credits
 Many thanks to Kai Yao and Yong Quan for initially working with me during the HacknRoll 2014 to kickstart this app. I just brought it to (nearly) the finish line.
