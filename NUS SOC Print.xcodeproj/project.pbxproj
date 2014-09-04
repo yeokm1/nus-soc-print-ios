@@ -54,43 +54,7 @@
 		530E45DA19A8CE9D00B9F1F0 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		530E45DC19A8CEA600B9F1F0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		530E45DE19A8CEB200B9F1F0 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		530E45E019A8D23100B9F1F0 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalyticsServices.a; path = "NUS SOC Print/libGoogleAnalyticsServices.a"; sourceTree = "<group>"; };
 		530E45E219A8D27B00B9F1F0 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		530E45E519A8D86300B9F1F0 /* App-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "App-Bridging-Header.h"; sourceTree = "<group>"; };
-		530E45E619A8D86300B9F1F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		530E45E819A8D86300B9F1F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		530E45E919A8D86300B9F1F0 /* behind_alert_view.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = behind_alert_view.png; sourceTree = "<group>"; };
-		530E45EA19A8D86300B9F1F0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		530E45EB19A8D86300B9F1F0 /* docs-to-pdf-converter-1.7.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; path = "docs-to-pdf-converter-1.7.jar"; sourceTree = "<group>"; };
-		530E45EC19A8D86300B9F1F0 /* GAI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
-		530E45ED19A8D86300B9F1F0 /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
-		530E45EE19A8D86300B9F1F0 /* GAIEcommerceProduct.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceProduct.h; sourceTree = "<group>"; };
-		530E45EF19A8D86300B9F1F0 /* GAIEcommerceProductAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceProductAction.h; sourceTree = "<group>"; };
-		530E45F019A8D86300B9F1F0 /* GAIEcommercePromotion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAIEcommercePromotion.h; sourceTree = "<group>"; };
-		530E45F119A8D86300B9F1F0 /* GAIFields.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAIFields.h; sourceTree = "<group>"; };
-		530E45F219A8D86300B9F1F0 /* GAILogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAILogger.h; sourceTree = "<group>"; };
-		530E45F319A8D86300B9F1F0 /* GAITrackedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
-		530E45F419A8D86300B9F1F0 /* GAITracker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
-		530E45F519A8D86300B9F1F0 /* green-tick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "green-tick.png"; sourceTree = "<group>"; };
-		530E45F619A8D86300B9F1F0 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
-		530E45F719A8D86300B9F1F0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		530E45F819A8D86300B9F1F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		530E45F919A8D86300B9F1F0 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
-		530E45FA19A8D86300B9F1F0 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		530E45FB19A8D86300B9F1F0 /* nup_pdf.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; path = nup_pdf.jar; sourceTree = "<group>"; };
-		530E45FC19A8D86300B9F1F0 /* PrintingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintingViewController.swift; sourceTree = "<group>"; };
-		530E45FD19A8D86300B9F1F0 /* PrintingViewTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintingViewTableCell.swift; sourceTree = "<group>"; };
-		530E45FE19A8D86300B9F1F0 /* PrintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintViewController.swift; sourceTree = "<group>"; };
-		530E45FF19A8D86300B9F1F0 /* QuotaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotaViewController.swift; sourceTree = "<group>"; };
-		530E460019A8D86300B9F1F0 /* redx.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redx.png; sourceTree = "<group>"; };
-		530E460119A8D86300B9F1F0 /* RegExCategories.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegExCategories.h; sourceTree = "<group>"; };
-		530E460219A8D86300B9F1F0 /* RegExCategories.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegExCategories.m; sourceTree = "<group>"; };
-		530E460319A8D86300B9F1F0 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		530E460419A8D86300B9F1F0 /* SSHConnectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHConnectivity.swift; sourceTree = "<group>"; };
-		530E460519A8D86300B9F1F0 /* StatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
-		530E460619A8D86300B9F1F0 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
-		530E460719A8D86300B9F1F0 /* UIDevice-Hardware.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIDevice-Hardware.h"; sourceTree = "<group>"; };
-		530E460819A8D86300B9F1F0 /* UIDevice-Hardware.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIDevice-Hardware.m"; sourceTree = "<group>"; };
 		53232AF619A1D42A00FE70DA /* docs-to-pdf-converter-1.7.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; path = "docs-to-pdf-converter-1.7.jar"; sourceTree = "<group>"; };
 		53232AF719A1D42A00FE70DA /* nup_pdf.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; path = nup_pdf.jar; sourceTree = "<group>"; };
 		5328AE1519A072A7004675BA /* SSHConnectivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSHConnectivity.swift; sourceTree = "<group>"; };
@@ -152,48 +116,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		530E45E419A8D86300B9F1F0 /* NUS SOC Print */ = {
-			isa = PBXGroup;
-			children = (
-				530E45E519A8D86300B9F1F0 /* App-Bridging-Header.h */,
-				530E45E619A8D86300B9F1F0 /* AppDelegate.swift */,
-				530E45E719A8D86300B9F1F0 /* Main.storyboard */,
-				530E45E919A8D86300B9F1F0 /* behind_alert_view.png */,
-				530E45EA19A8D86300B9F1F0 /* Constants.swift */,
-				530E45EB19A8D86300B9F1F0 /* docs-to-pdf-converter-1.7.jar */,
-				530E45EC19A8D86300B9F1F0 /* GAI.h */,
-				530E45ED19A8D86300B9F1F0 /* GAIDictionaryBuilder.h */,
-				530E45EE19A8D86300B9F1F0 /* GAIEcommerceProduct.h */,
-				530E45EF19A8D86300B9F1F0 /* GAIEcommerceProductAction.h */,
-				530E45F019A8D86300B9F1F0 /* GAIEcommercePromotion.h */,
-				530E45F119A8D86300B9F1F0 /* GAIFields.h */,
-				530E45F219A8D86300B9F1F0 /* GAILogger.h */,
-				530E45F319A8D86300B9F1F0 /* GAITrackedViewController.h */,
-				530E45F419A8D86300B9F1F0 /* GAITracker.h */,
-				530E45F519A8D86300B9F1F0 /* green-tick.png */,
-				530E45F619A8D86300B9F1F0 /* HelpViewController.swift */,
-				530E45F719A8D86300B9F1F0 /* Images.xcassets */,
-				530E45F819A8D86300B9F1F0 /* Info.plist */,
-				530E45F919A8D86300B9F1F0 /* libGoogleAnalyticsServices.a */,
-				530E45FA19A8D86300B9F1F0 /* MainTabBarController.swift */,
-				530E45FB19A8D86300B9F1F0 /* nup_pdf.jar */,
-				530E45FC19A8D86300B9F1F0 /* PrintingViewController.swift */,
-				530E45FD19A8D86300B9F1F0 /* PrintingViewTableCell.swift */,
-				530E45FE19A8D86300B9F1F0 /* PrintViewController.swift */,
-				530E45FF19A8D86300B9F1F0 /* QuotaViewController.swift */,
-				530E460019A8D86300B9F1F0 /* redx.png */,
-				530E460119A8D86300B9F1F0 /* RegExCategories.h */,
-				530E460219A8D86300B9F1F0 /* RegExCategories.m */,
-				530E460319A8D86300B9F1F0 /* SettingsViewController.swift */,
-				530E460419A8D86300B9F1F0 /* SSHConnectivity.swift */,
-				530E460519A8D86300B9F1F0 /* StatusViewController.swift */,
-				530E460619A8D86300B9F1F0 /* Storage.swift */,
-				530E460719A8D86300B9F1F0 /* UIDevice-Hardware.h */,
-				530E460819A8D86300B9F1F0 /* UIDevice-Hardware.m */,
-			);
-			path = "NUS SOC Print";
-			sourceTree = "<group>";
-		};
 		5328AE1F19A0A9A5004675BA /* PrintView */ = {
 			isa = PBXGroup;
 			children = (
@@ -283,9 +205,7 @@
 		B621572D458A432EA73BF4BF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				530E45E419A8D86300B9F1F0 /* NUS SOC Print */,
 				530E45E219A8D27B00B9F1F0 /* libsqlite3.dylib */,
-				530E45E019A8D23100B9F1F0 /* libGoogleAnalyticsServices.a */,
 				530E45DE19A8CEB200B9F1F0 /* libz.dylib */,
 				530E45DC19A8CEA600B9F1F0 /* SystemConfiguration.framework */,
 				530E45DA19A8CE9D00B9F1F0 /* CoreData.framework */,
@@ -474,14 +394,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		530E45E719A8D86300B9F1F0 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				530E45E819A8D86300B9F1F0 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		538BEDE41986A10B00C61282 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
