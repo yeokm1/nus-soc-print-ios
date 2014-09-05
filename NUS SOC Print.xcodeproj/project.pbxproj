@@ -28,6 +28,7 @@
 		53628D1B199A5B28009FF7A4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53628D1A199A5B28009FF7A4 /* SettingsViewController.swift */; };
 		53628D1D199A5BA9009FF7A4 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53628D1C199A5BA9009FF7A4 /* HelpViewController.swift */; };
 		53628D1F199A687C009FF7A4 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53628D1E199A687C009FF7A4 /* Storage.swift */; };
+		536674E319B994AE005C5C23 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536674E219B994AE005C5C23 /* AboutViewController.swift */; };
 		537747ED199B2A1400ADBF51 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537747EC199B2A1400ADBF51 /* Constants.swift */; };
 		537B301C19A883D800038669 /* UIDevice-Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 537B301B19A883D800038669 /* UIDevice-Hardware.m */; };
 		538A5C5D19B43EA600C34D9F /* Multivalent.jar in Resources */ = {isa = PBXBuildFile; fileRef = 538A5C5B19B43C0400C34D9F /* Multivalent.jar */; };
@@ -74,6 +75,7 @@
 		53628D1A199A5B28009FF7A4 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		53628D1C199A5BA9009FF7A4 /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		53628D1E199A687C009FF7A4 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		536674E219B994AE005C5C23 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		537747EC199B2A1400ADBF51 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		537B301A19A883D800038669 /* UIDevice-Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice-Hardware.h"; sourceTree = "<group>"; };
 		537B301B19A883D800038669 /* UIDevice-Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice-Hardware.m"; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				533B293519A4759000523049 /* RegExCategories.m */,
 				537B301A19A883D800038669 /* UIDevice-Hardware.h */,
 				537B301B19A883D800038669 /* UIDevice-Hardware.m */,
+				536674E219B994AE005C5C23 /* AboutViewController.swift */,
 			);
 			path = "NUS SOC Print";
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 				53628D17199A59AC009FF7A4 /* PrintViewController.swift in Sources */,
 				53628D19199A5A31009FF7A4 /* QuotaViewController.swift in Sources */,
 				533B293619A4759000523049 /* RegExCategories.m in Sources */,
+				536674E319B994AE005C5C23 /* AboutViewController.swift in Sources */,
 				5328AE1A19A09BBA004675BA /* PrintingViewController.swift in Sources */,
 				5345CEF619A05BCF006F920E /* MainTabBarController.swift in Sources */,
 				5328AE1619A072A7004675BA /* SSHConnectivity.swift in Sources */,

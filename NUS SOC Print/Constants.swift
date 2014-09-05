@@ -44,6 +44,17 @@ func getSystemVersion() -> String{
     return systemVersion
 }
 
+func getVersionString() -> String {
+    var infoDict : NSDictionary = NSBundle.mainBundle().infoDictionary
+    var majorVersion : String = infoDict.objectForKey("CFBundleShortVersionString") as String
+    var minorVersion : String = infoDict.objectForKey("CFBundleVersion") as String
+    
+    var appString = String(format: "Ver:%@,%@", majorVersion, minorVersion)
+    
+    return appString
+    
+}
+
 
 func isSystemAtLeastiOS8() -> Bool{
     var systemVersion = getSystemVersion() as NSString

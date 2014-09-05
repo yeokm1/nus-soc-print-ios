@@ -11,7 +11,6 @@ import UIKit
 
 class HelpViewController: GAITrackedViewController {
     
-    @IBOutlet weak var placeToPutVersion: UILabel!
     
     
     let TAG = "HelpViewController"
@@ -22,23 +21,6 @@ class HelpViewController: GAITrackedViewController {
     }
     
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        var versionString = getVersionString()
-        placeToPutVersion.text = versionString
-    }
-    
-    
-    func getVersionString() -> String {
-        var infoDict : NSDictionary = NSBundle.mainBundle().infoDictionary
-        var majorVersion : String = infoDict.objectForKey("CFBundleShortVersionString") as String
-        var minorVersion : String = infoDict.objectForKey("CFBundleVersion") as String
-        
-        var appString = String(format: "Ver:%@,%@", majorVersion, minorVersion)
-
-        return appString
-        
-    }
     
     
     @IBAction func videoButtonPress(sender: UIButton) {
