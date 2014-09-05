@@ -514,7 +514,7 @@ PDF, DOC, DOCX, PPT, PPTX and ODT
         <!--About View Controller-->
         <scene sceneID="F4r-lm-Aso">
             <objects>
-                <viewController id="KlP-kl-CBY" customClass="AboutViewController" customModule="NUS_SOC_Print" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="crossDissolve" id="KlP-kl-CBY" customClass="AboutViewController" customModule="NUS_SOC_Print" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="biQ-Gg-71S">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -565,7 +565,7 @@ Special thanks to Kai Yao and Yong Quan for the initial design and codes. Lenny 
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="placeToPutVersion" destination="NKk-dc-I9K" id="cPn-h8-G9X"/>
