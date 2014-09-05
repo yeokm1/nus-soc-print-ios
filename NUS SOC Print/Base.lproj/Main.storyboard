@@ -514,7 +514,7 @@ PDF, DOC, DOCX, PPT, PPTX and ODT
         <!--About View Controller-->
         <scene sceneID="F4r-lm-Aso">
             <objects>
-                <viewController modalTransitionStyle="crossDissolve" id="KlP-kl-CBY" customClass="AboutViewController" customModule="NUS_SOC_Print" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="KlP-kl-CBY" customClass="AboutViewController" customModule="NUS_SOC_Print" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="biQ-Gg-71S">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
