@@ -91,8 +91,8 @@ class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UI
     
     
     
-    var uploadDocConverterRequired : Bool = true
-    var uploadPDFConverterRequired : Bool = true
+    var needToConvertDocToPDF : Bool = true
+    var needToFormatPDF : Bool = true
     var filename : String!
     
     @IBAction func cancelButtonPressed(sender: UIButton) {
@@ -117,14 +117,14 @@ class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UI
 
         
         if(pagesPerSheet == "1"){
-            uploadPDFConverterRequired = false
+            needToFormatPDF = false
         }
         
         filename = filePath.lastPathComponent
         filePathString = filePath.path
         
         if(isFileAPdf(filename)){
-            uploadDocConverterRequired = false
+            needToConvertDocToPDF = false
         }
         
         progressTable.delegate = self
@@ -157,10 +157,10 @@ class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UI
     func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
         var row : Int = indexPath.row
 
-        if(row == POSITION_UPLOADING_DOC_CONVERTER && !uploadDocConverterRequired
-            || row == POSITION_CONVERTING_TO_PDF && !uploadDocConverterRequired
-            || row == POSITION_UPLOADING_PDF_CONVERTER && !uploadPDFConverterRequired
-            || row == POSITION_FORMATTING_PDF && !uploadPDFConverterRequired){
+        if(row == POSITION_UPLOADING_DOC_CONVERTER && !needToConvertDocToPDF
+            || row == POSITION_CONVERTING_TO_PDF && !needToConvertDocToPDF
+            || row == POSITION_UPLOADING_PDF_CONVERTER && !needToFormatPDF
+            || row == POSITION_FORMATTING_PDF && !needToFormatPDF){
             return CELL_ROW_ZERO_HEIGHT
         }  else {
             return CELL_ROW_HEIGHT
@@ -484,7 +484,7 @@ class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UI
 
             
             //Step 2 : Uploading DOC converter
-            if(parent.uploadDocConverterRequired && !cancelled){
+            if(parent.needToConvertDocToPDF && !cancelled){
                 parent.currentProgress = parent.POSITION_UPLOADING_DOC_CONVERTER
                 updateUI()
                 
@@ -525,7 +525,7 @@ class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UI
             
             
             //Step 3 : Uploading PDF converter
-            if(parent.uploadPDFConverterRequired && !cancelled){
+            if(parent.needToFormatPDF && !cancelled){
                 parent.currentProgress = parent.POSITION_UPLOADING_PDF_CONVERTER
                 updateUI()
                 
@@ -615,7 +615,7 @@ class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UI
             }
             
             //Step 5 : Convert document to PDF if necessary
-            if(parent.uploadDocConverterRequired && !cancelled){
+            if(parent.needToConvertDocToPDF && !cancelled){
                 parent.currentProgress = parent.POSITION_CONVERTING_TO_PDF
                 updateUI()
 
@@ -637,7 +637,7 @@ class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UI
 
             if(!cancelled){
                 
-                if(parent.uploadPDFConverterRequired){
+                if(parent.needToFormatPDF){
                     parent.currentProgress = parent.POSITION_FORMATTING_PDF
                     updateUI()
                     
