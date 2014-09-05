@@ -108,30 +108,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         NSLog("%@ applicationDidBecomeActive", TAG)
 
-        
-        if(printViewController == nil){
-
-            let delay = 2 * Double(NSEC_PER_SEC)
-            let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-   
-        
-            dispatch_after(time, dispatch_get_main_queue(), {(void) in
-                if(self.printViewController == nil){
-                    NSLog("%@ after waiting printController still nil", self.TAG)
-                    var printController = self.getPrintController()
-                    printController.updateDocumentToWebview()
-                
-                } else {
-                    NSLog("%@ after waiting printController is set", self.TAG)
-                    
-                    self.printViewController!.updateDocumentToWebview()
-                }
-                
-            });
-        } else {
-            NSLog("%@ app become active update printcontroller", TAG)
-            printViewController!.updateDocumentToWebview()
-        }
+        NSNotificationCenter.defaultCenter().postNotificationName(APP_DID_BECOME_ACTIVE, object: nil)
     }
 
     func applicationWillTerminate(application: UIApplication!) {

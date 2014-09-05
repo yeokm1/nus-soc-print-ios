@@ -71,6 +71,10 @@ class PrintViewController: GAITrackedViewController, UIActionSheetDelegate {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
+        NSLog("%@ viewdidAppear", TAG)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("updateDocumentToWebview"), name: APP_DID_BECOME_ACTIVE, object: nil)
         getCredentialsAndShowWarning()
         updateDocumentToWebview()
     }
@@ -78,11 +82,13 @@ class PrintViewController: GAITrackedViewController, UIActionSheetDelegate {
     override func viewDidDisappear(animated: Bool) {
         NSLog("%@ viewdidDisappear", TAG)
         setSelfToDelegate(nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self)
         super.viewDidDisappear(animated)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        NSLog("%@ viewWillAppear", TAG)
          self.screenName = TAG;
     }
     

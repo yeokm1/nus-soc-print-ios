@@ -17,6 +17,8 @@ let SERVER_UNREACHABLE = "Server unreachable. Check your internet connection"
 
 let DIALOG_OK = "OK"
 
+let APP_DID_BECOME_ACTIVE = "appDidBecomeActive"
+
 func showAlertInUIThread(title: String, message : String, viewController : UIViewController){
     dispatch_async(dispatch_get_main_queue(), {(void) in
         showAlert(title, message, viewController)
