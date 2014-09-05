@@ -82,7 +82,7 @@ class PrintViewController: GAITrackedViewController, UIActionSheetDelegate {
     override func viewDidDisappear(animated: Bool) {
         NSLog("%@ viewdidDisappear", TAG)
         setSelfToDelegate(nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: APP_DID_BECOME_ACTIVE, object: nil)
         super.viewDidDisappear(animated)
     }
     
