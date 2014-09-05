@@ -48,3 +48,6 @@ Dependencies
 
 ##Credits
 Many thanks to Kai Yao and Yong Quan for initially working with me during the HacknRoll 2014 to kickstart this app. I just brought it to (nearly) the finish line.
+
+##References
+1. [Display UIViewController as Popup](http://stackoverflow.com/questions/16230700/display-uiviewcontroller-as-popup-in-iphone)
