@@ -44,12 +44,6 @@ class HelpViewController: GAITrackedViewController {
         
     }
     
-    @IBAction func goToSourceCodePage(sender: UIButton) {
-        UIApplication.sharedApplication().openURL(NSURL(string: "https://github.com/yeokm1/nus-soc-print-ios"))
-    }
-
-    
-    
     
     func getDeviceSpec() -> (model : String, osVersion : String) {
         var platform = UIDevice.currentDevice().platform()
