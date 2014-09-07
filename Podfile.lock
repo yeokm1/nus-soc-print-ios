@@ -1,13 +1,13 @@
 PODS:
-  - GoogleAnalytics-iOS-SDK (3.0.3c)
+  - GoogleAnalytics-iOS-SDK (3.0.9)
   - NMSSH (2.2.0)
 
 DEPENDENCIES:
-  - GoogleAnalytics-iOS-SDK (= 3.0.3c)
+  - GoogleAnalytics-iOS-SDK
   - NMSSH
 
 SPEC CHECKSUMS:
-  GoogleAnalytics-iOS-SDK: 4377a29aa3e039030df30fd5c6075baeed3c916c
+  GoogleAnalytics-iOS-SDK: d9e198b1f955259a72886769be7377cdfcdb2250
   NMSSH: 6075839f1d4415ce55bf5db62fa1178888e12ae5
 
 COCOAPODS: 0.33.1

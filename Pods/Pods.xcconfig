@@ -2,5 +2,5 @@ GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/GoogleAnalytics-iOS-SDK" "${PODS_ROOT}/Headers/NMSSH" $(SDKROOT)/usr/include/libz
 LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/GoogleAnalytics-iOS-SDK" "$(PODS_ROOT)/NMSSH/NMSSH-iOS/Libraries/lib" "$(PODS_ROOT)/NMSSH/NMSSH-iOS/Libraries/lib" "$(PODS_ROOT)/NMSSH/NMSSH-iOS/Libraries/lib"
 OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers" -isystem "${PODS_ROOT}/Headers/GoogleAnalytics-iOS-SDK" -isystem "${PODS_ROOT}/Headers/NMSSH"
-OTHER_LDFLAGS = -ObjC -lGoogleAnalyticsServices -lcrypto -lssh2 -lssl -lz -framework CFNetwork -framework CoreData -framework SystemConfiguration
+OTHER_LDFLAGS = -ObjC -lGoogleAnalyticsServices -lcrypto -lsqlite3 -lssh2 -lssl -lz -framework CFNetwork -framework CoreData -framework Foundation -framework SystemConfiguration -framework UIKit
 PODS_ROOT = ${SRCROOT}/Pods
