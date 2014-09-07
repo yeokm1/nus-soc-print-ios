@@ -35,7 +35,7 @@ View more screenshots in the screenshots directory.
 Dependencies
 =====
 1. Swift language
-2. Xcode 6 beta 6
+2. Xcode 6 beta 7
 3. Cocoapods
 4. NMSSH SSH library (installed via Cocoapods)
 
