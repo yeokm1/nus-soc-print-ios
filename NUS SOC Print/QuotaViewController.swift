@@ -83,8 +83,8 @@ class QuotaViewController: GAITrackedViewController, NSURLConnectionDataDelegate
   
         var regex : NSRegularExpression = NSRegularExpression.regularExpressionWithPattern(QUOTA_REGEX_PATTERN, options: NSRegularExpressionOptions.CaseInsensitive, error: nil)!
         
-        var matches : NSArray = dataStringNS.matchesWithDetails(regex)
-
+        var matches = regex.matchesInString(dataStringNS, options: NSMatchingOptions.allZeros, range: NSMakeRange(0, dataStringNS.length))
+        
   
         quotaOutput.text = ""
         
@@ -94,14 +94,13 @@ class QuotaViewController: GAITrackedViewController, NSURLConnectionDataDelegate
         
         for match in matches {
             
-            var groups : NSArray = match.groups
+            var quotaTypeRange : NSRange = match.rangeAtIndex(1)
+            var quotaValueRange : NSRange = match.rangeAtIndex(2)
+            var quotaTypeHTML = dataStringNS.substringWithRange(quotaTypeRange)
+            var quotaValueHTML = dataStringNS.substringWithRange(quotaValueRange)
             
-            var quotaTypeGroup : RxMatchGroup = groups.objectAtIndex(1) as RxMatchGroup
-            var quotaValueGroup : RxMatchGroup = groups.objectAtIndex(2) as RxMatchGroup
-            
-
-            var quotaType : String = stringByStrippingHTML(quotaTypeGroup.value)
-            var quotaValue : String = stringByStrippingHTML(quotaValueGroup.value)
+            var quotaType : String = stringByStrippingHTML(quotaTypeHTML)
+            var quotaValue : String = stringByStrippingHTML(quotaValueHTML)
             
         
             NSLog("%@ %@ %@", TAG, quotaType, quotaValue)
@@ -112,11 +111,7 @@ class QuotaViewController: GAITrackedViewController, NSURLConnectionDataDelegate
             
             quotaOutput.text = quotaOutput.text.stringByAppendingString(quotaString)
             
-
         }
-        
-    
-        
         
     }
     
