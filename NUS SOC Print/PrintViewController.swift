@@ -122,12 +122,11 @@ class PrintViewController: GAITrackedViewController, UIActionSheetDelegate {
     
 
     func updateDocumentToWebview(){
-        
-        var urlRequest : NSURLRequest = NSURLRequest(URL: incomingURL)
-        
+    
         //iOS8 beta 6 still has this bug of not displaying the PDF and showing "failed to find PDF header: `%PDF' not found." in the log
         
         if(incomingURL != nil){
+            var urlRequest : NSURLRequest = NSURLRequest(URL: incomingURL!)
             pdfShower?.loadRequest(urlRequest)
             var filename : String = incomingURL!.lastPathComponent
             
@@ -170,7 +169,7 @@ class PrintViewController: GAITrackedViewController, UIActionSheetDelegate {
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
 
         
         var controller : UIViewController = segue.destinationViewController as UIViewController
@@ -180,7 +179,7 @@ class PrintViewController: GAITrackedViewController, UIActionSheetDelegate {
             var printingController : PrintingViewController = controller as PrintingViewController
             
             var printer : String? = selectedPrinter
-            var pagesPerSheet : String = pagesPerSheetSelection.titleForSegmentAtIndex(pagesPerSheetSelection.selectedSegmentIndex)
+            var pagesPerSheet : String = pagesPerSheetSelection.titleForSegmentAtIndex(pagesPerSheetSelection.selectedSegmentIndex)!
         
             printingController.printer = selectedPrinter
             printingController.pagesPerSheet = pagesPerSheet
