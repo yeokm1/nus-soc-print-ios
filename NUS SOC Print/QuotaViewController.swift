@@ -130,9 +130,10 @@ class QuotaViewController: GAITrackedViewController, NSURLConnectionDataDelegate
     func stringByStrippingHTML(input : String) -> String{
   
         var regex : NSRegularExpression = NSRegularExpression.regularExpressionWithPattern("<[^>]+>", options: NSRegularExpressionOptions.CaseInsensitive, error: nil)!
+
+        var output = regex.stringByReplacingMatchesInString(input, options: NSMatchingOptions.allZeros, range: NSMakeRange(0, input.utf16Count), withTemplate: "")
    
-        var output = regex.replace(input, with: "")
-        
+
         return output
     
     }
