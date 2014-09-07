@@ -52,3 +52,4 @@ Many thanks to Kai Yao and Yong Quan for initially working with me during the Ha
 ##References
 1. [Display UIViewController as Popup](http://stackoverflow.com/questions/16230700/display-uiviewcontroller-as-popup-in-iphone)
 2. [Update View Controller when application did become active](http://stackoverflow.com/questions/10359186/how-to-tell-the-active-view-controller-when-applicationdidbecomeactive-is-called)
+3. [Solve weird linker problems](http://stackoverflow.com/questions/25371556/swift-beta-6-confusing-linker-error-message)
