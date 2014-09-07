@@ -47,7 +47,7 @@ Dependencies
 5. You may need to adjust the team name to deploy on your personal device. Go to Project Settings, General, NUS SOC Print Target. Choose None or your team name from the drop down menu.
 
 ##Credits
-Many thanks to Kai Yao and Yong Quan for initially working with me during the HacknRoll 2014 to kickstart this app. I just brought it to (nearly) the finish line.
+Many thanks to Kai Yao and Yong Quan for initially working with me during the HacknRoll 2014 to kickstart this app. I just brought it to (nearly) the finish line. Lenny Cendrawasih for the app icon.
 
 ##References
 1. [Display UIViewController as Popup](http://stackoverflow.com/questions/16230700/display-uiviewcontroller-as-popup-in-iphone)
