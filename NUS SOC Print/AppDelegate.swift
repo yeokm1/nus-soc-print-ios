@@ -116,12 +116,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
-    func getPrintController() -> PrintViewController {
-        var storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        var vc : PrintViewController = storyboard.instantiateViewControllerWithIdentifier("printID") as PrintViewController;
-        return vc
-    }
-
 
 }
 
