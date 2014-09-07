@@ -21,13 +21,13 @@ I'm waiting for Apple to start accepting Swift app submissions on the App Store 
 
 ##Screenshots
 
-<a href="url"><img src="screenshots/print.png" align="centre" height="568" width="320" ></a>
+<a href="url"><img src="screenshots/4-inch/main.png" align="centre" height="568" width="320" ></a>
 <p></p>
-<a href="url"><img src="screenshots/printing.png" align="centre" height="568" width="320" ></a>
+<a href="url"><img src="screenshots/4-inch/printing.png" align="centre" height="568" width="320" ></a>
 <p></p>
-<a href="url"><img src="screenshots/status.png" align="centre" height="568" width="320" ></a>
+<a href="url"><img src="screenshots/4-inch/status.png" align="centre" height="568" width="320" ></a>
 <p></p>
-<a href="url"><img src="screenshots/quota.png" align="centre" height="568" width="320" ></a>
+<a href="url"><img src="screenshots/4-inch/quota.png" align="centre" height="568" width="320" ></a>
 <p></p>
 
 View more screenshots in the screenshots directory.
