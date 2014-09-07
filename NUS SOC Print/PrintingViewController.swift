@@ -154,7 +154,7 @@ class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UI
         }
     }
     
-    func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         var row : Int = indexPath.row
         
         if(row == POSITION_UPLOADING_DOC_CONVERTER && !needToConvertDocToPDF
