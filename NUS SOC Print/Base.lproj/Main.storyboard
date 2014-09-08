@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.9" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
@@ -524,7 +524,7 @@ PDF, DOC, DOCX, PPT, PPTX and ODT
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <view contentMode="scaleToFill" id="BZN-oJ-cWW">
-                                <rect key="frame" x="16" y="104" width="288" height="239"/>
+                                <rect key="frame" x="16" y="78" width="288" height="329"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <navigationBar contentMode="scaleToFill" id="8Xz-4S-6pG">
@@ -535,7 +535,7 @@ PDF, DOC, DOCX, PPT, PPTX and ODT
                                         </items>
                                     </navigationBar>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="TYq-4x-pzh">
-                                        <rect key="frame" x="228" y="201" width="40" height="30"/>
+                                        <rect key="frame" x="231" y="291" width="40" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Close">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -545,7 +545,7 @@ PDF, DOC, DOCX, PPT, PPTX and ODT
                                         </connections>
                                     </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" selectable="NO" id="m8W-En-7nZ">
-                                        <rect key="frame" x="8" y="81" width="272" height="112"/>
+                                        <rect key="frame" x="8" y="171" width="272" height="112"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <string key="text">Copyright © 2014, Yeo Kheng Meng under the MIT licence. 
@@ -554,15 +554,8 @@ Special thanks to Kai Yao and Yong Quan for the initial design and codes. Lenny 
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NKk-dc-I9K">
-                                        <rect key="frame" x="13" y="52" width="290" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tSk-dQ-7eo">
-                                        <rect key="frame" x="13" y="201" width="87" height="30"/>
+                                        <rect key="frame" x="13" y="291" width="87" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Source code">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -571,6 +564,17 @@ Special thanks to Kai Yao and Yong Quan for the initial design and codes. Lenny 
                                             <action selector="sourceCodeButtonPress:" destination="KlP-kl-CBY" eventType="touchUpInside" id="6fw-ng-Ekp"/>
                                         </connections>
                                     </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="creditsIcon" id="MsL-DN-AWa">
+                                        <rect key="frame" x="104" y="59" width="80" height="80"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NKk-dc-I9K">
+                                        <rect key="frame" x="13" y="147" width="290" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -613,6 +617,7 @@ Special thanks to Kai Yao and Yong Quan for the initial design and codes. Lenny 
         <image name="Quota" width="50" height="50"/>
         <image name="Settings" width="50" height="50"/>
         <image name="behind_alert_view.png" width="320" height="460"/>
+        <image name="creditsIcon" width="120" height="120"/>
         <image name="green-tick.png" width="100" height="100"/>
         <image name="redx.png" width="48" height="48"/>
     </resources>
