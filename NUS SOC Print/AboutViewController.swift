@@ -27,9 +27,12 @@ class AboutViewController: GAITrackedViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         var versionString = getVersionString()
+        var buildDate = ConstantsObjC.getBuildDate()
         
-        placeToPutVersion.text = "NUS SOC Print " + versionString
+        
+        placeToPutVersion.text = "NUS SOC Print " + versionString + " (" + buildDate + ")"
     }
+    
     
     
     @IBAction func sourceCodeButtonPress(sender: UIButton) {

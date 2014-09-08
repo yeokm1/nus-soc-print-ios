@@ -36,6 +36,7 @@
 		538BEDE81986A10B00C61282 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 538BEDE71986A10B00C61282 /* Images.xcassets */; };
 		538BEDF41986A10B00C61282 /* NUS_SOC_PrintTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538BEDF31986A10B00C61282 /* NUS_SOC_PrintTests.swift */; };
 		53CD62CE199F08F300979ED0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53CD62CC199F05E800979ED0 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		53D25B8219BDEA03005877A4 /* ContantsObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D25B8119BDEA03005877A4 /* ContantsObjC.m */; };
 		F81F5101FAC4495081E5F372 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B58A9287E28435DA8D57847 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +88,8 @@
 		538BEDF31986A10B00C61282 /* NUS_SOC_PrintTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NUS_SOC_PrintTests.swift; sourceTree = "<group>"; };
 		53CD62CA199F05A900979ED0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		53CD62CC199F05E800979ED0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		53D25B8119BDEA03005877A4 /* ContantsObjC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContantsObjC.m; sourceTree = "<group>"; };
+		53D25B8319BDEA20005877A4 /* ConstantsObjC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConstantsObjC.h; sourceTree = "<group>"; };
 		BD9CEAF5A71A43A3A13A9950 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -165,6 +168,8 @@
 				538BEDDC1986A10B00C61282 /* Supporting Files */,
 				537B301A19A883D800038669 /* UIDevice-Hardware.h */,
 				537B301B19A883D800038669 /* UIDevice-Hardware.m */,
+				53D25B8119BDEA03005877A4 /* ContantsObjC.m */,
+				53D25B8319BDEA20005877A4 /* ConstantsObjC.h */,
 			);
 			path = "NUS SOC Print";
 			sourceTree = "<group>";
@@ -363,6 +368,7 @@
 				5345CEF619A05BCF006F920E /* MainTabBarController.swift in Sources */,
 				5328AE1619A072A7004675BA /* SSHConnectivity.swift in Sources */,
 				538BEDDF1986A10B00C61282 /* AppDelegate.swift in Sources */,
+				53D25B8219BDEA03005877A4 /* ContantsObjC.m in Sources */,
 				53628D1B199A5B28009FF7A4 /* SettingsViewController.swift in Sources */,
 				537747ED199B2A1400ADBF51 /* Constants.swift in Sources */,
 				5328AE1E19A0A98A004675BA /* PrintingViewTableCell.swift in Sources */,
