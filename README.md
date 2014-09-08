@@ -10,7 +10,7 @@ I'm waiting for Apple to start accepting Swift app submissions on the App Store 
 2. Remaining quota check
 3. Print Status Check
 4. Page formatting for documents
-5. Accepts file exports from other apps like IVLE and Dropbox.
+5. Accepts file exports from other apps like IVLE, Dropbox and the web browser.
 6. Deleting of existing job in print queue
 7. Runs on iOS7.0 and up for maximum compatibility
 
