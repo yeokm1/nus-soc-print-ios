@@ -63,7 +63,7 @@ class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UI
     
     
     
-    let TEXT_INDETERMINATE = "This could take awhile..."
+    let TEXT_INDETERMINATE = "This could take a while..."
     
     var printer : String!
     var pagesPerSheet : String!
