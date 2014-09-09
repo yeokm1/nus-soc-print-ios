@@ -46,8 +46,12 @@ Dependencies
 4. Open the project using `NUS SOC Print.xcworkspace` instead of the `.xcodeproject` file
 5. You may need to adjust the team name to deploy on your personal device. Go to Project Settings, General, NUS SOC Print Target. Choose None or your team name from the drop down menu.
 
-##Credits
-Many thanks to Kai Yao and Yong Quan for initially working with me during the HacknRoll 2014 to kickstart this app. I just brought it to (nearly) the finish line. Lenny Cendrawasih for the app icon.
+##Special thanks to:
+1. Kai Yao and Yong Quan for the initial codes and design.
+2. Lenny for the app icon.
+3. Zit Seng's help on Sunfire and advice on NUS's intellectual property issues
+4. My CS3217 Prof Khe Chai for the initial guidance on publishing iOS apps.
+5  Vishnu's advice on iOS App submissions.
 
 ##References
 1. [Display UIViewController as Popup](http://stackoverflow.com/questions/16230700/display-uiviewcontroller-as-popup-in-iphone)
