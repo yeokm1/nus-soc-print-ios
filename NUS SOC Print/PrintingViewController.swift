@@ -23,6 +23,9 @@ class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UI
     let DIALOG_TITLE = "Are you sure you want to cancel this print operation?"
     
     
+    let ALERT_CANCEL_OPERATION_TAG = 24
+    let ALERT_CONTINUE_DOC_UPLOAD_TAG = 25
+    
     
     let HEADER_TEXT : Array<String> =
     ["Connecting to server"
@@ -95,11 +98,16 @@ class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UI
     var needToFormatPDF : Bool = true
     var filename : String!
     
+    
+    var semaphore : dispatch_semaphore_t?
+    
+    var continueWithDocumentUpload = false
+    
     @IBAction func cancelButtonPressed(sender: UIButton) {
         if(operation == nil){
             cancelAndClose()
         } else {
-            showOkCancelAlert(DIALOG_TITLE, message: "", viewController: self)
+            showCancelOperationAlert(DIALOG_TITLE, message: "", viewController: self)
         }
         
         
@@ -339,7 +347,39 @@ class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UI
     }
     
     
-    func showOkCancelAlert(title: String, message : String, viewController : UIViewController){
+    func showUploadDocConverterChoiceAlert(title: String, message : String){
+        
+        if(isSystemAtLeastiOS8()){
+            var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+            
+            let yesBlock = {(action: UIAlertAction!) -> Void in
+                self.continueWithDocumentUpload = true
+                self.unlockSemaphore()
+            }
+            
+            
+            let noBlock = {(action: UIAlertAction!) -> Void in
+                self.continueWithDocumentUpload = false
+                self.unlockSemaphore()
+            }
+            
+            
+            alert.addAction(UIAlertAction(title: DIALOG_YES, style: UIAlertActionStyle.Default, handler: yesBlock))
+            alert.addAction(UIAlertAction(title: DIALOG_NO, style: UIAlertActionStyle.Cancel, handler: noBlock))
+            
+            self.presentViewController(alert, animated: true, completion: nil)
+        } else {
+            
+            var alertView : UIAlertView = UIAlertView(title: title, message: message, delegate: self, cancelButtonTitle: DIALOG_NO, otherButtonTitles: DIALOG_YES)
+            alertView.tag = ALERT_CONTINUE_DOC_UPLOAD_TAG
+            alertView.show()
+            
+        }
+        
+    }
+
+    
+    func showCancelOperationAlert(title: String, message : String, viewController : UIViewController){
         
         if(isSystemAtLeastiOS8()){
             var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
@@ -349,12 +389,13 @@ class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UI
             }
             
             alert.addAction(UIAlertAction(title: DIALOG_YES, style: UIAlertActionStyle.Default, handler: cancelBlock))
-            alert.addAction(UIAlertAction(title: DIALOG_NO, style: UIAlertActionStyle.Default, handler: nil))
+            alert.addAction(UIAlertAction(title: DIALOG_NO, style: UIAlertActionStyle.Cancel, handler: nil))
             
             viewController.presentViewController(alert, animated: true, completion: nil)
         } else {
             
             var alertView : UIAlertView = UIAlertView(title: title, message: message, delegate: self, cancelButtonTitle: DIALOG_NO, otherButtonTitles: DIALOG_YES)
+            alertView.tag = ALERT_CANCEL_OPERATION_TAG
             alertView.show()
             
         }
@@ -363,8 +404,19 @@ class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UI
     
     func alertView(alertView: UIAlertView!, clickedButtonAtIndex buttonIndex: Int) {
         NSLog("%@ alertview clicked %d", TAG, buttonIndex)
-        if(buttonIndex == 1){
-            cancelCurrentOperation()
+        
+        if(alertView.tag == ALERT_CANCEL_OPERATION_TAG){
+            if(buttonIndex == 1){
+                cancelCurrentOperation()
+            }
+        } else if(alertView.tag == ALERT_CONTINUE_DOC_UPLOAD_TAG){
+            if(buttonIndex == 0){ //No button
+                self.continueWithDocumentUpload = false
+            } else if(buttonIndex == 1){ //Yes button
+                self.continueWithDocumentUpload = true
+            }
+            
+            self.unlockSemaphore()
         }
     }
     
@@ -372,6 +424,20 @@ class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UI
         NSLog("%@ Cancel current operation", TAG)
         cancelAndClose()
     }
+    
+    
+    func unlockSemaphore(){
+        
+        NSLog("%@ unlockSemaphore", TAG);
+        
+        if(semaphore != nil){
+            dispatch_semaphore_signal(semaphore);
+            semaphore = nil;
+        }
+    }
+    
+    
+    
     
 }
 class PrintingOperation : NSOperation {
@@ -407,6 +473,13 @@ class PrintingOperation : NSOperation {
     let DIALOG_UPLOAD_DOCUMENT_FAILED = "Upload of your document failed"
     let DIALOG_CONVERT_TO_PDF_FAILED = "Converting your document to PDF failed"
     let DIALOG_PRINT_COMMAND_ERROR = "Printing command error"
+    
+    let DIALOG_ASK_UPLOAD_DOC_TITLE = "Upload DOC converter?"
+    let DIALOG_ASK_UPLOAD_DOC_MESSAGE = "Using the document converter requires a 50MB upload. You seem to be on mobile data so uploading this could be expensive.\n\nDo you want to continue?"
+    
+    let DIALOG_ASK_UPLOAD_DOC_YES = "Yes"
+    let DIALOG_ASK_UPLOAD_DOC_NO = "No"
+    
     
     var connection : SSHConnectivity!
     var username : String!
@@ -499,8 +572,19 @@ class PrintingOperation : NSOperation {
                 
                 var isOn3G = ConstantsObjC.isOn3G()
                 
+                if(isOn3G){
+                    parent.semaphore = dispatch_semaphore_create(0);
+                    askWhetherToUploadDocConverter()
+                    dispatch_semaphore_wait(parent.semaphore, DISPATCH_TIME_FOREVER);
+                    
+                    if(!parent.continueWithDocumentUpload){
+                        cleanUpOperation()
+                        return
+                    }
+                    
+                }
                 
-                
+
                 
                 var docConvURL : NSURL = NSURL.fileURLWithPath(pathToDocConverter)!
                 let docConvUploadProgressBlock = {(bytesUploaded : UInt) -> Bool in
@@ -713,6 +797,10 @@ class PrintingOperation : NSOperation {
     
     func stepFailAndCleanUpOperation(title : String, messageToShow : String){
         showAlertInUIThread(title, messageToShow, parent)
+        cleanUpOperation()
+    }
+    
+    func cleanUpOperation(){
         self.connection.disconnect()
         self.connection = nil
         
@@ -768,6 +856,15 @@ class PrintingOperation : NSOperation {
     }
     
     
+    func askWhetherToUploadDocConverter(){
+        dispatch_async(dispatch_get_main_queue(), {(void) in
+            self.parent.showUploadDocConverterChoiceAlert(self.DIALOG_ASK_UPLOAD_DOC_TITLE, message: self.DIALOG_ASK_UPLOAD_DOC_MESSAGE)
+            
+        })
+        
+    }
+    
+    
     func getFileSizeOfFile(path : String) -> Int {
         var attributes : NSDictionary = NSFileManager.defaultManager().attributesOfItemAtPath(path, error: nil)!
         var size : Int = attributes.objectForKey(NSFileSize)!.longValue
@@ -780,8 +877,6 @@ class PrintingOperation : NSOperation {
             self.parent.progressTable.reloadData()
         })
     }
-    
-    
     
     
     
