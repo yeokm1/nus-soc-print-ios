@@ -86,7 +86,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2014, Yeo Kheng Meng under the MIT license.</string>
+	<string>© 2014, Yeo Kheng Meng</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
