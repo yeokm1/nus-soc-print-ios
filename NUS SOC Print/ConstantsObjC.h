@@ -11,4 +11,6 @@
 
 +(NSString *) getBuildDate;
 
++(bool) isOn3G;
+
 @end

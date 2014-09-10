@@ -6,5 +6,6 @@
 #import <NMSSH/NMSSH.h>
 #import <GAI.h>
 #import <GAIDictionaryBuilder.h>
+#import "Reachability.h"
 #import "UIDevice-Hardware.h"
 #import "ConstantsObjC.h"

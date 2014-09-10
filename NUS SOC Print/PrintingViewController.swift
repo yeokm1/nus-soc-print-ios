@@ -449,6 +449,7 @@ class PrintingOperation : NSOperation {
         
         
         
+        
         //Step 0: Connecting to server
         parent.currentProgress = parent.POSITION_CONNECTING
         updateUI()
@@ -495,6 +496,12 @@ class PrintingOperation : NSOperation {
             var docConvSize : Int = getFileSizeOfFile(pathToDocConverter)
             
             if(needToUpload){
+                
+                var isOn3G = ConstantsObjC.isOn3G()
+                
+                
+                
+                
                 var docConvURL : NSURL = NSURL.fileURLWithPath(pathToDocConverter)!
                 let docConvUploadProgressBlock = {(bytesUploaded : UInt) -> Bool in
                     

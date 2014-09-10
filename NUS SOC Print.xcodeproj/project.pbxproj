@@ -21,6 +21,7 @@
 		5345CEF419A05409006F920E /* behind_alert_view.png in Resources */ = {isa = PBXBuildFile; fileRef = 5345CEF319A05409006F920E /* behind_alert_view.png */; };
 		5345CEF619A05BCF006F920E /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5345CEF519A05BCF006F920E /* MainTabBarController.swift */; };
 		5345CEFC19A0685F006F920E /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5345CEFB19A0685F006F920E /* StatusViewController.swift */; };
+		53476F0E19C085B400677B3E /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 53476F0D19C085B400677B3E /* Reachability.m */; };
 		5353871119A736FD0021DB6A /* redx.png in Resources */ = {isa = PBXBuildFile; fileRef = 5353871019A736FD0021DB6A /* redx.png */; };
 		53628D17199A59AC009FF7A4 /* PrintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53628D16199A59AC009FF7A4 /* PrintViewController.swift */; };
 		53628D19199A5A31009FF7A4 /* QuotaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53628D18199A5A31009FF7A4 /* QuotaViewController.swift */; };
@@ -67,6 +68,8 @@
 		5345CEF319A05409006F920E /* behind_alert_view.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = behind_alert_view.png; sourceTree = "<group>"; };
 		5345CEF519A05BCF006F920E /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		5345CEFB19A0685F006F920E /* StatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
+		53476F0C19C085B400677B3E /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		53476F0D19C085B400677B3E /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		5353871019A736FD0021DB6A /* redx.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redx.png; sourceTree = "<group>"; };
 		53628D16199A59AC009FF7A4 /* PrintViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintViewController.swift; sourceTree = "<group>"; };
 		53628D18199A5A31009FF7A4 /* QuotaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuotaViewController.swift; sourceTree = "<group>"; };
@@ -170,6 +173,8 @@
 				537B301B19A883D800038669 /* UIDevice-Hardware.m */,
 				53D25B8119BDEA03005877A4 /* ContantsObjC.m */,
 				53D25B8319BDEA20005877A4 /* ConstantsObjC.h */,
+				53476F0C19C085B400677B3E /* Reachability.h */,
+				53476F0D19C085B400677B3E /* Reachability.m */,
 			);
 			path = "NUS SOC Print";
 			sourceTree = "<group>";
@@ -371,6 +376,7 @@
 				53D25B8219BDEA03005877A4 /* ContantsObjC.m in Sources */,
 				53628D1B199A5B28009FF7A4 /* SettingsViewController.swift in Sources */,
 				537747ED199B2A1400ADBF51 /* Constants.swift in Sources */,
+				53476F0E19C085B400677B3E /* Reachability.m in Sources */,
 				5328AE1E19A0A98A004675BA /* PrintingViewTableCell.swift in Sources */,
 				53628D1D199A5BA9009FF7A4 /* HelpViewController.swift in Sources */,
 				5345CEFC19A0685F006F920E /* StatusViewController.swift in Sources */,
