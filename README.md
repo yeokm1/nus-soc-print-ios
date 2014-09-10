@@ -51,7 +51,7 @@ Dependencies
 2. Lenny for the app icon.
 3. Zit Seng's help on Sunfire and advice on NUS's intellectual property issues
 4. My CS3217 Prof Khe Chai for the initial guidance on publishing iOS apps.
-5  Vishnu's advice on iOS App submissions.
+5.  Vishnu's advice on iOS App submissions.
 
 ##References
 1. [Display UIViewController as Popup](http://stackoverflow.com/questions/16230700/display-uiviewcontroller-as-popup-in-iphone)
