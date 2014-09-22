@@ -34,6 +34,7 @@ class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UI
         ,"Uploading PDF Formatter"
         ,"Uploading %@"
         ,"Converting to PDF"
+        ,"Trim PDF to page %d to %d"
         ,"Formatting to %@ pages/sheet"
         ,"Converting to Postscript"
         ,"Sending to %@"]
@@ -44,10 +45,11 @@ class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UI
     let POSITION_UPLOADING_PDF_CONVERTER = 3
     let POSITION_UPLOADING_USER_DOC = 4
     let POSITION_CONVERTING_TO_PDF = 5
-    let POSITION_FORMATTING_PDF = 6
-    let POSITION_CONVERTING_TO_POSTSCRIPT = 7
-    let POSITION_SENDING_TO_PRINTER = 8
-    let POSITION_COMPLETED = 9
+    let POSITION_TRIM_PDF_TO_PAGE_RANGE = 6
+    let POSITION_FORMATTING_PDF = 7
+    let POSITION_CONVERTING_TO_POSTSCRIPT = 8
+    let POSITION_SENDING_TO_PRINTER = 9
+    let POSITION_COMPLETED = 10
     
     let CLOSE_TEXT = "Close"
     
@@ -58,6 +60,7 @@ class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UI
         ,false
         ,false
         ,false
+        ,true
         ,true
         ,true
         ,true
@@ -99,6 +102,8 @@ class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UI
     
     var needToConvertDocToPDF : Bool = true
     var needToFormatPDF : Bool = true
+    var needToTrimPDFToPageRange : Bool = false
+    
     var filename : String!
     
     
@@ -138,6 +143,11 @@ class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UI
             needToConvertDocToPDF = false
         }
         
+        if(startPageRange > 0){
+            needToTrimPDFToPageRange = true
+        }
+        
+        
         progressTable.delegate = self
         progressTable.dataSource = self
         
@@ -171,7 +181,8 @@ class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UI
         if(row == POSITION_UPLOADING_DOC_CONVERTER && !needToConvertDocToPDF
             || row == POSITION_CONVERTING_TO_PDF && !needToConvertDocToPDF
             || row == POSITION_UPLOADING_PDF_CONVERTER && !needToFormatPDF
-            || row == POSITION_FORMATTING_PDF && !needToFormatPDF){
+            || row == POSITION_FORMATTING_PDF && !needToFormatPDF
+            || row == POSITION_TRIM_PDF_TO_PAGE_RANGE && !needToTrimPDFToPageRange){
                 return CELL_ROW_ZERO_HEIGHT
         }  else {
             return CELL_ROW_HEIGHT
@@ -208,6 +219,8 @@ class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UI
             cell.header.text = String(format:HEADER_TEXT[row], pagesPerSheet)
         } else if(row == POSITION_SENDING_TO_PRINTER){
             cell.header.text = String(format:HEADER_TEXT[row], printer)
+        } else if(row == POSITION_TRIM_PDF_TO_PAGE_RANGE){
+            cell.header.text = String(format:HEADER_TEXT[row], startPageRange, endPageRange)
         } else {
             cell.header.text = HEADER_TEXT[row]
         }
@@ -266,7 +279,8 @@ class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UI
             cell.progressBar.progress = progress.progressFraction
         }
         
-        if(row == POSITION_CONVERTING_TO_PDF || row == POSITION_CONVERTING_TO_POSTSCRIPT){
+        
+        if(row == POSITION_CONVERTING_TO_PDF || row == POSITION_TRIM_PDF_TO_PAGE_RANGE || row == POSITION_CONVERTING_TO_POSTSCRIPT){
             cell.smallFooter.text = TEXT_INDETERMINATE
         }
         
@@ -326,7 +340,7 @@ class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UI
             
             currentProgress = 0
             
-            operation = PrintingOperation(hostname: hostname, username: username!, password: password!, filePath : filePathString, pagesPerSheet : pagesPerSheet, printerName : printer, parent : self)
+            operation = PrintingOperation(hostname: hostname, username: username!, password: password!, filePath : filePathString, pagesPerSheet : pagesPerSheet, startPage : startPageRange, endPage : endPageRange, printerName : printer, parent : self)
             
             operation!.completionBlock = {(void) in
                 self.operation = nil
@@ -467,6 +481,8 @@ class PrintingOperation : NSOperation {
     
     let UPLOAD_FILEPATH = "socPrint/source." //Add path extension later
     let UPLOAD_SOURCE_PDF_FILEPATH = "socPrint/source.pdf"
+    let UPLOAD_PDF_TRIMMED_FILEPATH = "socPrint/source-trimmed.pdf"
+    let UPLOAD_PDF_FORMATTED_TRIMMED_6PAGE_FILEPATH = "socPrint/source-trimmed-up.pdf"
     let UPLOAD_PDF_FORMATTED_6PAGE_FILEPATH = "socPrint/source-up.pdf"
     let UPLOAD_PDF_FORMATTED_FILEPATH = "socPrint/formatted.pdf"
     let UPLOAD_PS_FILEPATH_FORMAT = "socPrint/\"%@.ps\""
@@ -490,18 +506,23 @@ class PrintingOperation : NSOperation {
     var hostname : String!
     var pagesPerSheet : String!
     var printerName : String!
+    var startPage : Int
+    var endPage : Int
     var parent : PrintingViewController!
     var givenFilePath : String!
     var uploadedFilepath : String!
     
     
-    init(hostname : String, username : String, password : String, filePath : String, pagesPerSheet : String, printerName : String, parent : PrintingViewController) {
+    
+    init(hostname : String, username : String, password : String, filePath : String, pagesPerSheet : String, startPage : Int, endPage : Int, printerName : String, parent : PrintingViewController) {
         self.username = username
         self.password = password
         self.hostname = hostname
         self.givenFilePath = filePath
         self.pagesPerSheet = pagesPerSheet
         self.printerName = printerName
+        self.startPage = startPage
+        self.endPage = endPage
         var fileExtension : String = givenFilePath.pathExtension
         uploadedFilepath = UPLOAD_FILEPATH + fileExtension
         self.parent = parent
@@ -725,8 +746,31 @@ class PrintingOperation : NSOperation {
             
         }
         
+        var pdfFilepathToFormat : String!
         
-        //Step 6 : Format PDF to required pages per sheet if required
+        //Step 6: Trim PDF to page range if necessary
+        if(!cancelled){
+            if(parent.needToTrimPDFToPageRange){
+                parent.currentProgress = parent.POSITION_TRIM_PDF_TO_PAGE_RANGE
+                updateUI()
+                
+                var startNumberString = String(startPage)
+                var endNumberString = String(endPage)
+                
+                var trimCommand = "gs -sDEVICE=pdfwrite -dNOPAUSE -dBATCH -dSAFER -dFirstPage=" + startNumberString + " -dLastPage=" + endNumberString + " -sOutputFile=" + UPLOAD_PDF_TRIMMED_FILEPATH + " " + UPLOAD_SOURCE_PDF_FILEPATH
+                
+                connection.runCommand(trimCommand)
+                
+                pdfFilepathToFormat = UPLOAD_PDF_TRIMMED_FILEPATH
+                
+            } else {
+                pdfFilepathToFormat = UPLOAD_SOURCE_PDF_FILEPATH
+            }
+        }
+        
+        
+        
+        //Step 7 : Format PDF to required pages per sheet if required
         var pdfFilepathToConvertToPS : String!
         
         if(!cancelled){
@@ -737,10 +781,16 @@ class PrintingOperation : NSOperation {
                 
                 var formattingCommand : String!;
                 if(pagesPerSheet == "6"){
-                    formattingCommand = "java -classpath " + PDF_CONVERTER_6PAGE_FILEPATH + " tool.pdf.Impose -paper a4 -nup 6 " + UPLOAD_SOURCE_PDF_FILEPATH;
-                    pdfFilepathToConvertToPS = UPLOAD_PDF_FORMATTED_6PAGE_FILEPATH
+                    formattingCommand = "java -classpath " + PDF_CONVERTER_6PAGE_FILEPATH + " tool.pdf.Impose -paper a4 -nup 6 " + pdfFilepathToFormat;
+                    
+                    if(parent.needToTrimPDFToPageRange){
+                        pdfFilepathToConvertToPS = UPLOAD_PDF_FORMATTED_TRIMMED_6PAGE_FILEPATH
+                    } else {
+                        pdfFilepathToConvertToPS = UPLOAD_PDF_FORMATTED_6PAGE_FILEPATH
+                    }
+
                 } else {
-                    formattingCommand = "java -jar " + PDF_CONVERTER_FILEPATH + " " + UPLOAD_SOURCE_PDF_FILEPATH + " " + UPLOAD_PDF_FORMATTED_FILEPATH + " " + pagesPerSheet
+                    formattingCommand = "java -jar " + PDF_CONVERTER_FILEPATH + " " + pdfFilepathToFormat + " " + UPLOAD_PDF_FORMATTED_FILEPATH + " " + pagesPerSheet
                     pdfFilepathToConvertToPS = UPLOAD_PDF_FORMATTED_FILEPATH
                 }
                 
@@ -756,7 +806,7 @@ class PrintingOperation : NSOperation {
         
         var psFilePath = String(format: UPLOAD_PS_FILEPATH_FORMAT, psFileNameNoString)
         
-        //Step 7 : Converting to postscript
+        //Step 8 : Converting to postscript
         if(!cancelled){
             parent.currentProgress = parent.POSITION_CONVERTING_TO_POSTSCRIPT
             updateUI()
@@ -766,7 +816,7 @@ class PrintingOperation : NSOperation {
         }
         
         
-        //Final Step 8 : Send to printer
+        //Final Step 9 : Send to printer!!!
         
         if(!cancelled){
             parent.currentProgress = parent.POSITION_SENDING_TO_PRINTER
