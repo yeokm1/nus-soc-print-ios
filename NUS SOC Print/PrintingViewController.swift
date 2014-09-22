@@ -73,6 +73,9 @@ class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UI
     var filePath : NSURL!
     var filePathString : String!
     
+    var startPageRange : Int = 0
+    var endPageRange : Int = 0
+    
     var currentProgress : Int = 0
     
     var operation : PrintingOperation?

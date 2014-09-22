@@ -267,6 +267,24 @@ class PrintViewController: GAITrackedViewController, UIActionSheetDelegate, UITe
             printingController.printer = selectedPrinter
             printingController.pagesPerSheet = pagesPerSheet
             printingController.filePath = incomingURL
+            
+            if(pageRangeChoice.selectedSegmentIndex != 0){
+                var startRange : String = startPageField.text
+                var endRange : String = endPageField.text
+                var startNumber = startRange.toInt()
+                var endNumber = endRange.toInt()
+                
+                printingController.startPageRange = startNumber!
+                printingController.endPageRange = endNumber!
+                
+                
+            }
+            
+
+            
+            
+            
+            
         }
     }
     
