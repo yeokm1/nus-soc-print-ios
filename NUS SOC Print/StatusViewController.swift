@@ -13,7 +13,7 @@ class StatusViewController : GAITrackedViewController {
     
     let TAG = "StatusViewController"
     
-    let TEXT_GETTING_STATUS = "Retrieving Status"
+    let TEXT_CONNECTING = "Connecting to server..."
     var statusOperation : GetStatusOperation?
     var deleteOperation : DeleteOperation?
     
@@ -64,7 +64,7 @@ class StatusViewController : GAITrackedViewController {
         if(username == nil || username!.isEmpty || password == nil || password!.isEmpty){
             statusOutputView.text = FULL_CREDENTIALS_NOT_SET
         } else {
-            statusOutputView.text = TEXT_GETTING_STATUS
+            statusOutputView.text = TEXT_CONNECTING
             
             deleteOperation = DeleteOperation(hostname: hostname, username: username!, password: password!, printersList: printerList, outputView:statusOutputView)
             
@@ -104,7 +104,7 @@ class StatusViewController : GAITrackedViewController {
         if(username == nil || username!.isEmpty || password == nil || password!.isEmpty){
             statusOutputView.text = FULL_CREDENTIALS_NOT_SET
         } else {
-            statusOutputView.text = TEXT_GETTING_STATUS
+            statusOutputView.text = TEXT_CONNECTING
             
             statusOperation = GetStatusOperation(hostname: hostname, username: username!, password: password!, printersList: printerList, outputView:statusOutputView)
         
