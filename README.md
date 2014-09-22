@@ -7,12 +7,13 @@ This app has been approved on the [App Store](https://itunes.apple.com/sg/app/id
 
 ##Features
 1. Print PDF, DOC, DOCX, PPT, PPTX and ODT files
-2. Remaining quota check
-3. Print Status Check
-4. Page formatting for documents
-5. Accepts file exports from other apps like IVLE, Dropbox and the web browser.
-6. Deleting of existing job in print queue
-7. Runs on iOS7.0 and up for maximum compatibility
+2. Page range to be printed
+3. Remaining quota check
+4. Print Status Check
+5. Page formatting for documents
+6. Accepts file exports from other apps like IVLE, Dropbox and the web browser.
+7. Deleting of existing job in print queue
+8. Runs on iOS7.0 and up for maximum compatibility
 
 ##The original HacknRoll 2014 Video
 [![](http://img.youtube.com/vi/PRGcK7gzbnM/0.jpg)](http://www.youtube.com/watch?v=PRGcK7gzbnM)
