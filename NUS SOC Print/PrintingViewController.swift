@@ -491,6 +491,7 @@ class PrintingOperation : NSOperation {
     let DIALOG_UPLOAD_PDF_FORMATTER_FAILED = "Upload of PDF formatter failed"
     let DIALOG_UPLOAD_DOCUMENT_FAILED = "Upload of your document failed"
     let DIALOG_CONVERT_TO_PDF_FAILED = "Converting your document to PDF failed"
+    let DIALOG_TRIM_PDF_FAILED = "Trim PDF to page %d to %d failed"
     let DIALOG_PRINT_COMMAND_ERROR = "Printing command error"
     
     let DIALOG_ASK_UPLOAD_DOC_TITLE = "Upload DOC converter?"
@@ -759,7 +760,22 @@ class PrintingOperation : NSOperation {
                 
                 var trimCommand = "gs -sDEVICE=pdfwrite -dNOPAUSE -dBATCH -dSAFER -dFirstPage=" + startNumberString + " -dLastPage=" + endNumberString + " -sOutputFile=" + UPLOAD_PDF_TRIMMED_FILEPATH + " " + UPLOAD_SOURCE_PDF_FILEPATH
                 
-                connection.runCommand(trimCommand)
+                var reply : String = connection.runCommand(trimCommand)
+                
+                var range : Range<String.Index>? = reply.rangeOfString("Requested FirstPage is greater than the number of pages in the file")
+                
+                if(range != nil){
+                    var failedTrimTitle = String(format: DIALOG_TRIM_PDF_FAILED, arguments: [startPage, endPage])
+                    
+                    var startIndex = range!.startIndex
+                    var endIndex = reply.endIndex
+                    
+                    var errorMsg = reply.substringWithRange(Range<String.Index>(start: startIndex, end: endIndex))
+                    
+                    stepFailAndCleanUpOperation(failedTrimTitle, messageToShow: errorMsg)
+                    return
+                }
+        
                 
                 pdfFilepathToFormat = UPLOAD_PDF_TRIMMED_FILEPATH
                 
