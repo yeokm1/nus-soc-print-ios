@@ -496,7 +496,7 @@ class PrintingOperation : NSOperation {
     let DIALOG_PRINT_COMMAND_ERROR = "Printing command error"
     
     let DIALOG_ASK_UPLOAD_DOC_TITLE = "Upload DOC converter?"
-    let DIALOG_ASK_UPLOAD_DOC_MESSAGE = "Using the document converter requires a 50MB upload. You seem to be on mobile data so uploading this could be expensive.\n\nDo you want to continue?"
+    let DIALOG_ASK_UPLOAD_DOC_MESSAGE = "Using the document converter requires a 47MB upload. You seem to be on mobile data so uploading this could be expensive.\n\nDo you want to continue?"
     
     let DIALOG_ASK_UPLOAD_DOC_YES = "Yes"
     let DIALOG_ASK_UPLOAD_DOC_NO = "No"
