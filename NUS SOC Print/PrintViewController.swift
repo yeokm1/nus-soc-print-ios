@@ -79,9 +79,20 @@ class PrintViewController: GAITrackedViewController, UIActionSheetDelegate, UITe
     
     func updatePageRangeUI(){
         if(pageRangeChoice.selectedSegmentIndex == 0){
-            pageRangeViews.hidden = true
+            
+            var disabledColour = UIColor(white: 0.9, alpha: 1)
+            startPageField.userInteractionEnabled = false
+            endPageField.userInteractionEnabled = false
+            
+            startPageField.backgroundColor = disabledColour
+            endPageField.backgroundColor = disabledColour
         } else {
-            pageRangeViews.hidden = false
+            
+            startPageField.userInteractionEnabled = true
+            endPageField.userInteractionEnabled = true
+            
+            startPageField.backgroundColor = UIColor.whiteColor()
+            endPageField.backgroundColor = UIColor.whiteColor()
         }
     }
     
