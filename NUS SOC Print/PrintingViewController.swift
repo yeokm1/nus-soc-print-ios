@@ -492,6 +492,7 @@ class PrintingOperation : NSOperation {
     let DIALOG_UPLOAD_DOCUMENT_FAILED = "Upload of your document failed"
     let DIALOG_CONVERT_TO_PDF_FAILED = "Converting your document to PDF failed"
     let DIALOG_TRIM_PDF_FAILED = "Trim PDF to page %d to %d failed"
+    let DIALOG_CONVERT_TO_PS_FAILED = "Conversion to Postscript failed"
     let DIALOG_PRINT_COMMAND_ERROR = "Printing command error"
     
     let DIALOG_ASK_UPLOAD_DOC_TITLE = "Upload DOC converter?"
@@ -828,7 +829,12 @@ class PrintingOperation : NSOperation {
             updateUI()
             
             var conversionCommand : String = "pdftops " + pdfFilepathToConvertToPS + " " + psFilePath
-            connection.runCommand(conversionCommand)
+            var reply = connection.runCommand(conversionCommand)
+            
+            if(reply.utf16Count != 0){
+                stepFailAndCleanUpOperation(DIALOG_CONVERT_TO_PS_FAILED, messageToShow: reply)
+                return
+            }
         }
         
         
