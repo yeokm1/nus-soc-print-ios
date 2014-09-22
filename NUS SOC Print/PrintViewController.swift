@@ -23,8 +23,14 @@ class PrintViewController: GAITrackedViewController, UIActionSheetDelegate, UITe
     let TEXT_INSUFFICIENT_DETAILS_TEXT = "Please configure your Unix username, password and/or server in Settings before printing"
     
     
-    let TEXT_SELECTION_INCOMPLETE_TITLE = "Print options not chosen"
-    let TEXT_SELECTION_INCOMPLETE_MESSAGE = "Please select a printer and/or import a file to print"
+    let TEXT_SELECTION_NO_PRINTER_TITLE = "Printer not selected"
+    let TEXT_SELECTION_NO_PRINTER_MESSAGE = "Please choose a printer before continuing"
+    
+    let TEXT_SELECTION_NO_FILE_TITLE = "No file"
+    let TEXT_SELECTION_NO_FILE_MESSAGE = "No file imported. Please import a file before printing"
+    
+    let TEXT_SELECTION_INVALID_PAGE_RANGE_TITLE = "Invalid page range"
+    let TEXT_SELECTION_INVALID_PAGE_RANGE_MESSAGE = "Choose a valid page range before printing"
     
     
     var selectedPrinter : String!
@@ -200,12 +206,46 @@ class PrintViewController: GAITrackedViewController, UIActionSheetDelegate, UITe
             }
             
             
-            if(selectedPrinter == nil || incomingURL == nil){
-                showAlert(TEXT_SELECTION_INCOMPLETE_TITLE, TEXT_SELECTION_INCOMPLETE_MESSAGE, self)
+            var isUsingPageRange : Bool
+            
+            if(pageRangeChoice.selectedSegmentIndex == 0){
+                isUsingPageRange = false
+            } else {
+                isUsingPageRange = true
+            }
+            
+            var startRange : String = startPageField.text
+            var endRange : String = endPageField.text
+            
+            
+        
+            if(selectedPrinter == nil){
+                showAlert(TEXT_SELECTION_NO_PRINTER_TITLE, TEXT_SELECTION_NO_PRINTER_MESSAGE, self)
                 return false
+            } else if(incomingURL == nil){
+                showAlert(TEXT_SELECTION_NO_FILE_TITLE, TEXT_SELECTION_NO_FILE_MESSAGE, self)
+                return false
+            } else if(isUsingPageRange){
+                
+                var startNumber = startRange.toInt()
+                var endNumber = endRange.toInt()
+                
+                
+                if(startNumber == nil || endNumber == nil
+                    || startNumber == 0 || endNumber == 0
+                    || startNumber > endNumber){
+                        
+                    showAlert(TEXT_SELECTION_INVALID_PAGE_RANGE_TITLE, TEXT_SELECTION_INVALID_PAGE_RANGE_MESSAGE, self)
+                    return false
+                } else {
+                    return true
+                }
+                
             } else {
                 return true
             }
+            
+
             
         } else {
             return true
