@@ -11,7 +11,7 @@ import UIKit
 
 var incomingURL : NSURL?
 
-class PrintViewController: GAITrackedViewController, UIActionSheetDelegate {
+class PrintViewController: GAITrackedViewController, UIActionSheetDelegate, UITextFieldDelegate {
     
     let TAG = "PrintViewController"
 
@@ -36,9 +36,14 @@ class PrintViewController: GAITrackedViewController, UIActionSheetDelegate {
     @IBOutlet weak var pdfShower: UIWebView!
     @IBOutlet weak var pagesPerSheetSelection: UISegmentedControl!
     
+    @IBOutlet weak var startPageField: UITextField!
+    @IBOutlet weak var endPageField: UITextField!
 
     @IBOutlet weak var filenameView: UITextView!
     
+
+    @IBOutlet weak var pageRangeChoice: UISegmentedControl!
+    @IBOutlet weak var pageRangeViews: UIView!
 
     @IBAction func selectPrinterPressed(sender: UIButton) {
         
@@ -62,11 +67,49 @@ class PrintViewController: GAITrackedViewController, UIActionSheetDelegate {
         
     }
     
+    @IBAction func pageRangeSelectionChanged(sender: UISegmentedControl) {
+        updatePageRangeUI()
+    }
+    
+    func updatePageRangeUI(){
+        if(pageRangeChoice.selectedSegmentIndex == 0){
+            pageRangeViews.hidden = true
+        } else {
+            pageRangeViews.hidden = false
+        }
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        var myCharSet = NSCharacterSet(charactersInString: "0123456789")
+        var inString : NSString = string as NSString
+
+        for (var i = 0; i < inString.length; i++) {
+            var c : unichar = inString.characterAtIndex(i)
+            
+            if(!myCharSet.characterIsMember(c)){
+                return false;
+            }
+        }
+        
+        return true;
+    }
+    
+    //To close numbper pad keyboard if user tap outside
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        startPageField.resignFirstResponder()
+        endPageField.resignFirstResponder()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         NSLog("%@ viewDidLoad", TAG);
         setSelfToDelegate(self)
+        updatePageRangeUI()
+        
+        startPageField.delegate = self
+        endPageField.delegate = self
+        
     }
     
     override func viewDidAppear(animated: Bool) {
