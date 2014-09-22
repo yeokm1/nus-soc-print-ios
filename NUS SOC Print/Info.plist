@@ -87,6 +87,8 @@
 	<true/>
 	<key>NSHumanReadableCopyright</key>
 	<string>2014, Yeo Kheng Meng</string>
+	<key>UILaunchStoryboardName</key>
+	<string>Launch Screen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HtZ-Ae-lHl">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <items/>
+                </tabBar>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="HtZ-Ae-lHl" secondAttribute="trailing" id="Jfz-iX-lUl"/>
+                <constraint firstItem="HtZ-Ae-lHl" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Qml-8i-ShA"/>
+                <constraint firstAttribute="bottom" secondItem="HtZ-Ae-lHl" secondAttribute="bottom" id="dE7-c2-AX0"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="HtZ-Ae-lHl"/>
+                </mask>
+                <mask key="constraints">
+                    <exclude reference="Jfz-iX-lUl"/>
+                    <exclude reference="Qml-8i-ShA"/>
+                    <exclude reference="dE7-c2-AX0"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular">
+                <mask key="subviews">
+                    <include reference="HtZ-Ae-lHl"/>
+                </mask>
+                <mask key="constraints">
+                    <include reference="Jfz-iX-lUl"/>
+                    <include reference="Qml-8i-ShA"/>
+                    <include reference="dE7-c2-AX0"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="404" y="531"/>
+        </view>
+    </objects>
+</document>

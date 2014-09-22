@@ -36,6 +36,7 @@
 		538BEDE61986A10B00C61282 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 538BEDE41986A10B00C61282 /* Main.storyboard */; };
 		538BEDE81986A10B00C61282 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 538BEDE71986A10B00C61282 /* Images.xcassets */; };
 		538BEDF41986A10B00C61282 /* NUS_SOC_PrintTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538BEDF31986A10B00C61282 /* NUS_SOC_PrintTests.swift */; };
+		539F3B8619D05AD3005A5A65 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 539F3B8519D05AD3005A5A65 /* Launch Screen.xib */; };
 		53CD62CE199F08F300979ED0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53CD62CC199F05E800979ED0 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		53D25B8219BDEA03005877A4 /* ContantsObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D25B8119BDEA03005877A4 /* ContantsObjC.m */; };
 		F81F5101FAC4495081E5F372 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B58A9287E28435DA8D57847 /* libPods.a */; };
@@ -89,6 +90,7 @@
 		538BEDED1986A10B00C61282 /* NUS SOC PrintTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NUS SOC PrintTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		538BEDF21986A10B00C61282 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		538BEDF31986A10B00C61282 /* NUS_SOC_PrintTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NUS_SOC_PrintTests.swift; sourceTree = "<group>"; };
+		539F3B8519D05AD3005A5A65 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		53CD62CA199F05A900979ED0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		53CD62CC199F05E800979ED0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		53D25B8119BDEA03005877A4 /* ContantsObjC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContantsObjC.m; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				53D25B8319BDEA20005877A4 /* ConstantsObjC.h */,
 				53476F0C19C085B400677B3E /* Reachability.h */,
 				53476F0D19C085B400677B3E /* Reachability.m */,
+				539F3B8519D05AD3005A5A65 /* Launch Screen.xib */,
 			);
 			path = "NUS SOC Print";
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 			files = (
 				538A5C5D19B43EA600C34D9F /* Multivalent.jar in Resources */,
 				53232AFB19A1D44000FE70DA /* docs-to-pdf-converter-1.7.jar in Resources */,
+				539F3B8619D05AD3005A5A65 /* Launch Screen.xib in Resources */,
 				53232AFA19A1D43A00FE70DA /* nup_pdf.jar in Resources */,
 				5345CEF419A05409006F920E /* behind_alert_view.png in Resources */,
 				538BEDE61986A10B00C61282 /* Main.storyboard in Resources */,
