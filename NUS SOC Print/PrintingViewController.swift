@@ -542,6 +542,15 @@ class PrintingOperation : NSOperation {
         var dictPagesPerSheet : NSMutableDictionary =  GAIDictionaryBuilder.createEventWithCategory("printing", action: "pagesPerSheet", label: pagesPerSheet, value: nil).build()
         var dictFileType : NSMutableDictionary =  GAIDictionaryBuilder.createEventWithCategory("printing", action: "fileType", label: fileType, value: nil).build()
         
+        if(parent.needToTrimPDFToPageRange){
+            var dictStartPage : NSMutableDictionary =  GAIDictionaryBuilder.createEventWithCategory("printing", action: "startPage", label: String(startPage), value: nil).build()
+            
+            var dictEndPage : NSMutableDictionary =  GAIDictionaryBuilder.createEventWithCategory("printing", action: "endPage", label: String(endPage), value: nil).build()
+            
+            tracker.send(dictStartPage)
+            tracker.send(dictEndPage)
+        }
+        
         tracker.send(dictPrinterName)
         tracker.send(dictPagesPerSheet)
         tracker.send(dictFileType)
