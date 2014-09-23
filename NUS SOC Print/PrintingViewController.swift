@@ -824,7 +824,12 @@ class PrintingOperation : NSOperation {
                 
                 
             } else {
-                pdfFilepathToConvertToPS = UPLOAD_SOURCE_PDF_FILEPATH
+                
+                if(parent.needToTrimPDFToPageRange){
+                    pdfFilepathToConvertToPS = UPLOAD_PDF_TRIMMED_FILEPATH
+                } else {
+                    pdfFilepathToConvertToPS = UPLOAD_SOURCE_PDF_FILEPATH
+                }
             }
             
         }
@@ -832,7 +837,7 @@ class PrintingOperation : NSOperation {
         
         var psFilePath = String(format: UPLOAD_PS_FILEPATH_FORMAT, psFileNameNoString)
         
-        //Step 8 : Converting to postscript
+        //Step 8 : Converting to Postscript
         if(!cancelled){
             parent.currentProgress = parent.POSITION_CONVERTING_TO_POSTSCRIPT
             updateUI()
