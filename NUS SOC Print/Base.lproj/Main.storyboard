@@ -529,11 +529,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">1. Open another app like Dropbox, IVLE or your web browser.
-2. Open the document you want to print
-3. Click the "Export" icon
-4. Choose "Open In"
-5. Select "NUS SOC Print"
-6. Choose printer and pages/sheet
+2. Open the document you want to print.
+3. Click the "Export" icon.
+4. Choose "Open In".
+5. Select "NUS SOC Print".
+6. Choose printer options.
 7. Hit Print!
 
 Supported formats:
