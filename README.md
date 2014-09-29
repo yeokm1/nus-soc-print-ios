@@ -11,7 +11,7 @@ This app has been approved on the [App Store](https://itunes.apple.com/sg/app/id
 3. Remaining quota check
 4. Print Status Check
 5. Page formatting for documents
-6. Accepts file exports from other apps like IVLE, Dropbox and the web browser.
+6. Accepts file exports from other apps like IVLE, Dropbox, Google Drive and the web browser.
 7. Deleting of existing job in print queue
 8. Runs on iOS7.0 and up for maximum compatibility
 
