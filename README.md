@@ -22,13 +22,13 @@ This app has been approved on the [App Store](https://itunes.apple.com/sg/app/id
 
 ##Screenshots
 
-<a href="url"><img src="screenshots/4-inch/main.png" align="centre" height="568" width="320" ></a>
+<a href="screenshots/4-inch/main.png"><img src="screenshots/4-inch/main.png" align="centre" height="568" width="320" ></a>
 <p></p>
-<a href="url"><img src="screenshots/4-inch/printing.png" align="centre" height="568" width="320" ></a>
+<a href="screenshots/4-inch/printing.png"><img src="screenshots/4-inch/printing.png" align="centre" height="568" width="320" ></a>
 <p></p>
-<a href="url"><img src="screenshots/4-inch/status.png" align="centre" height="568" width="320" ></a>
+<a href="screenshots/4-inch/status.png"><img src="screenshots/4-inch/status.png" align="centre" height="568" width="320" ></a>
 <p></p>
-<a href="url"><img src="screenshots/4-inch/quota.png" align="centre" height="568" width="320" ></a>
+<a href="screenshots/4-inch/quota.png"><img src="screenshots/4-inch/quota.png" align="centre" height="568" width="320" ></a>
 <p></p>
 
 View more screenshots in the screenshots directory.
