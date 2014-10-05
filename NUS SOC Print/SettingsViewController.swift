@@ -71,8 +71,10 @@ class SettingsViewController: GAITrackedViewController, UITextFieldDelegate{
             preferences.storePassword(password)
             preferences.storePrinter(printer)
             preferences.storeServer(server)
+            closeKeyboard()
             showAlert(DIALOG_SAVE_TITLE, DIALOG_SAVE_TEXT, self)
         }
+        
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -105,6 +107,20 @@ class SettingsViewController: GAITrackedViewController, UITextFieldDelegate{
     func textFieldShouldReturn(textField: UITextField!) -> Bool {
         textField.resignFirstResponder();
         return true;
+    }
+    
+    
+    //To close keyboard if user tap outside
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        closeKeyboard()
+    }
+    
+    
+    func closeKeyboard(){
+        usernameField.resignFirstResponder()
+        passwordField.resignFirstResponder()
+        printerField.resignFirstResponder()
+        serverField.resignFirstResponder()
     }
     
     
