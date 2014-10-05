@@ -112,7 +112,7 @@ class PrintViewController: GAITrackedViewController, UIActionSheetDelegate, UITe
         return true;
     }
     
-    //To close numbper pad keyboard if user tap outside
+    //To close number pad keyboard if user tap outside
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         startPageField.resignFirstResponder()
         endPageField.resignFirstResponder()
