@@ -153,7 +153,7 @@ class StatusViewController : GAITrackedViewController {
     class DeleteOperation : BaseOperation {
         let FORMAT_PRINTER_COMMAND = "lprm -P %@ -"
         let FORMAT_DELETION_OUTPUT = "Deletion command sent to %@\n"
-        let DELETION_COMMAND_SENT_TO_ALL = "Delection command sent to all printers"
+        let DELETION_COMMAND_SENT_TO_ALL = "Deletion command sent to all printers"
         
         override func main() {
             connection = SSHConnectivity(hostname: hostname!, username: username!, password: password!)
