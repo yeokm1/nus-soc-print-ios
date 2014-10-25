@@ -24,7 +24,7 @@ class HelpViewController: GAITrackedViewController {
     
     
     @IBAction func videoButtonPress(sender: UIButton) {
-        UIApplication.sharedApplication().openURL(NSURL(string: "http://www.youtube.com/watch?v=PRGcK7gzbnM"))
+        UIApplication.sharedApplication().openURL(NSURL(string: "http://www.youtube.com/watch?v=PRGcK7gzbnM")!)
     }
 
     @IBAction func emailMe(sender: UIButton) {
@@ -36,7 +36,7 @@ class HelpViewController: GAITrackedViewController {
         
         var urlString : String = String(format: "mailto:?to=%@&subject=%@(%@)(%@)(%@)", myEmail, subject, device.model, device.osVersion, versionString)
         
-        var url : NSURL = NSURL(string: urlString)
+        var url : NSURL = NSURL(string: urlString)!
         
         UIApplication.sharedApplication().openURL(url)
        

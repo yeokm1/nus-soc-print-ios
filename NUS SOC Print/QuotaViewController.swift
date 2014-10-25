@@ -60,7 +60,7 @@ class QuotaViewController: GAITrackedViewController, NSURLConnectionDataDelegate
         
         var postLength : String = String(format: "%d", postData!.length)
         
-        var url : NSURL = NSURL.URLWithString(SERVER_URL)
+        var url : NSURL = NSURL(string:SERVER_URL)!
 
         var request : NSMutableURLRequest = NSMutableURLRequest(URL: url)
         
@@ -76,12 +76,12 @@ class QuotaViewController: GAITrackedViewController, NSURLConnectionDataDelegate
 
     func connection(connection: NSURLConnection!, didReceiveData data: NSData!) {
 
-        var dataStringNS : NSString = NSString(data: data, encoding: NSUTF8StringEncoding)
+        var dataStringNS : NSString = NSString(data: data, encoding: NSUTF8StringEncoding)!
         
         NSLog("%@ %@", TAG, dataStringNS)
         
   
-        var regex : NSRegularExpression = NSRegularExpression.regularExpressionWithPattern(QUOTA_REGEX_PATTERN, options: NSRegularExpressionOptions.CaseInsensitive, error: nil)!
+        var regex : NSRegularExpression = NSRegularExpression(pattern:QUOTA_REGEX_PATTERN, options: NSRegularExpressionOptions.CaseInsensitive, error: nil)!
         
         var matches = regex.matchesInString(dataStringNS, options: NSMatchingOptions.allZeros, range: NSMakeRange(0, dataStringNS.length))
         
@@ -124,7 +124,7 @@ class QuotaViewController: GAITrackedViewController, NSURLConnectionDataDelegate
 
     func stringByStrippingHTML(input : String) -> String{
   
-        var regex : NSRegularExpression = NSRegularExpression.regularExpressionWithPattern("<[^>]+>", options: NSRegularExpressionOptions.CaseInsensitive, error: nil)!
+        var regex : NSRegularExpression = NSRegularExpression(pattern:"<[^>]+>", options: NSRegularExpressionOptions.CaseInsensitive, error: nil)!
 
         var output = regex.stringByReplacingMatchesInString(input, options: NSMatchingOptions.allZeros, range: NSMakeRange(0, input.utf16Count), withTemplate: "")
    

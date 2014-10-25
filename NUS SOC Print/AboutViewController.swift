@@ -36,7 +36,7 @@ class AboutViewController: GAITrackedViewController {
     
     
     @IBAction func sourceCodeButtonPress(sender: UIButton) {
-        UIApplication.sharedApplication().openURL(NSURL(string: "https://github.com/yeokm1/nus-soc-print-ios"))
+        UIApplication.sharedApplication().openURL(NSURL(string: "https://github.com/yeokm1/nus-soc-print-ios")!)
     }
     
 }

@@ -36,7 +36,7 @@ class SettingsViewController: GAITrackedViewController, UITextFieldDelegate{
     
     @IBAction func forgetButtonPress(sender: UIButton) {
         
-        var url  = NSURL.URLWithString(RESET_PASSWORD_LINK)
+        var url : NSURL = NSURL(string: RESET_PASSWORD_LINK)!
         UIApplication.sharedApplication().openURL(url)
     }
     
