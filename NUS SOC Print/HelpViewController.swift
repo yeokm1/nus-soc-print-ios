@@ -24,8 +24,10 @@ class HelpViewController: GAITrackedViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //To enable scrolling if the scrollview content is larger than the physical scrollview size
+        //http://stackoverflow.com/questions/20502860/scroll-view-not-functioning-ios-7
         scrollView.contentSize = CGSizeMake(288, 453);
-
     }
     
     
