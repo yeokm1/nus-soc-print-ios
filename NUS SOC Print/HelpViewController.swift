@@ -15,9 +15,17 @@ class HelpViewController: GAITrackedViewController {
     
     let TAG = "HelpViewController"
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.screenName = TAG;
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        scrollView.contentSize = CGSizeMake(288, 453);
+
     }
     
     
