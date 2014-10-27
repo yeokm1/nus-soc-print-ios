@@ -579,7 +579,7 @@ PDF, DOC, DOCX, PPT, PPTX and ODT
                                         <rect key="frame" x="8" y="341" width="276" height="79"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <string key="text">Your probably used your NUSNET credentials instead of your SoC Unix ones. You can reset your Unix credentials using the provided link in Settings.</string>
+                                        <string key="text">You probably used your NUSNET credential instead of your SoC Unix one. You can reset your Unix credential using the provided link in Settings.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
