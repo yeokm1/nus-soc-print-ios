@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate {
+class PrintingViewController : HelperFunctionsYesNoAlertViewController, UITableViewDelegate, UITableViewDataSource{
     
     let TAG = "PrintingViewController"
     
@@ -364,78 +364,39 @@ class PrintingViewController : GAITrackedViewController, UITableViewDelegate, UI
     }
     
     
-    func showUploadDocConverterChoiceAlert(title: String, message : String){
+    //Override this, 0 for yes, 1 for no
+    override func receiveAlertViewResponse(alertTag : Int, clickedButtonIndex : Int){
+        NSLog("%@ alertview clicked %d", TAG, clickedButtonIndex)
         
-        if(isSystemAtLeastiOS8()){
-            var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-            
-            let yesBlock = {(action: UIAlertAction!) -> Void in
-                self.continueWithDocumentUpload = true
-                self.unlockSemaphore()
-            }
-            
-            
-            let noBlock = {(action: UIAlertAction!) -> Void in
-                self.continueWithDocumentUpload = false
-                self.unlockSemaphore()
-            }
-            
-            
-            alert.addAction(UIAlertAction(title: DIALOG_YES, style: UIAlertActionStyle.Default, handler: yesBlock))
-            alert.addAction(UIAlertAction(title: DIALOG_NO, style: UIAlertActionStyle.Cancel, handler: noBlock))
-            
-            self.presentViewController(alert, animated: true, completion: nil)
-        } else {
-            
-            var alertView : UIAlertView = UIAlertView(title: title, message: message, delegate: self, cancelButtonTitle: DIALOG_NO, otherButtonTitles: DIALOG_YES)
-            alertView.tag = ALERT_CONTINUE_DOC_UPLOAD_TAG
-            alertView.show()
-            
-        }
-        
-    }
-
-    
-    func showCancelOperationAlert(title: String, message : String, viewController : UIViewController){
-        
-        if(isSystemAtLeastiOS8()){
-            var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-            
-            let cancelBlock = {(action: UIAlertAction!) -> Void in
-                self.cancelCurrentOperation()
-            }
-            
-            alert.addAction(UIAlertAction(title: DIALOG_YES, style: UIAlertActionStyle.Default, handler: cancelBlock))
-            alert.addAction(UIAlertAction(title: DIALOG_NO, style: UIAlertActionStyle.Cancel, handler: nil))
-            
-            viewController.presentViewController(alert, animated: true, completion: nil)
-        } else {
-            
-            var alertView : UIAlertView = UIAlertView(title: title, message: message, delegate: self, cancelButtonTitle: DIALOG_NO, otherButtonTitles: DIALOG_YES)
-            alertView.tag = ALERT_CANCEL_OPERATION_TAG
-            alertView.show()
-            
-        }
-        
-    }
-    
-    func alertView(alertView: UIAlertView!, clickedButtonAtIndex buttonIndex: Int) {
-        NSLog("%@ alertview clicked %d", TAG, buttonIndex)
-        
-        if(alertView.tag == ALERT_CANCEL_OPERATION_TAG){
-            if(buttonIndex == 1){
+        if(alertTag == ALERT_CANCEL_OPERATION_TAG){
+            if(clickedButtonIndex == 1){
                 cancelCurrentOperation()
             }
-        } else if(alertView.tag == ALERT_CONTINUE_DOC_UPLOAD_TAG){
-            if(buttonIndex == 0){ //No button
+        } else if(alertTag == ALERT_CONTINUE_DOC_UPLOAD_TAG){
+            if(clickedButtonIndex == 0){ //No button
                 self.continueWithDocumentUpload = false
-            } else if(buttonIndex == 1){ //Yes button
+            } else if(clickedButtonIndex == 1){ //Yes button
                 self.continueWithDocumentUpload = true
             }
             
             self.unlockSemaphore()
         }
     }
+    
+    
+    
+    
+    func showUploadDocConverterChoiceAlert(title: String, message : String){
+        showYesNoAlert(title, message, self, ALERT_CONTINUE_DOC_UPLOAD_TAG)
+    }
+    
+
+    
+    func showCancelOperationAlert(title: String, message : String, viewController : UIViewController){
+        showYesNoAlert(title, message, self, ALERT_CANCEL_OPERATION_TAG)
+    }
+    
+
     
     func cancelCurrentOperation(){
         NSLog("%@ Cancel current operation", TAG)
