@@ -38,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     
         //Move file to tmp directory
-        var newURLPath : NSURL = NSURL(fileURLWithPath: NSTemporaryDirectory().stringByAppendingPathComponent(url.lastPathComponent))!
+        var newURLPath : NSURL = NSURL(fileURLWithPath: NSTemporaryDirectory().stringByAppendingPathComponent(url.lastPathComponent!))!
         
         filemgr.moveItemAtURL(url, toURL: newURLPath, error: nil)
         

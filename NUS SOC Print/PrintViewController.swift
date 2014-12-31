@@ -188,7 +188,7 @@ class PrintViewController: GAITrackedViewController, UIActionSheetDelegate, UITe
         if(incomingURL != nil){
             var urlRequest : NSURLRequest = NSURLRequest(URL: incomingURL!)
             pdfShower?.loadRequest(urlRequest)
-            var filename : String = incomingURL!.lastPathComponent
+            var filename : String = incomingURL!.lastPathComponent!
             
             filenameView?.text = filename
             
