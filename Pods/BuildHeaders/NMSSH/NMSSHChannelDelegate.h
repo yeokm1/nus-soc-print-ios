@@ -1,1 +1,0 @@
-../../NMSSH/NMSSH/Protocols/NMSSHChannelDelegate.h

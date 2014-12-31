@@ -1,1 +1,0 @@
-../../NMSSH/NMSSH/NMSSHConfig.h
