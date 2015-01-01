@@ -49,12 +49,12 @@ func showYesNoAlert(title: String, message : String, viewController : HelperFunc
         
         
         let yesBlock = {(action: UIAlertAction!) -> Void in
-            viewController.receiveAlertViewResponse(alertTag, clickedButtonIndex: 0)
+            viewController.receiveAlertViewResponse(alertTag, clickedButtonIndex: 1)
         }
         
         
         let noBlock = {(action: UIAlertAction!) -> Void in
-            viewController.receiveAlertViewResponse(alertTag, clickedButtonIndex: 1)
+            viewController.receiveAlertViewResponse(alertTag, clickedButtonIndex: 0)
         }
         
         

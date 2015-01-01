@@ -16,7 +16,7 @@ class HelperFunctionsYesNoAlertViewController : GAITrackedViewController, UIAler
     }
     
     
-    //Override this, 0 for yes, 1 for no
+    //Override this, 1 for yes, 0 for no
     func receiveAlertViewResponse(alertTag : Int, clickedButtonIndex : Int){
         
     }

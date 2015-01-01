@@ -364,7 +364,7 @@ class PrintingViewController : HelperFunctionsYesNoAlertViewController, UITableV
     }
     
     
-    //Override this, 0 for yes, 1 for no
+    //Override this, 1 for yes, 0 for no
     override func receiveAlertViewResponse(alertTag : Int, clickedButtonIndex : Int){
         NSLog("%@ alertview clicked %d", TAG, clickedButtonIndex)
         
@@ -373,10 +373,10 @@ class PrintingViewController : HelperFunctionsYesNoAlertViewController, UITableV
                 cancelCurrentOperation()
             }
         } else if(alertTag == ALERT_CONTINUE_DOC_UPLOAD_TAG){
-            if(clickedButtonIndex == 0){ //No button
-                self.continueWithDocumentUpload = false
-            } else if(clickedButtonIndex == 1){ //Yes button
+            if(clickedButtonIndex == 1){ //Yes button
                 self.continueWithDocumentUpload = true
+            } else if(clickedButtonIndex == 0){ //No button
+                self.continueWithDocumentUpload = false
             }
             
             self.unlockSemaphore()
