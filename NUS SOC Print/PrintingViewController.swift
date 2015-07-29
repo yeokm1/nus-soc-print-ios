@@ -409,7 +409,7 @@ class PrintingViewController : HelperFunctionsYesNoAlertViewController, UITableV
         NSLog("%@ unlockSemaphore", TAG);
         
         if(semaphore != nil){
-            dispatch_semaphore_signal(semaphore);
+            dispatch_semaphore_signal(semaphore!);
             semaphore = nil;
         }
     }
@@ -495,26 +495,26 @@ class PrintingOperation : NSOperation {
     override func main() {
         
         //Step -1: Tell Google Analytics printing actions
-        var fileType : String = givenFilePath.pathExtension
-        
-        var tracker = GAI.sharedInstance().defaultTracker
-        
-        var dictPrinterName : NSMutableDictionary = GAIDictionaryBuilder.createEventWithCategory("printing", action: "printer", label: printerName, value: nil).build()
-        var dictPagesPerSheet : NSMutableDictionary =  GAIDictionaryBuilder.createEventWithCategory("printing", action: "pagesPerSheet", label: pagesPerSheet, value: nil).build()
-        var dictFileType : NSMutableDictionary =  GAIDictionaryBuilder.createEventWithCategory("printing", action: "fileType", label: fileType, value: nil).build()
-        
-        if(parent.needToTrimPDFToPageRange){
-            var dictStartPage : NSMutableDictionary =  GAIDictionaryBuilder.createEventWithCategory("printing", action: "startPage", label: String(startPage), value: nil).build()
-            
-            var dictEndPage : NSMutableDictionary =  GAIDictionaryBuilder.createEventWithCategory("printing", action: "endPage", label: String(endPage), value: nil).build()
-            
-            tracker.send(dictStartPage)
-            tracker.send(dictEndPage)
-        }
-        
-        tracker.send(dictPrinterName)
-        tracker.send(dictPagesPerSheet)
-        tracker.send(dictFileType)
+//        var fileType : String = givenFilePath.pathExtension
+//        
+//        var tracker = GAI.sharedInstance().defaultTracker
+//        
+//        var dictPrinterName : NSMutableDictionary = GAIDictionaryBuilder.createEventWithCategory("printing", action: "printer", label: printerName, value: nil).build()
+//        var dictPagesPerSheet : NSMutableDictionary =  GAIDictionaryBuilder.createEventWithCategory("printing", action: "pagesPerSheet", label: pagesPerSheet, value: nil).build()
+//        var dictFileType : NSMutableDictionary =  GAIDictionaryBuilder.createEventWithCategory("printing", action: "fileType", label: fileType, value: nil).build()
+//        
+//        if(parent.needToTrimPDFToPageRange){
+//            var dictStartPage =  GAIDictionaryBuilder.createEventWithCategory("printing", action: "startPage", label: String(startPage), value: nil).build()
+//            
+//            var dictEndPage : NSMutableDictionary =  GAIDictionaryBuilder.createEventWithCategory("printing", action: "endPage", label: String(endPage), value: nil).build()
+//
+//            tracker.send(dictStartPage)
+//            tracker.send(dictEndPage)
+//        }
+//        
+//        tracker.send(dictPrinterName)
+//        tracker.send(dictPagesPerSheet)
+//        tracker.send(dictFileType)
         
         
         
@@ -571,7 +571,7 @@ class PrintingOperation : NSOperation {
                 if(isOn3G){
                     parent.semaphore = dispatch_semaphore_create(0);
                     askWhetherToUploadDocConverter()
-                    dispatch_semaphore_wait(parent.semaphore, DISPATCH_TIME_FOREVER);
+                    dispatch_semaphore_wait(parent.semaphore!, DISPATCH_TIME_FOREVER);
                     
                     if(!parent.continueWithDocumentUpload){
                         cleanUpOperation()
@@ -710,7 +710,7 @@ class PrintingOperation : NSOperation {
             var conversionCommand : String = "java -jar " + DOC_CONVERTER_FILEPATH + " -i " + uploadedFilepath + " -o " + UPLOAD_SOURCE_PDF_FILEPATH;
             
             var reply : String = connection.runCommand(conversionCommand)
-            if(reply.utf16Count != 0){
+            if(count(reply.utf16) != 0){
                 stepFailAndCleanUpOperation(DIALOG_CONVERT_TO_PDF_FAILED, messageToShow : reply)
                 return
             }
@@ -806,7 +806,7 @@ class PrintingOperation : NSOperation {
             var conversionCommand : String = "pdftops " + pdfFilepathToConvertToPS + " " + psFilePath
             var reply = connection.runCommand(conversionCommand)
             
-            if(reply.utf16Count != 0){
+            if(count(reply.utf16) != 0){
                 stepFailAndCleanUpOperation(DIALOG_CONVERT_TO_PS_FAILED, messageToShow: reply)
                 return
             }
@@ -821,7 +821,7 @@ class PrintingOperation : NSOperation {
             
             var printingCommand : String = "lpr -P " + printerName + " " + psFilePath
             var output = connection.runCommand(printingCommand)
-            if(output.utf16Count != 0){
+            if(count(output.utf16) != 0){
                 stepFailAndCleanUpOperation(DIALOG_PRINT_COMMAND_ERROR, messageToShow: output)
                 return
             }

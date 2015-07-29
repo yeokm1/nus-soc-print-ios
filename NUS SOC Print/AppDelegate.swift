@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var directoryContents : Array = filemgr.contentsOfDirectoryAtPath(NSTemporaryDirectory(), error: nil)!
         
         for path in directoryContents {
-            var fullPath = NSTemporaryDirectory().stringByAppendingPathComponent(path as String)
+            var fullPath = NSTemporaryDirectory().stringByAppendingPathComponent(path as! String)
             filemgr.removeItemAtPath(fullPath, error: nil)
         }
 
@@ -46,13 +46,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Remove stuff from /Document/Inbox directory
         
         var searchDirectories : NSArray = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
-        var documentsDirectory : NSString = searchDirectories.objectAtIndex(0) as NSString
+        var documentsDirectory : NSString = searchDirectories.objectAtIndex(0) as! NSString
         var inboxDirectory = documentsDirectory.stringByAppendingPathComponent("Inbox")
         
         var filesInInbox : NSArray = filemgr.contentsOfDirectoryAtPath(inboxDirectory, error: nil)!
         
         for filePath in filesInInbox{
-            var fullPath : String = inboxDirectory.stringByAppendingPathComponent(filePath as String)
+            var fullPath : String = inboxDirectory.stringByAppendingPathComponent(filePath as! String)
             filemgr.removeItemAtPath(fullPath, error: nil)
         }
         
@@ -72,9 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
-    
-
-    func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
         // Optional: automatically send uncaught exceptions to Google Analytics.
         GAI.sharedInstance().trackUncaughtExceptions = true
         
@@ -83,12 +81,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Optional: set Logger to VERBOSE for debug information. Can't work in swift
         //GAI.sharedInstance().logger.logLevel = kGAILogLevelVerbose
-
+        
         // Initialize tracker. Replace with your tracking ID.
         GAI.sharedInstance().trackerWithTrackingId("UA-46031707-2")
-
+        
         return true
     }
+
 
     func applicationWillResignActive(application: UIApplication!) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

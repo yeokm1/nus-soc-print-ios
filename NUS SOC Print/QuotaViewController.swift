@@ -83,7 +83,7 @@ class QuotaViewController: GAITrackedViewController, NSURLConnectionDataDelegate
   
         var regex : NSRegularExpression = NSRegularExpression(pattern:QUOTA_REGEX_PATTERN, options: NSRegularExpressionOptions.CaseInsensitive, error: nil)!
         
-        var matches = regex.matchesInString(dataStringNS, options: NSMatchingOptions.allZeros, range: NSMakeRange(0, dataStringNS.length))
+        var matches = regex.matchesInString(dataStringNS as String, options: NSMatchingOptions.allZeros, range: NSMakeRange(0, dataStringNS.length))
         
   
         quotaOutput.text = ""
@@ -126,7 +126,7 @@ class QuotaViewController: GAITrackedViewController, NSURLConnectionDataDelegate
   
         var regex : NSRegularExpression = NSRegularExpression(pattern:"<[^>]+>", options: NSRegularExpressionOptions.CaseInsensitive, error: nil)!
 
-        var output = regex.stringByReplacingMatchesInString(input, options: NSMatchingOptions.allZeros, range: NSMakeRange(0, input.utf16Count), withTemplate: "")
+        var output = regex.stringByReplacingMatchesInString(input, options: NSMatchingOptions.allZeros, range: NSMakeRange(0, count(input.utf16)), withTemplate: "")
    
 
         return output

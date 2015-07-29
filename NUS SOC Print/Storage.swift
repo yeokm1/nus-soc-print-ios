@@ -77,7 +77,7 @@ class Storage  {
 
         var storedServer : String? =  preferences.stringForKey(KEY_SERVER)
         
-        if(storedServer == nil || storedServer!.utf16Count == 0){
+        if(storedServer == nil || count(storedServer!.utf16) == 0){
             return DEFAULT_SERVER;
         } else {
             return storedServer!;

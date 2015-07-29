@@ -113,7 +113,7 @@ class PrintViewController: GAITrackedViewController, UIActionSheetDelegate, UITe
     }
     
     //To close number pad keyboard if user tap outside
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         startPageField.resignFirstResponder()
         endPageField.resignFirstResponder()
     }
@@ -153,7 +153,7 @@ class PrintViewController: GAITrackedViewController, UIActionSheetDelegate, UITe
     }
     
     func setSelfToDelegate(myself : PrintViewController?){
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.printViewController = myself
     }
     
@@ -266,11 +266,11 @@ class PrintViewController: GAITrackedViewController, UIActionSheetDelegate, UITe
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
 
         
-        var controller : UIViewController = segue.destinationViewController as UIViewController
+        var controller : UIViewController = segue.destinationViewController as! UIViewController
         
         if(controller.isKindOfClass(PrintingViewController)){
             NSLog("%@ prepareforSegue, going to printing view", TAG)
-            var printingController : PrintingViewController = controller as PrintingViewController
+            var printingController : PrintingViewController = controller as! PrintingViewController
             
             var printer : String? = selectedPrinter
             var pagesPerSheet : String = pagesPerSheetSelection.titleForSegmentAtIndex(pagesPerSheetSelection.selectedSegmentIndex)!

@@ -1,2 +1,2 @@
 pod 'NMSSH'
-pod 'GoogleAnalytics-iOS-SDK'
+pod 'GoogleAnalytics'

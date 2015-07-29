@@ -109,13 +109,11 @@ class SettingsViewController: GAITrackedViewController, UITextFieldDelegate{
         return true;
     }
     
-    
     //To close keyboard if user tap outside
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         closeKeyboard()
     }
-    
-    
+
     func closeKeyboard(){
         usernameField.resignFirstResponder()
         passwordField.resignFirstResponder()
