@@ -74,7 +74,7 @@ class QuotaViewController: GAITrackedViewController, NSURLConnectionDataDelegate
     }
     
 
-    func connection(connection: NSURLConnection!, didReceiveData data: NSData!) {
+    func connection(connection: NSURLConnection, didReceiveData data: NSData) {
 
         var dataStringNS : NSString = NSString(data: data, encoding: NSUTF8StringEncoding)!
         
@@ -115,9 +115,7 @@ class QuotaViewController: GAITrackedViewController, NSURLConnectionDataDelegate
         
     }
     
-    
-    
-    func connection(connection: NSURLConnection!, didFailWithError error: NSError!) {
+    func connection(connection: NSURLConnection, didFailWithError error: NSError) {
         quotaOutput.text = SERVER_UNREACHABLE
     }
     

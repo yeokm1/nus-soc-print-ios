@@ -300,7 +300,7 @@ class PrintViewController: GAITrackedViewController, UIActionSheetDelegate, UITe
     }
     
     
-    func actionSheet(actionSheet: UIActionSheet!, clickedButtonAtIndex buttonIndex: Int) {
+    func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
         //As index 0 is reserved for the cancelButton
         var actualSelectedIndex = buttonIndex - 1
         
