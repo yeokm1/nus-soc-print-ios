@@ -62,3 +62,4 @@ Dependencies
 3. [Solve weird linker problems](http://stackoverflow.com/questions/25371556/swift-beta-6-confusing-linker-error-message)
 4. [Solve issue of scrollview not scrolling](http://stackoverflow.com/questions/20502860/scroll-view-not-functioning-ios-7
 )
+5. [Identify device type](https://github.com/erica/uidevice-extension)
