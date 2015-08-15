@@ -40,8 +40,13 @@ Dependencies
 3. Cocoapods
 4. NMSSH SSH library (installed via Cocoapods)
 5. Google Analytics (installed via Cocoapods)
-6. [Identify device type](https://github.com/erica/uidevice-extension) 
-7. Docs to PDF converter (Included in repo). From [another project of mine](https://github.com/yeokm1/docs-to-pdf-converter).
+
+Libraries placed internally
+=====
+1. [Identify device type](https://github.com/erica/uidevice-extension) 
+2. Docs to PDF converter (Included in repo). From [another project of mine](https://github.com/yeokm1/docs-to-pdf-converter).
+3. [nup_pdf PDF formatter](http://blog.rubypdf.com/2007/08/24/how-to-make-n-up-pdf-with-free-software/)
+4. [Multivalent PDF formatter](http://multivalent.sourceforge.net/Tools/pdf/Impose.html)
 
 ##Compiling the project
 1. Swift is only available from Xcode 6 so you have to use that.
