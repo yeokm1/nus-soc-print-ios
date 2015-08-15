@@ -40,7 +40,8 @@ Dependencies
 3. Cocoapods
 4. NMSSH SSH library (installed via Cocoapods)
 5. Google Analytics (installed via Cocoapods)
-6. Docs to PDF converter (Included in repo). From [another project of mine](https://github.com/yeokm1/docs-to-pdf-converter).
+6. [Identify device type](https://github.com/erica/uidevice-extension) 
+7. Docs to PDF converter (Included in repo). From [another project of mine](https://github.com/yeokm1/docs-to-pdf-converter).
 
 ##Compiling the project
 1. Swift is only available from Xcode 6 so you have to use that.
@@ -62,4 +63,3 @@ Dependencies
 3. [Solve weird linker problems](http://stackoverflow.com/questions/25371556/swift-beta-6-confusing-linker-error-message)
 4. [Solve issue of scrollview not scrolling](http://stackoverflow.com/questions/20502860/scroll-view-not-functioning-ios-7
 )
-5. [Identify device type](https://github.com/erica/uidevice-extension)
