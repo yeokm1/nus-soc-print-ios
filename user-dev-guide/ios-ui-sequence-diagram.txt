@@ -1,0 +1,33 @@
+me:actor
+ui : UI
+storage : Storage 
+operation : ConnectionOperation-NSOperation
+ssh : SSHConnectivity
+
+ui.executeRequest(){
+  storage.getUsername( )
+  storage.getPassword( )
+  storage.getServer( )
+  
+  operation.create()
+  operation.init(host, username, password, ...)
+  operation.start( ){
+  ssh.create()
+  ssh.init(host,username,password)
+  ssh.connect( )
+
+  
+  loop(){
+  ssh.runCommand(command)
+  ui.updateUI( ){
+  
+  me>showProgress()
+
+}
+  
+}
+  
+}
+  
+  
+}
