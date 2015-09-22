@@ -88,16 +88,3 @@ func getVersionString() -> String {
     return appString
     
 }
-
-
-func isSystemAtLeastiOS8() -> Bool{
-    let systemVersion = getSystemVersion() as NSString
-    
-    let systemVersionFloat = systemVersion.floatValue
-    if(systemVersionFloat >= 8.0){
-        return true
-    } else {
-        return false
-    }
-    
-}
