@@ -17,7 +17,9 @@ class MainTabBarController : UITabBarController {
         NSLog("%@ viewdidload", TAG)
         
         if #available(iOS 8.0, *) {
-            
+            //Do nothing
+
+        } else {
             //So this controller will not turn black when the pop up comes in. See here http://stackoverflow.com/a/16230701
             self.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
         }
