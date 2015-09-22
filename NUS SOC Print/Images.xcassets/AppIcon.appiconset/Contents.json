@@ -7,10 +7,22 @@
       "scale" : "2x"
     },
     {
+      "size" : "29x29",
+      "idiom" : "iphone",
+      "filename" : "icon_print80-1.png",
+      "scale" : "3x"
+    },
+    {
       "size" : "40x40",
       "idiom" : "iphone",
       "filename" : "icon_print80.png",
       "scale" : "2x"
+    },
+    {
+      "size" : "40x40",
+      "idiom" : "iphone",
+      "filename" : "icon_print80-2.png",
+      "scale" : "3x"
     },
     {
       "size" : "60x60",
