@@ -495,26 +495,28 @@ class PrintingOperation : NSOperation {
     override func main() {
         
         //Step -1: Tell Google Analytics printing actions
-//        var fileType : String = givenFilePath.pathExtension
-//        
-//        var tracker = GAI.sharedInstance().defaultTracker
-//        
-//        var dictPrinterName : NSMutableDictionary = GAIDictionaryBuilder.createEventWithCategory("printing", action: "printer", label: printerName, value: nil).build()
-//        var dictPagesPerSheet : NSMutableDictionary =  GAIDictionaryBuilder.createEventWithCategory("printing", action: "pagesPerSheet", label: pagesPerSheet, value: nil).build()
-//        var dictFileType : NSMutableDictionary =  GAIDictionaryBuilder.createEventWithCategory("printing", action: "fileType", label: fileType, value: nil).build()
-//        
-//        if(parent.needToTrimPDFToPageRange){
-//            var dictStartPage =  GAIDictionaryBuilder.createEventWithCategory("printing", action: "startPage", label: String(startPage), value: nil).build()
-//            
-//            var dictEndPage : NSMutableDictionary =  GAIDictionaryBuilder.createEventWithCategory("printing", action: "endPage", label: String(endPage), value: nil).build()
-//
-//            tracker.send(dictStartPage)
-//            tracker.send(dictEndPage)
-//        }
-//        
-//        tracker.send(dictPrinterName)
-//        tracker.send(dictPagesPerSheet)
-//        tracker.send(dictFileType)
+        let fileType : String = (givenFilePath as NSString).pathExtension
+        
+        let tracker = GAI.sharedInstance().defaultTracker
+        
+        let dictPrinterName : NSMutableDictionary = GAIDictionaryBuilder.createEventWithCategory("printing", action: "printer", label: printerName, value: nil).build()
+        let dictPagesPerSheet : NSMutableDictionary =  GAIDictionaryBuilder.createEventWithCategory("printing", action: "pagesPerSheet", label: pagesPerSheet, value: nil).build()
+        let dictFileType : NSMutableDictionary =  GAIDictionaryBuilder.createEventWithCategory("printing", action: "fileType", label: fileType, value: nil).build()
+        
+        if(parent.needToTrimPDFToPageRange){
+            let dictStartPage =  GAIDictionaryBuilder.createEventWithCategory("printing", action: "startPage", label: String(startPage), value: nil).build()
+            
+            let dictEndPage : NSMutableDictionary =  GAIDictionaryBuilder.createEventWithCategory("printing", action: "endPage", label: String(endPage), value: nil).build()
+
+            //This part has to be check to see if it works
+            tracker.send(dictStartPage as [NSObject : AnyObject])
+            tracker.send(dictEndPage as [NSObject : AnyObject])
+        }
+        
+        //This part has to be check to see if it works
+        tracker.send(dictPrinterName as [NSObject : AnyObject])
+        tracker.send(dictPagesPerSheet as [NSObject : AnyObject])
+        tracker.send(dictFileType as [NSObject : AnyObject])
         
         
         
