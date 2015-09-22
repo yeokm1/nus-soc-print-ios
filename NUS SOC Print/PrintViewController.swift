@@ -53,14 +53,14 @@ class PrintViewController: GAITrackedViewController, UIActionSheetDelegate, UITe
 
     @IBAction func selectPrinterPressed(sender: UIButton) {
         
-        var storage : Storage = Storage.sharedInstance
+        let storage : Storage = Storage.sharedInstance
         
         latestPrinterList = storage.getPrinterList()
         
         //Cancel button is added separately due to a bug up to iOS 7.1.
         // http://stackoverflow.com/a/6193431
         
-        var selectPrinterWindow : UIActionSheet = UIActionSheet(title: TEXT_SELECT_PRINTER, delegate: self, cancelButtonTitle: nil, destructiveButtonTitle: nil)
+        let selectPrinterWindow : UIActionSheet = UIActionSheet(title: TEXT_SELECT_PRINTER, delegate: self, cancelButtonTitle: nil, destructiveButtonTitle: nil)
         
         selectPrinterWindow.addButtonWithTitle(TEXT_CANCEL)
         
@@ -80,7 +80,7 @@ class PrintViewController: GAITrackedViewController, UIActionSheetDelegate, UITe
     func updatePageRangeUI(){
         if(pageRangeChoice.selectedSegmentIndex == 0){
             
-            var disabledColour = UIColor(white: 0.9, alpha: 1)
+            let disabledColour = UIColor(white: 0.9, alpha: 1)
             startPageField.userInteractionEnabled = false
             endPageField.userInteractionEnabled = false
             
@@ -98,11 +98,11 @@ class PrintViewController: GAITrackedViewController, UIActionSheetDelegate, UITe
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         
-        var myCharSet = NSCharacterSet(charactersInString: "0123456789")
-        var inString : NSString = string as NSString
+        let myCharSet = NSCharacterSet(charactersInString: "0123456789")
+        let inString : NSString = string as NSString
 
         for (var i = 0; i < inString.length; i++) {
-            var c : unichar = inString.characterAtIndex(i)
+            let c : unichar = inString.characterAtIndex(i)
             
             if(!myCharSet.characterIsMember(c)){
                 return false;
@@ -113,7 +113,7 @@ class PrintViewController: GAITrackedViewController, UIActionSheetDelegate, UITe
     }
     
     //To close number pad keyboard if user tap outside
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         startPageField.resignFirstResponder()
         endPageField.resignFirstResponder()
     }
@@ -159,17 +159,17 @@ class PrintViewController: GAITrackedViewController, UIActionSheetDelegate, UITe
     
     
     func getCredentialsAndShowWarning() -> (settingsOK : Bool, username : String?, password : String?, server : String){
-        var preferences : Storage = Storage.sharedInstance;
+        let preferences : Storage = Storage.sharedInstance;
         
-        var username : String?  = preferences.getUsername()
-        var password : String? = preferences.getPassword()
-        var server : String = preferences.getServer()
+        let username : String?  = preferences.getUsername()
+        let password : String? = preferences.getPassword()
+        let server : String = preferences.getServer()
         
         
         if username == nil || username!.isEmpty
             || password == nil || password!.isEmpty
             || server.isEmpty {
-                showAlert(TEXT_INSUFFICIENT_DETAILS_TITLE, TEXT_INSUFFICIENT_DETAILS_TEXT, self)
+                showAlert(TEXT_INSUFFICIENT_DETAILS_TITLE, message: TEXT_INSUFFICIENT_DETAILS_TEXT, viewController: self)
              return (false, username, password, server)
                 
         } else {
@@ -186,9 +186,9 @@ class PrintViewController: GAITrackedViewController, UIActionSheetDelegate, UITe
         //iOS8 beta 6 still has this bug of not displaying the PDF and showing "failed to find PDF header: `%PDF' not found." in the log
         
         if(incomingURL != nil){
-            var urlRequest : NSURLRequest = NSURLRequest(URL: incomingURL!)
+            let urlRequest : NSURLRequest = NSURLRequest(URL: incomingURL!)
             pdfShower?.loadRequest(urlRequest)
-            var filename : String = incomingURL!.lastPathComponent!
+            let filename : String = incomingURL!.lastPathComponent!
             
             filenameView?.text = filename
             
@@ -202,15 +202,12 @@ class PrintViewController: GAITrackedViewController, UIActionSheetDelegate, UITe
         // Dispose of any resources that can be recreated.
     }
     
-    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject!) -> Bool {
-        if(identifier != nil && identifier! == "startingPrinting"){
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject!) -> Bool {
+        if(identifier == "startingPrinting"){
             
-            var credentials = getCredentialsAndShowWarning()
+            let credentials = getCredentialsAndShowWarning()
             
-            var settingsOK = credentials.settingsOK
-            var username : String? = credentials.username
-            var password : String? = credentials.password
-            var server : String? = credentials.server
+            let settingsOK = credentials.settingsOK
             
             if(!settingsOK){
                 return false
@@ -225,28 +222,33 @@ class PrintViewController: GAITrackedViewController, UIActionSheetDelegate, UITe
                 isUsingPageRange = true
             }
             
-            var startRange : String = startPageField.text
-            var endRange : String = endPageField.text
+            let startRange : String? = startPageField.text
+            let endRange : String? = endPageField.text
             
             
         
             if(selectedPrinter == nil){
-                showAlert(TEXT_SELECTION_NO_PRINTER_TITLE, TEXT_SELECTION_NO_PRINTER_MESSAGE, self)
+                showAlert(TEXT_SELECTION_NO_PRINTER_TITLE, message: TEXT_SELECTION_NO_PRINTER_MESSAGE, viewController: self)
                 return false
             } else if(incomingURL == nil){
-                showAlert(TEXT_SELECTION_NO_FILE_TITLE, TEXT_SELECTION_NO_FILE_MESSAGE, self)
+                showAlert(TEXT_SELECTION_NO_FILE_TITLE, message: TEXT_SELECTION_NO_FILE_MESSAGE, viewController: self)
                 return false
             } else if(isUsingPageRange){
                 
-                var startNumber = startRange.toInt()
-                var endNumber = endRange.toInt()
+                if(startRange == nil || endRange == nil){
+                    showAlert(TEXT_SELECTION_INVALID_PAGE_RANGE_TITLE, message: TEXT_SELECTION_INVALID_PAGE_RANGE_MESSAGE, viewController: self)
+                    return false
+                }
+                
+                let startNumber = Int(startRange!)
+                let endNumber = Int(endRange!)
                 
                 
                 if(startNumber == nil || endNumber == nil
                     || startNumber == 0 || endNumber == 0
                     || startNumber > endNumber){
                         
-                    showAlert(TEXT_SELECTION_INVALID_PAGE_RANGE_TITLE, TEXT_SELECTION_INVALID_PAGE_RANGE_MESSAGE, self)
+                    showAlert(TEXT_SELECTION_INVALID_PAGE_RANGE_TITLE, message: TEXT_SELECTION_INVALID_PAGE_RANGE_MESSAGE, viewController: self)
                     return false
                 } else {
                     return true
@@ -266,24 +268,24 @@ class PrintViewController: GAITrackedViewController, UIActionSheetDelegate, UITe
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
 
         
-        var controller : UIViewController = segue.destinationViewController as! UIViewController
+        let controller : UIViewController = segue.destinationViewController 
         
         if(controller.isKindOfClass(PrintingViewController)){
             NSLog("%@ prepareforSegue, going to printing view", TAG)
-            var printingController : PrintingViewController = controller as! PrintingViewController
+            let printingController : PrintingViewController = controller as! PrintingViewController
             
-            var printer : String? = selectedPrinter
-            var pagesPerSheet : String = pagesPerSheetSelection.titleForSegmentAtIndex(pagesPerSheetSelection.selectedSegmentIndex)!
+            
+            let pagesPerSheet : String = pagesPerSheetSelection.titleForSegmentAtIndex(pagesPerSheetSelection.selectedSegmentIndex)!
         
             printingController.printer = selectedPrinter
             printingController.pagesPerSheet = pagesPerSheet
             printingController.filePath = incomingURL
             
             if(pageRangeChoice.selectedSegmentIndex != 0){
-                var startRange : String = startPageField.text
-                var endRange : String = endPageField.text
-                var startNumber = startRange.toInt()
-                var endNumber = endRange.toInt()
+                let startRange : String = startPageField.text!
+                let endRange : String = endPageField.text!
+                let startNumber = Int(startRange)
+                let endNumber = Int(endRange)
                 
                 printingController.startPageRange = startNumber!
                 printingController.endPageRange = endNumber!
@@ -302,7 +304,7 @@ class PrintViewController: GAITrackedViewController, UIActionSheetDelegate, UITe
     
     func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
         //As index 0 is reserved for the cancelButton
-        var actualSelectedIndex = buttonIndex - 1
+        let actualSelectedIndex = buttonIndex - 1
         
         if(actualSelectedIndex != -1){
             selectedPrinter = latestPrinterList![actualSelectedIndex]

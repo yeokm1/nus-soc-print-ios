@@ -163,9 +163,9 @@ class PrintingViewController : HelperFunctionsYesNoAlertViewController, UITableV
     
     
     func isFileAPdf(filename : String) -> Bool{
-        var filenameNS : NSString = filename as NSString
+        let filenameNS : NSString = filename as NSString
         
-        var fileType : String = filenameNS.pathExtension
+        let fileType : String = filenameNS.pathExtension
         
         
         if fileType.rangeOfString("pdf") == nil {
@@ -176,7 +176,7 @@ class PrintingViewController : HelperFunctionsYesNoAlertViewController, UITableV
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        var row : Int = indexPath.row
+        let row : Int = indexPath.row
         
         if(row == POSITION_UPLOADING_DOC_CONVERTER && !needToConvertDocToPDF
             || row == POSITION_CONVERTING_TO_PDF && !needToConvertDocToPDF
@@ -254,7 +254,7 @@ class PrintingViewController : HelperFunctionsYesNoAlertViewController, UITableV
         
         if(row == POSITION_UPLOADING_DOC_CONVERTER){
             
-            var progress = generateProgressStringAndProgressFraction(docConvUploaded, totalSize: docConvSize)
+            let progress = generateProgressStringAndProgressFraction(docConvUploaded, totalSize: docConvSize)
             
             cell.smallFooter.text = progress.progressString
             cell.progressBar.progress = progress.progressFraction
@@ -264,7 +264,7 @@ class PrintingViewController : HelperFunctionsYesNoAlertViewController, UITableV
         
         if(row == POSITION_UPLOADING_PDF_CONVERTER){
             
-            var progress = generateProgressStringAndProgressFraction(pdfConvUploaded, totalSize: pdfConvSize)
+            let progress = generateProgressStringAndProgressFraction(pdfConvUploaded, totalSize: pdfConvSize)
             
             cell.smallFooter.text = progress.progressString
             cell.progressBar.progress = progress.progressFraction
@@ -273,7 +273,7 @@ class PrintingViewController : HelperFunctionsYesNoAlertViewController, UITableV
         
         
         if(row == POSITION_UPLOADING_USER_DOC){
-            var progress = generateProgressStringAndProgressFraction(docToPrintUploaded, totalSize: docToPrintSize)
+            let progress = generateProgressStringAndProgressFraction(docToPrintUploaded, totalSize: docToPrintSize)
             
             cell.smallFooter.text = progress.progressString
             cell.progressBar.progress = progress.progressFraction
@@ -292,8 +292,8 @@ class PrintingViewController : HelperFunctionsYesNoAlertViewController, UITableV
     
     
     func generateProgressStringAndProgressFraction(currentSize : Int, totalSize : Int) -> (progressString : String, progressFraction : Float){
-        var doubleCurrent = Double(currentSize)
-        var doubleTotal = Double(totalSize)
+        let doubleCurrent = Double(currentSize)
+        let doubleTotal = Double(totalSize)
         
         var progressFraction : Float = 0
         
@@ -301,18 +301,18 @@ class PrintingViewController : HelperFunctionsYesNoAlertViewController, UITableV
             progressFraction = Float(doubleCurrent / doubleTotal)
         }
         
-        var percent = progressFraction * 100
+        let percent = progressFraction * 100
         
-        var byteCountFormatter = NSByteCountFormatter()
+        let byteCountFormatter = NSByteCountFormatter()
         byteCountFormatter.zeroPadsFractionDigits = true
         byteCountFormatter.countStyle = NSByteCountFormatterCountStyle.File
         
         
-        var uploadedStr = byteCountFormatter.stringFromByteCount(Int64(currentSize))
+        let uploadedStr = byteCountFormatter.stringFromByteCount(Int64(currentSize))
         
-        var totalStr = byteCountFormatter.stringFromByteCount(Int64(totalSize))
+        let totalStr = byteCountFormatter.stringFromByteCount(Int64(totalSize))
         
-        var formatString = String(format: FORMAT_UPLOADING, uploadedStr, totalStr, percent)
+        let formatString = String(format: FORMAT_UPLOADING, uploadedStr, totalStr, percent)
         
         return (formatString, progressFraction)
         
@@ -326,16 +326,16 @@ class PrintingViewController : HelperFunctionsYesNoAlertViewController, UITableV
             return
         }
         
-        var preferences : Storage = Storage.sharedInstance;
+        let preferences : Storage = Storage.sharedInstance;
         
         
-        var username : String?  = preferences.getUsername()
-        var password : String? = preferences.getPassword()
-        var hostname : String = preferences.getServer()
+        let username : String?  = preferences.getUsername()
+        let password : String? = preferences.getPassword()
+        let hostname : String = preferences.getServer()
         
         
         if(username == nil || username!.isEmpty || password == nil || password!.isEmpty){
-            showAlert(TITLE_STOP, FULL_CREDENTIALS_NOT_SET, self)
+            showAlert(TITLE_STOP, message: FULL_CREDENTIALS_NOT_SET, viewController: self)
         } else {
             
             currentProgress = 0
@@ -387,13 +387,13 @@ class PrintingViewController : HelperFunctionsYesNoAlertViewController, UITableV
     
     
     func showUploadDocConverterChoiceAlert(title: String, message : String){
-        showYesNoAlert(title, message, self, ALERT_CONTINUE_DOC_UPLOAD_TAG)
+        showYesNoAlert(title, message: message, viewController: self, alertTag: ALERT_CONTINUE_DOC_UPLOAD_TAG)
     }
     
 
     
     func showCancelOperationAlert(title: String, message : String, viewController : UIViewController){
-        showYesNoAlert(title, message, self, ALERT_CANCEL_OPERATION_TAG)
+        showYesNoAlert(title, message: message, viewController: self, alertTag: ALERT_CANCEL_OPERATION_TAG)
     }
     
 
@@ -486,7 +486,7 @@ class PrintingOperation : NSOperation {
         self.printerName = printerName
         self.startPage = startPage
         self.endPage = endPage
-        var fileExtension : String = givenFilePath.pathExtension
+        let fileExtension : String = (givenFilePath as NSString).pathExtension
         uploadedFilepath = UPLOAD_FILEPATH + fileExtension
         self.parent = parent
         
@@ -524,10 +524,10 @@ class PrintingOperation : NSOperation {
         updateUI()
         
         connection = SSHConnectivity(hostname: hostname!, username: username!, password: password!)
-        var connectionStatus = connection.connect()
+        let connectionStatus = connection.connect()
         
-        var serverFound : Bool = connectionStatus.serverFound
-        var authorised : Bool = connectionStatus.authorised
+        let serverFound : Bool = connectionStatus.serverFound
+        let authorised : Bool = connectionStatus.authorised
         
         if(serverFound){
             if(!authorised){
@@ -547,7 +547,7 @@ class PrintingOperation : NSOperation {
             
             connection.createDirectory(TEMP_DIRECTORY)
             
-            var houseKeepingCommand = "find " + TEMP_DIRECTORY + " -type f \\( \\! -name '" + PDF_CONVERTER_FILENAME + "' \\) \\( \\! -name '" + DOC_CONVERTER_FILENAME + "' \\) \\( \\! -name '" + PDF_CONVERTER_6PAGE_FILENAME + "' \\) -exec rm '{}' \\;"
+            let houseKeepingCommand = "find " + TEMP_DIRECTORY + " -type f \\( \\! -name '" + PDF_CONVERTER_FILENAME + "' \\) \\( \\! -name '" + DOC_CONVERTER_FILENAME + "' \\) \\( \\! -name '" + PDF_CONVERTER_6PAGE_FILENAME + "' \\) -exec rm '{}' \\;"
             
             connection.runCommand(houseKeepingCommand)
         }
@@ -558,15 +558,15 @@ class PrintingOperation : NSOperation {
             parent.currentProgress = parent.POSITION_UPLOADING_DOC_CONVERTER
             updateUI()
             
-            var needToUpload = doesThisFileNeedToBeUploaded(DOC_CONVERTER_FILEPATH, md5Value: DOC_CONVERTER_MD5)
+            let needToUpload = doesThisFileNeedToBeUploaded(DOC_CONVERTER_FILEPATH, md5Value: DOC_CONVERTER_MD5)
             
             
-            var pathToDocConverter : String = NSBundle.mainBundle().pathForResource(DOC_CONVERTER_NAME, ofType: "jar")!
-            var docConvSize : Int = getFileSizeOfFile(pathToDocConverter)
+            let pathToDocConverter : String = NSBundle.mainBundle().pathForResource(DOC_CONVERTER_NAME, ofType: "jar")!
+            let docConvSize : Int = getFileSizeOfFile(pathToDocConverter)
             
             if(needToUpload){
                 
-                var isOn3G = ConstantsObjC.isOn3G()
+                let isOn3G = ConstantsObjC.isOn3G()
                 
                 if(isOn3G){
                     parent.semaphore = dispatch_semaphore_create(0);
@@ -581,8 +581,7 @@ class PrintingOperation : NSOperation {
                 }
                 
 
-                
-                var docConvURL : NSURL = NSURL.fileURLWithPath(pathToDocConverter)!
+            
                 let docConvUploadProgressBlock = {(bytesUploaded : UInt) -> Bool in
                     
                     let bytesUploadedInt : Int = Int(bytesUploaded)
@@ -595,7 +594,7 @@ class PrintingOperation : NSOperation {
                     }
                 }
                 
-                var uploadStatus = connection.uploadFile(pathToDocConverter, destinationPath: DOC_CONVERTER_FILEPATH, progress: docConvUploadProgressBlock)
+                let uploadStatus = connection.uploadFile(pathToDocConverter, destinationPath: DOC_CONVERTER_FILEPATH, progress: docConvUploadProgressBlock)
                 
                 if(!uploadStatus){
                     stepFailAndCleanUpOperation(DIALOG_UPLOAD_DOC_CONV_FAILED)
@@ -635,14 +634,13 @@ class PrintingOperation : NSOperation {
             }
             
             
-            var needToUpload = doesThisFileNeedToBeUploaded(actualFilePath, md5Value: actualMD5)
+            let needToUpload = doesThisFileNeedToBeUploaded(actualFilePath, md5Value: actualMD5)
             
             
-            var pathToPdfConverter : String = NSBundle.mainBundle().pathForResource(actualName, ofType: "jar")!
-            var pdfConvSize : Int = getFileSizeOfFile(pathToPdfConverter)
+            let pathToPdfConverter : String = NSBundle.mainBundle().pathForResource(actualName, ofType: "jar")!
+            let pdfConvSize : Int = getFileSizeOfFile(pathToPdfConverter)
             
             if(needToUpload){
-                var pdfConvURL : NSURL = NSURL.fileURLWithPath(pathToPdfConverter)!
                 let pdfConvUploadProgressBlock = {(bytesUploaded : UInt) -> Bool in
                     
                     let bytesUploadedInt : Int = Int(bytesUploaded)
@@ -655,7 +653,7 @@ class PrintingOperation : NSOperation {
                     }
                 }
                 
-                var uploadStatus = connection.uploadFile(pathToPdfConverter, destinationPath: actualFilePath, progress: pdfConvUploadProgressBlock)
+                let uploadStatus = connection.uploadFile(pathToPdfConverter, destinationPath: actualFilePath, progress: pdfConvUploadProgressBlock)
                 
                 if(!uploadStatus){
                     stepFailAndCleanUpOperation(DIALOG_UPLOAD_PDF_FORMATTER_FAILED)
@@ -676,7 +674,7 @@ class PrintingOperation : NSOperation {
             parent.currentProgress = parent.POSITION_UPLOADING_USER_DOC
             updateUI()
             
-            var documentSize : Int = getFileSizeOfFile(givenFilePath)
+            let documentSize : Int = getFileSizeOfFile(givenFilePath)
             
             
             let documentUploadProgressBlock = {(bytesUploaded : UInt) -> Bool in
@@ -691,7 +689,7 @@ class PrintingOperation : NSOperation {
                 }
             }
             
-            var uploadStatus = connection.uploadFile(givenFilePath, destinationPath: uploadedFilepath, progress: documentUploadProgressBlock)
+            let uploadStatus = connection.uploadFile(givenFilePath, destinationPath: uploadedFilepath, progress: documentUploadProgressBlock)
             
             
             if(!uploadStatus){
@@ -707,10 +705,11 @@ class PrintingOperation : NSOperation {
             updateUI()
             
             
-            var conversionCommand : String = "java -jar " + DOC_CONVERTER_FILEPATH + " -i " + uploadedFilepath + " -o " + UPLOAD_SOURCE_PDF_FILEPATH;
+            let conversionCommand : String = "java -jar " + DOC_CONVERTER_FILEPATH + " -i " + uploadedFilepath + " -o " + UPLOAD_SOURCE_PDF_FILEPATH;
             
-            var reply : String = connection.runCommand(conversionCommand)
-            if(count(reply.utf16) != 0){
+            let reply : String = connection.runCommand(conversionCommand)
+            
+            if(reply.utf16.count != 0){
                 stepFailAndCleanUpOperation(DIALOG_CONVERT_TO_PDF_FAILED, messageToShow : reply)
                 return
             }
@@ -726,22 +725,22 @@ class PrintingOperation : NSOperation {
                 parent.currentProgress = parent.POSITION_TRIM_PDF_TO_PAGE_RANGE
                 updateUI()
                 
-                var startNumberString = String(startPage)
-                var endNumberString = String(endPage)
+                let startNumberString = String(startPage)
+                let endNumberString = String(endPage)
                 
-                var trimCommand = "gs -sDEVICE=pdfwrite -dNOPAUSE -dBATCH -dSAFER -dFirstPage=" + startNumberString + " -dLastPage=" + endNumberString + " -sOutputFile=" + UPLOAD_PDF_TRIMMED_FILEPATH + " " + UPLOAD_SOURCE_PDF_FILEPATH
+                let trimCommand = "gs -sDEVICE=pdfwrite -dNOPAUSE -dBATCH -dSAFER -dFirstPage=" + startNumberString + " -dLastPage=" + endNumberString + " -sOutputFile=" + UPLOAD_PDF_TRIMMED_FILEPATH + " " + UPLOAD_SOURCE_PDF_FILEPATH
                 
-                var reply : String = connection.runCommand(trimCommand)
+                let reply : String = connection.runCommand(trimCommand)
                 
-                var range : Range<String.Index>? = reply.rangeOfString("Requested FirstPage is greater than the number of pages in the file")
+                let range : Range<String.Index>? = reply.rangeOfString("Requested FirstPage is greater than the number of pages in the file")
                 
                 if(range != nil){
-                    var failedTrimTitle = String(format: DIALOG_TRIM_PDF_FAILED, arguments: [startPage, endPage])
+                    let failedTrimTitle = String(format: DIALOG_TRIM_PDF_FAILED, arguments: [startPage, endPage])
                     
-                    var startIndex = range!.startIndex
-                    var endIndex = reply.endIndex
+                    let startIndex = range!.startIndex
+                    let endIndex = reply.endIndex
                     
-                    var errorMsg = reply.substringWithRange(Range<String.Index>(start: startIndex, end: endIndex))
+                    let errorMsg = reply.substringWithRange(Range<String.Index>(start: startIndex, end: endIndex))
                     
                     stepFailAndCleanUpOperation(failedTrimTitle, messageToShow: errorMsg)
                     return
@@ -794,19 +793,19 @@ class PrintingOperation : NSOperation {
             }
             
         }
-        var psFileNameNoString = givenFilePath.lastPathComponent.stringByDeletingPathExtension
+        let psFileNameNoString = ((givenFilePath as NSString).lastPathComponent as NSString).stringByDeletingPathExtension
         
-        var psFilePath = String(format: UPLOAD_PS_FILEPATH_FORMAT, psFileNameNoString)
+        let psFilePath = String(format: UPLOAD_PS_FILEPATH_FORMAT, psFileNameNoString)
         
         //Step 8 : Converting to Postscript
         if(!cancelled){
             parent.currentProgress = parent.POSITION_CONVERTING_TO_POSTSCRIPT
             updateUI()
             
-            var conversionCommand : String = "pdftops " + pdfFilepathToConvertToPS + " " + psFilePath
-            var reply = connection.runCommand(conversionCommand)
+            let conversionCommand : String = "pdftops " + pdfFilepathToConvertToPS + " " + psFilePath
+            let reply = connection.runCommand(conversionCommand)
             
-            if(count(reply.utf16) != 0){
+            if(reply.utf16.count != 0){
                 stepFailAndCleanUpOperation(DIALOG_CONVERT_TO_PS_FAILED, messageToShow: reply)
                 return
             }
@@ -819,9 +818,9 @@ class PrintingOperation : NSOperation {
             parent.currentProgress = parent.POSITION_SENDING_TO_PRINTER
             updateUI()
             
-            var printingCommand : String = "lpr -P " + printerName + " " + psFilePath
-            var output = connection.runCommand(printingCommand)
-            if(count(output.utf16) != 0){
+            let printingCommand : String = "lpr -P " + printerName + " " + psFilePath
+            let output = connection.runCommand(printingCommand)
+            if(output.utf16.count != 0){
                 stepFailAndCleanUpOperation(DIALOG_PRINT_COMMAND_ERROR, messageToShow: output)
                 return
             }
@@ -846,7 +845,7 @@ class PrintingOperation : NSOperation {
     
     
     func stepFailAndCleanUpOperation(title : String, messageToShow : String){
-        showAlertInUIThread(title, messageToShow, parent)
+        showAlertInUIThread(title, message: messageToShow, viewController: parent)
         cleanUpOperation()
     }
     
@@ -860,8 +859,8 @@ class PrintingOperation : NSOperation {
     }
     
     func doesThisFileNeedToBeUploaded(filepath : String, md5Value : String) -> Bool{
-        var command = "md5 " + filepath
-        var commandOutput = self.connection.runCommand(command)
+        let command = "md5 " + filepath
+        let commandOutput = self.connection.runCommand(command)
         
         if(commandOutput.hasPrefix(md5Value)){
             return false
@@ -916,9 +915,20 @@ class PrintingOperation : NSOperation {
     
     
     func getFileSizeOfFile(path : String) -> Int {
-        var attributes : NSDictionary = NSFileManager.defaultManager().attributesOfItemAtPath(path, error: nil)!
-        var size : Int = attributes.objectForKey(NSFileSize)!.longValue
-        return size
+        
+        do {
+            let attributes : NSDictionary? = try NSFileManager.defaultManager().attributesOfItemAtPath(path)
+            
+            if(attributes != nil){
+                let size : Int = attributes!.objectForKey(NSFileSize)!.longValue
+                return size
+            } else {
+                return 0
+            }
+
+        } catch {
+            return 0
+        }
     }
     
     

@@ -52,7 +52,7 @@ class Storage  {
     }
     
     func getPrinterList() -> Array<String> {
-        var storedPrinter : String? = getPrinter()
+        let storedPrinter : String? = getPrinter()
         
         if(storedPrinter == nil || storedPrinter!.isEmpty){
             return NATIVE_PRINTER_LIST
@@ -75,9 +75,9 @@ class Storage  {
     func getServer() -> String {
         
 
-        var storedServer : String? =  preferences.stringForKey(KEY_SERVER)
+        let storedServer : String? =  preferences.stringForKey(KEY_SERVER)
         
-        if(storedServer == nil || count(storedServer!.utf16) == 0){
+        if(storedServer == nil || storedServer!.utf16.count == 0){
             return DEFAULT_SERVER;
         } else {
             return storedServer!;

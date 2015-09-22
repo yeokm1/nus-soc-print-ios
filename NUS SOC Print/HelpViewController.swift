@@ -39,14 +39,14 @@ class HelpViewController: GAITrackedViewController {
 
     @IBAction func emailMe(sender: UIButton) {
         
-        var device = getDeviceSpec()
-        var subject : String = "NUS%20SOC%20Print%20iOS"
-        var myEmail : String = "yeokm1@gmail.com"
-        var versionString : String = getVersionString()
+        let device = getDeviceSpec()
+        let subject : String = "NUS%20SOC%20Print%20iOS"
+        let myEmail : String = "yeokm1@gmail.com"
+        let versionString : String = getVersionString()
         
-        var urlString : String = String(format: "mailto:?to=%@&subject=%@(%@)(%@)(%@)", myEmail, subject, device.model, device.osVersion, versionString)
+        let urlString : String = String(format: "mailto:?to=%@&subject=%@(%@)(%@)(%@)", myEmail, subject, device.model, device.osVersion, versionString)
         
-        var url : NSURL = NSURL(string: urlString)!
+        let url : NSURL = NSURL(string: urlString)!
         
         UIApplication.sharedApplication().openURL(url)
        
@@ -56,8 +56,8 @@ class HelpViewController: GAITrackedViewController {
     
     
     func getDeviceSpec() -> (model : String, osVersion : String) {
-        var platform = UIDevice.currentDevice().platform()
-        var version = getSystemVersion()
+        let platform = UIDevice.currentDevice().platform()
+        let version = getSystemVersion()
         return (platform, version)
     }
     

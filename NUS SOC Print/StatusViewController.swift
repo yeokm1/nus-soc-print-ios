@@ -53,13 +53,13 @@ class StatusViewController : GAITrackedViewController {
         statusOperation?.cancel()
         statusOperation = nil
         
-        var preferences : Storage = Storage.sharedInstance;
+        let preferences : Storage = Storage.sharedInstance;
         
         
-        var username : String?  = preferences.getUsername()
-        var password : String? = preferences.getPassword()
-        var hostname : String = preferences.getServer()
-        var printerList : Array<String> = preferences.getPrinterList()
+        let username : String?  = preferences.getUsername()
+        let password : String? = preferences.getPassword()
+        let hostname : String = preferences.getServer()
+        let printerList : Array<String> = preferences.getPrinterList()
         
         if(username == nil || username!.isEmpty || password == nil || password!.isEmpty){
             statusOutputView.text = FULL_CREDENTIALS_NOT_SET
@@ -93,13 +93,13 @@ class StatusViewController : GAITrackedViewController {
         deleteOperation = nil
         
         
-        var preferences : Storage = Storage.sharedInstance;
+        let preferences : Storage = Storage.sharedInstance;
         
         
-        var username : String?  = preferences.getUsername()
-        var password : String? = preferences.getPassword()
-        var hostname : String = preferences.getServer()
-        var printerList : Array<String> = preferences.getPrinterList()
+        let username : String?  = preferences.getUsername()
+        let password : String? = preferences.getPassword()
+        let hostname : String = preferences.getServer()
+        let printerList : Array<String> = preferences.getPrinterList()
         
         if(username == nil || username!.isEmpty || password == nil || password!.isEmpty){
             statusOutputView.text = FULL_CREDENTIALS_NOT_SET
@@ -157,10 +157,10 @@ class StatusViewController : GAITrackedViewController {
         
         override func main() {
             connection = SSHConnectivity(hostname: hostname!, username: username!, password: password!)
-            var connectionStatus = connection.connect()
+            let connectionStatus = connection.connect()
             
-            var serverFound : Bool = connectionStatus.serverFound
-            var authorised : Bool = connectionStatus.authorised
+            let serverFound : Bool = connectionStatus.serverFound
+            let authorised : Bool = connectionStatus.authorised
             
             if(serverFound){
                 if(!authorised){
@@ -180,10 +180,10 @@ class StatusViewController : GAITrackedViewController {
                     break
                 }
                 
-                var command = String(format: FORMAT_PRINTER_COMMAND, printer)
+                let command = String(format: FORMAT_PRINTER_COMMAND, printer)
                 connection!.runCommand(command)
                 
-                var lineToShowToUI : String = String(format: FORMAT_DELETION_OUTPUT, printer)
+                let lineToShowToUI : String = String(format: FORMAT_DELETION_OUTPUT, printer)
                 
                 outputString += lineToShowToUI
                 showOnOutputViewOnUIThread(outputString)
@@ -216,10 +216,10 @@ class StatusViewController : GAITrackedViewController {
         
         override func main() {
             connection = SSHConnectivity(hostname: hostname!, username: username!, password: password!)
-            var connectionStatus = connection.connect()
+            let connectionStatus = connection.connect()
             
-            var serverFound : Bool = connectionStatus.serverFound
-            var authorised : Bool = connectionStatus.authorised
+            let serverFound : Bool = connectionStatus.serverFound
+            let authorised : Bool = connectionStatus.authorised
             
             if(serverFound){
                 if(!authorised){
@@ -239,8 +239,8 @@ class StatusViewController : GAITrackedViewController {
                     break
                 }
                 
-                var command = String(format: FORMAT_PRINTER_COMMAND, printer)
-                var commandOutput : String? = connection!.runCommand(command)
+                let command = String(format: FORMAT_PRINTER_COMMAND, printer)
+                let commandOutput : String? = connection!.runCommand(command)
                 
                 var lineToShowToUI : String?
                 

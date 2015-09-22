@@ -26,8 +26,8 @@ class AboutViewController: GAITrackedViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var versionString = getVersionString()
-        var buildDate = ConstantsObjC.getBuildDate()
+        let versionString = getVersionString()
+        let buildDate = ConstantsObjC.getBuildDate()
         
         
         placeToPutVersion.text = "NUS SOC Print " + versionString + " (" + buildDate + ")"

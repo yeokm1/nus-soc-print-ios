@@ -57,9 +57,14 @@ class SSHConnectivity{
     }
     
     func runCommand(command : String) -> String{
-        var commandOutput : String? =  session?.channel.execute(command, error: nil)
-        
 
+        if(session == nil){
+            return "Nil"
+        }
+
+        var commandOutput : String? =  try? session!.channel.execute(command)
+
+    
         if(commandOutput == nil){
             commandOutput = "Nil"
         }
@@ -67,6 +72,7 @@ class SSHConnectivity{
         NSLog("%@ runCommand:%@, output:%@ ", TAG, command, commandOutput!)
         
         return commandOutput!
+
     }
     
     func createDirectory(toBeCreated : String){
@@ -75,7 +81,7 @@ class SSHConnectivity{
     
     
     func uploadFilePathURL(sourceURL : NSURL, destinationPath : String, progress: ((UInt) -> Bool)) -> Bool{
-        var filePath : String = sourceURL.absoluteString!
+        let filePath : String = sourceURL.absoluteString
         return uploadFile(filePath, destinationPath: destinationPath, progress: progress)
     }
     

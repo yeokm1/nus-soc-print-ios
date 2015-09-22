@@ -36,7 +36,7 @@ class SettingsViewController: GAITrackedViewController, UITextFieldDelegate{
     
     @IBAction func forgetButtonPress(sender: UIButton) {
         
-        var url : NSURL = NSURL(string: RESET_PASSWORD_LINK)!
+        let url : NSURL = NSURL(string: RESET_PASSWORD_LINK)!
         UIApplication.sharedApplication().openURL(url)
     }
     
@@ -57,22 +57,23 @@ class SettingsViewController: GAITrackedViewController, UITextFieldDelegate{
     }
     
     func saveStuff(){
-        var preferences : Storage = Storage.sharedInstance;
+        let preferences : Storage = Storage.sharedInstance;
         
-        var username = usernameField.text
-        var password = passwordField.text
-        var printer = printerField.text
-        var server = serverField.text
+        let username : String? = usernameField.text
+        let password : String? = passwordField.text
+        let printer : String? = printerField.text
+        let server : String? = serverField.text
         
-        if username.isEmpty || password.isEmpty || server.isEmpty {
-            showAlert(DIALOG_EMPTY_FIELDS_TITLE, DIALOG_EMPTY_FIELDS_TEXT, self)
+        if username == nil || password == nil || printer == nil || server == nil
+            || username!.isEmpty || password!.isEmpty || server!.isEmpty {
+            showAlert(DIALOG_EMPTY_FIELDS_TITLE, message: DIALOG_EMPTY_FIELDS_TEXT, viewController: self)
         } else {
-            preferences.storeUsername(username)
-            preferences.storePassword(password)
-            preferences.storePrinter(printer)
-            preferences.storeServer(server)
+            preferences.storeUsername(username!)
+            preferences.storePassword(password!)
+            preferences.storePrinter(printer!)
+            preferences.storeServer(server!)
             closeKeyboard()
-            showAlert(DIALOG_SAVE_TITLE, DIALOG_SAVE_TEXT, self)
+            showAlert(DIALOG_SAVE_TITLE, message: DIALOG_SAVE_TEXT, viewController: self)
         }
         
     }
@@ -86,19 +87,19 @@ class SettingsViewController: GAITrackedViewController, UITextFieldDelegate{
 
     
     func loadAllValuesToUI(){
-        var preferences : Storage = Storage.sharedInstance;
+        let preferences : Storage = Storage.sharedInstance;
 
         
-        var username : String?  = preferences.getUsername()
+        let username : String?  = preferences.getUsername()
         usernameField.text = username
         
-        var password : String? = preferences.getPassword()
+        let password : String? = preferences.getPassword()
         passwordField.text = password
   
-        var printer : String? = preferences.getPrinter()
+        let printer : String? = preferences.getPrinter()
         printerField.text = printer
         
-        var server : String = preferences.getServer()
+        let server : String = preferences.getServer()
         serverField.text = server
     }
     
@@ -110,7 +111,7 @@ class SettingsViewController: GAITrackedViewController, UITextFieldDelegate{
     }
     
     //To close keyboard if user tap outside
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         closeKeyboard()
     }
 

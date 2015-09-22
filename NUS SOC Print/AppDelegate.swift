@@ -18,42 +18,55 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var printViewController : PrintViewController?
 
     
-    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         NSLog("%@ incoming file %@", TAG, url);
         
         
-        var filemgr : NSFileManager = NSFileManager.defaultManager()
+        let filemgr : NSFileManager = NSFileManager.defaultManager()
         
-        
+        let tempDirectory : NSString = NSTemporaryDirectory() as NSString
         
         //Remove existing files in temporary directory
-        var directoryContents : Array = filemgr.contentsOfDirectoryAtPath(NSTemporaryDirectory(), error: nil)!
+        let directoryContents : Array = try! filemgr.contentsOfDirectoryAtPath(NSTemporaryDirectory())
         
         for path in directoryContents {
-            var fullPath = NSTemporaryDirectory().stringByAppendingPathComponent(path as! String)
-            filemgr.removeItemAtPath(fullPath, error: nil)
+            
+
+            let fullPath = tempDirectory.stringByAppendingPathComponent(path )
+            
+            
+            do {
+                try filemgr.removeItemAtPath(fullPath)
+            } catch _ {
+            }
         }
 
         
         
     
         //Move file to tmp directory
-        var newURLPath : NSURL = NSURL(fileURLWithPath: NSTemporaryDirectory().stringByAppendingPathComponent(url.lastPathComponent!))!
+        let newURLPath : NSURL = NSURL(fileURLWithPath: tempDirectory.stringByAppendingPathComponent(url.lastPathComponent!))
         
-        filemgr.moveItemAtURL(url, toURL: newURLPath, error: nil)
+        do {
+            try filemgr.moveItemAtURL(url, toURL: newURLPath)
+        } catch _ {
+        }
         
         
         //Remove stuff from /Document/Inbox directory
         
-        var searchDirectories : NSArray = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
-        var documentsDirectory : NSString = searchDirectories.objectAtIndex(0) as! NSString
-        var inboxDirectory = documentsDirectory.stringByAppendingPathComponent("Inbox")
+        let searchDirectories : NSArray = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
+        let documentsDirectory : NSString = searchDirectories.objectAtIndex(0) as! NSString
+        let inboxDirectory : String = documentsDirectory.stringByAppendingPathComponent("Inbox")
         
-        var filesInInbox : NSArray = filemgr.contentsOfDirectoryAtPath(inboxDirectory, error: nil)!
+        let filesInInbox : NSArray = try! filemgr.contentsOfDirectoryAtPath(inboxDirectory)
         
         for filePath in filesInInbox{
-            var fullPath : String = inboxDirectory.stringByAppendingPathComponent(filePath as! String)
-            filemgr.removeItemAtPath(fullPath, error: nil)
+            let fullPath : String = (inboxDirectory as NSString).stringByAppendingPathComponent(filePath as! String)
+            do {
+                try filemgr.removeItemAtPath(fullPath)
+            } catch _ {
+            }
         }
         
 

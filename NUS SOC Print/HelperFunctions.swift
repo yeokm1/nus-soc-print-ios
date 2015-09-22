@@ -23,29 +23,30 @@ let APP_DID_BECOME_ACTIVE = "appDidBecomeActive"
 
 func showAlertInUIThread(title: String, message : String, viewController : UIViewController){
     dispatch_async(dispatch_get_main_queue(), {(void) in
-        showAlert(title, message, viewController)
+        showAlert(title, message: message, viewController: viewController)
     })
 }
 
 func showAlert(title: String, message : String, viewController : UIViewController){
     
-    if(isSystemAtLeastiOS8()){
-        var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+    if #available(iOS 8.0, *) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: DIALOG_OK, style: UIAlertActionStyle.Default, handler: nil))
-        
+            
         viewController.presentViewController(alert, animated: true, completion: nil)
     } else {
-        
-        var alertView : UIAlertView = UIAlertView(title: title, message: message, delegate: nil, cancelButtonTitle: DIALOG_OK)
+        let alertView : UIAlertView = UIAlertView(title: title, message: message, delegate: nil, cancelButtonTitle: DIALOG_OK)
         alertView.show()
-        
     }
+
+
     
 }
 
 func showYesNoAlert(title: String, message : String, viewController : HelperFunctionsYesNoAlertViewController, alertTag : Int){
-    if(isSystemAtLeastiOS8()){
-        var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+    
+    if #available(iOS 8.0, *) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         
         
         let yesBlock = {(action: UIAlertAction!) -> Void in
@@ -63,26 +64,26 @@ func showYesNoAlert(title: String, message : String, viewController : HelperFunc
         
         viewController.presentViewController(alert, animated: true, completion: nil)
     } else {
-        
-        var alertView : UIAlertView = UIAlertView(title: title, message: message, delegate: viewController, cancelButtonTitle: DIALOG_NO, otherButtonTitles: DIALOG_YES)
+        let alertView : UIAlertView = UIAlertView(title: title, message: message, delegate: viewController, cancelButtonTitle: DIALOG_NO, otherButtonTitles: DIALOG_YES)
         alertView.tag = alertTag
         alertView.show()
         
     }
+
 }
 
 
 func getSystemVersion() -> String{
-    var systemVersion = UIDevice.currentDevice().systemVersion
+    let systemVersion = UIDevice.currentDevice().systemVersion
     return systemVersion
 }
 
 func getVersionString() -> String {
-    var infoDict : NSDictionary = NSBundle.mainBundle().infoDictionary!
-    var majorVersion : String = infoDict.objectForKey("CFBundleShortVersionString") as! String
-    var minorVersion : String = infoDict.objectForKey("CFBundleVersion") as! String
+    let infoDict : NSDictionary = NSBundle.mainBundle().infoDictionary!
+    let majorVersion : String = infoDict.objectForKey("CFBundleShortVersionString") as! String
+    let minorVersion : String = infoDict.objectForKey("CFBundleVersion") as! String
     
-    var appString = String(format: "Ver:%@,%@", majorVersion, minorVersion)
+    let appString = String(format: "Ver:%@,%@", majorVersion, minorVersion)
     
     return appString
     
@@ -90,9 +91,9 @@ func getVersionString() -> String {
 
 
 func isSystemAtLeastiOS8() -> Bool{
-    var systemVersion = getSystemVersion() as NSString
+    let systemVersion = getSystemVersion() as NSString
     
-    var systemVersionFloat = systemVersion.floatValue
+    let systemVersionFloat = systemVersion.floatValue
     if(systemVersionFloat >= 8.0){
         return true
     } else {

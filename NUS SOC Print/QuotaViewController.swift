@@ -34,11 +34,11 @@ class QuotaViewController: GAITrackedViewController, NSURLConnectionDataDelegate
     
     
     func refreshQuota(){
-        var preferences : Storage = Storage.sharedInstance;
+        let preferences : Storage = Storage.sharedInstance;
         
         
-        var username : String?  = preferences.getUsername()
-        var password : String? = preferences.getPassword()
+        let username : String?  = preferences.getUsername()
+        let password : String? = preferences.getPassword()
         
         if(username == nil || username!.isEmpty || password == nil || password!.isEmpty){
             quotaOutput.text = CREDENTIALS_MISSING
@@ -54,36 +54,36 @@ class QuotaViewController: GAITrackedViewController, NSURLConnectionDataDelegate
     func retrieveQuota(username : String, password: String) {
 
         NSLog("%@ %@", TAG, "Refreshing Quota")
-        var post : String = String(format: SERVER_PAIR, SERVER_PATH, username, password)
+        let post : String = String(format: SERVER_PAIR, SERVER_PATH, username, password)
 
-        var postData : NSData? = post.dataUsingEncoding(NSASCIIStringEncoding);
+        let postData : NSData? = post.dataUsingEncoding(NSASCIIStringEncoding);
         
-        var postLength : String = String(format: "%d", postData!.length)
+        let postLength : String = String(format: "%d", postData!.length)
         
-        var url : NSURL = NSURL(string:SERVER_URL)!
+        let url : NSURL = NSURL(string:SERVER_URL)!
 
-        var request : NSMutableURLRequest = NSMutableURLRequest(URL: url)
+        let request : NSMutableURLRequest = NSMutableURLRequest(URL: url)
         
         request.HTTPMethod = "POST"
         request.HTTPBody = postData
         request.setValue(postLength, forHTTPHeaderField: "Content-Length")
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Current-Type")
         
-        NSURLConnection(request: request, delegate: self, startImmediately: true)
+        _ = NSURLConnection(request: request, delegate: self, startImmediately: true)
 
     }
     
 
     func connection(connection: NSURLConnection, didReceiveData data: NSData) {
 
-        var dataStringNS : NSString = NSString(data: data, encoding: NSUTF8StringEncoding)!
+        let dataStringNS : NSString = NSString(data: data, encoding: NSUTF8StringEncoding)!
         
         NSLog("%@ %@", TAG, dataStringNS)
         
   
-        var regex : NSRegularExpression = NSRegularExpression(pattern:QUOTA_REGEX_PATTERN, options: NSRegularExpressionOptions.CaseInsensitive, error: nil)!
+        let regex : NSRegularExpression = try! NSRegularExpression(pattern:QUOTA_REGEX_PATTERN, options: NSRegularExpressionOptions.CaseInsensitive)
         
-        var matches = regex.matchesInString(dataStringNS as String, options: NSMatchingOptions.allZeros, range: NSMakeRange(0, dataStringNS.length))
+        let matches = regex.matchesInString(dataStringNS as String, options: NSMatchingOptions(), range: NSMakeRange(0, dataStringNS.length))
         
   
         quotaOutput.text = ""
@@ -94,19 +94,19 @@ class QuotaViewController: GAITrackedViewController, NSURLConnectionDataDelegate
         
         for match in matches {
             
-            var quotaTypeRange : NSRange = match.rangeAtIndex(1)
-            var quotaValueRange : NSRange = match.rangeAtIndex(2)
-            var quotaTypeHTML = dataStringNS.substringWithRange(quotaTypeRange)
-            var quotaValueHTML = dataStringNS.substringWithRange(quotaValueRange)
+            let quotaTypeRange : NSRange = match.rangeAtIndex(1)
+            let quotaValueRange : NSRange = match.rangeAtIndex(2)
+            let quotaTypeHTML = dataStringNS.substringWithRange(quotaTypeRange)
+            let quotaValueHTML = dataStringNS.substringWithRange(quotaValueRange)
             
-            var quotaType : String = stringByStrippingHTML(quotaTypeHTML)
-            var quotaValue : String = stringByStrippingHTML(quotaValueHTML)
+            let quotaType : String = stringByStrippingHTML(quotaTypeHTML)
+            let quotaValue : String = stringByStrippingHTML(quotaValueHTML)
             
         
             NSLog("%@ %@ %@", TAG, quotaType, quotaValue)
             
             
-            var quotaString : String = quotaType + " : " + quotaValue + "\n\n"
+            let quotaString : String = quotaType + " : " + quotaValue + "\n\n"
         
             
             quotaOutput.text = quotaOutput.text.stringByAppendingString(quotaString)
@@ -122,9 +122,9 @@ class QuotaViewController: GAITrackedViewController, NSURLConnectionDataDelegate
 
     func stringByStrippingHTML(input : String) -> String{
   
-        var regex : NSRegularExpression = NSRegularExpression(pattern:"<[^>]+>", options: NSRegularExpressionOptions.CaseInsensitive, error: nil)!
+        let regex : NSRegularExpression = try! NSRegularExpression(pattern:"<[^>]+>", options: NSRegularExpressionOptions.CaseInsensitive)
 
-        var output = regex.stringByReplacingMatchesInString(input, options: NSMatchingOptions.allZeros, range: NSMakeRange(0, count(input.utf16)), withTemplate: "")
+        let output = regex.stringByReplacingMatchesInString(input, options: NSMatchingOptions(), range: NSMakeRange(0, input.utf16.count), withTemplate: "")
    
 
         return output
