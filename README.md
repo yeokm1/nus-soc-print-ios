@@ -35,8 +35,8 @@ View more screenshots in the screenshots directory.
 
 Dependencies
 =====
-1. Swift language
-2. Xcode 6
+1. Swift 2 language
+2. Xcode 7
 3. Cocoapods
 4. NMSSH SSH library (installed via Cocoapods)
 5. Google Analytics (installed via Cocoapods)
